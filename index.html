@@ -77,6 +77,7 @@ input[type=time]{width:100%;padding:8px 10px;border:0.5px solid var(--border2);b
 .info-panel td,.info-panel th{padding:5px 8px;border-bottom:0.5px solid var(--border);text-align:left}
 .info-panel th{color:var(--text3);font-weight:500}
 .info-btn{font-size:12px;padding:6px 12px;border-radius:var(--r);border:0.5px solid var(--border2);background:none;color:var(--text3);cursor:pointer;display:inline-flex;align-items:center;gap:5px;margin-bottom:.75rem;-webkit-tap-highlight-color:transparent}
+.info-btn.custom-active{color:var(--text);border-color:var(--text);background:var(--bg2)}
 .note{font-size:11px;color:var(--text3);margin-top:.75rem;line-height:1.6}
 hr{border:none;border-top:0.5px solid var(--border);margin:1rem 0}
 .toggle-row{display:flex;align-items:center;gap:8px;margin-bottom:.75rem;font-size:13px;color:var(--text2)}
@@ -144,12 +145,10 @@ hr{border:none;border-top:0.5px solid var(--border);margin:1rem 0}
     <div class="ctrl-col"><span class="ctrl-label">Hydration (%)</span><input type="number" id="d-hydration" value="75" min="50" max="120" step="1" oninput="calcDDT()"></div>
     <div class="ctrl-col"><span class="ctrl-label">Starter (g)</span><input type="number" id="d-starter" value="100" min="0" max="1000" step="10" oninput="calcDDT()"></div>
     <div class="ctrl-col"><span class="ctrl-label">Starter hydration (%)</span><input type="number" id="d-starterHyd" value="100" min="50" max="200" step="5" oninput="calcDDT()"></div>
-    <div class="ctrl-col"><span class="ctrl-label">Salt (g)</span><input type="number" id="d-salt" value="10" min="0" max="100" step="1" oninput="calcDDT()"></div>
   </div>
   <hr>
   <div class="ctrl-grid">
     <div class="ctrl-col"><span class="ctrl-label">Flour temp (°C)</span><input type="number" id="d-tFlour" value="20" min="-5" max="40" step="0.5" oninput="calcDDT()"></div>
-    <div class="ctrl-col"><span class="ctrl-label">Room temp (°C)</span><input type="number" id="d-tRoom" value="22" min="10" max="40" step="0.5" oninput="calcDDT()"></div>
     <div class="ctrl-col"><span class="ctrl-label">Starter temp (°C)</span><input type="number" id="d-tStarter" value="22" min="2" max="35" step="0.5" oninput="calcDDT()"></div>
     <div class="ctrl-col"><span class="ctrl-label">DDT target (°C)</span><input type="number" id="d-ddt" value="24" min="18" max="32" step="0.5" oninput="calcDDT()"></div>
     <div class="ctrl-col"><span class="ctrl-label">Friction factor (°C)</span><input type="number" id="d-friction" value="0" min="0" max="25" step="1" oninput="calcDDT()"></div>
@@ -354,8 +353,10 @@ hr{border:none;border-top:0.5px solid var(--border);margin:1rem 0}
 ═══════════════════════════════════════ -->
 <div class="page" id="page-sc">
 <div class="card" style="margin-top:1rem">
-  <div class="card-title">Starter calculator</div>
-
+  <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:1rem">
+    <div class="card-title" style="margin-bottom:0">Starter calculator</div>
+    <button class="info-btn" id="sc-settings-btn" onclick="scToggleSettings()" style="margin-bottom:0">&#9881;</button>
+  </div>
   <button class="info-btn" onclick="toggleInfo('sc-info')">&#9432; How this works</button>
   <div class="info-panel" id="sc-info">
     <h3>Purpose</h3>
@@ -393,6 +394,29 @@ hr{border:none;border-top:0.5px solid var(--border);margin:1rem 0}
     <p><strong>Summit Sourdough</strong> (2025) &mdash; primary calibration for ratio &times; peak time at 68&deg;F/20&deg;C. <strong>Amy Bakes Bread</strong> (2026) &mdash; corroborating data at 78&deg;F across multiple ratios. <strong>King Arthur Baking</strong> (2025) &mdash; feeding ratio peak time trials and variability data. <strong>The Sourdough Journey</strong> (2023) &mdash; flour type comparison at 68&deg;F.</p>
     <p style="margin-top:.5rem">Peak times shown as ranges of &plusmn;20% based on King Arthur Baking controlled trials (1:1:1 at 78&deg;F: 4&ndash;6h). The percentage-based approach correctly models multiplicative uncertainty in exponential fermentation kinetics.</p>
     <p style="margin-top:.5rem;font-style:italic">Peak times are estimates. Individual results vary based on starter health, flour brand, and microbial composition.</p>
+  </div>
+
+  <div class="info-panel" id="sc-settings">
+    <h3>Custom Reference Data</h3>
+    <p>Override the default peak time table with your own measurements at a known temperature. Changes apply when you leave each field.</p>
+    <div class="ctrl-grid" style="grid-template-columns:1fr">
+      <div class="ctrl-col">
+        <span class="ctrl-label">Reference temperature (&deg;C)</span>
+        <input type="number" id="sc-ref-temp" value="20" min="5" max="40" step="0.5" onchange="scApplyCustomRef()">
+      </div>
+    </div>
+    <table>
+      <tr><th>Ratio</th><th>Peak time (h)</th></tr>
+      <tr><td>1:1:1</td><td><input type="number" id="sc-ref-1" value="5" min="0.5" max="48" step="0.5" onchange="scApplyCustomRef()" style="width:90px"></td></tr>
+      <tr><td>1:2:2</td><td><input type="number" id="sc-ref-2" value="6.5" min="0.5" max="48" step="0.5" onchange="scApplyCustomRef()" style="width:90px"></td></tr>
+      <tr><td>1:3:3</td><td><input type="number" id="sc-ref-3" value="8" min="0.5" max="48" step="0.5" onchange="scApplyCustomRef()" style="width:90px"></td></tr>
+      <tr><td>1:4:4</td><td><input type="number" id="sc-ref-4" value="10" min="0.5" max="48" step="0.5" onchange="scApplyCustomRef()" style="width:90px"></td></tr>
+      <tr><td>1:5:5</td><td><input type="number" id="sc-ref-5" value="12" min="0.5" max="48" step="0.5" onchange="scApplyCustomRef()" style="width:90px"></td></tr>
+      <tr><td>1:10:10</td><td><input type="number" id="sc-ref-10" value="14" min="0.5" max="48" step="0.5" onchange="scApplyCustomRef()" style="width:90px"></td></tr>
+    </table>
+    <div style="display:flex;gap:8px;margin-top:1rem">
+      <button class="btn" onclick="scResetCustomRef()">Reset to defaults</button>
+    </div>
   </div>
 
   <div class="ctrl-grid">
@@ -512,9 +536,7 @@ function calcDDT(){
   const hyd     =+document.getElementById('d-hydration').value||75;
   const starter =+document.getElementById('d-starter').value||0;
   const stHyd   =+document.getElementById('d-starterHyd').value||100;
-  const salt    =+document.getElementById('d-salt').value||0;
   const tFlour  =+document.getElementById('d-tFlour').value||20;
-  const tRoom   =+document.getElementById('d-tRoom').value||22;
   const tStart  =+document.getElementById('d-tStarter').value||22;
   const ddt     =+document.getElementById('d-ddt').value||24;
   const friction=+document.getElementById('d-friction').value||0;
@@ -534,23 +556,22 @@ function calcDDT(){
   const hcFlour  = flour*CP.flour;
   const hcStFlour= starterFlour*CP.flour;
   const hcStWater= starterWater*CP.water;
-  const hcSalt   = salt*CP.salt;
   const hcWater  = addedWater*CP.water;
-  let hcBowl=0, tBowl=tRoom;
+  let hcBowl=0, tBowl=22;
 
   if(document.getElementById('d-bowlEnable').checked){
     const mat=document.getElementById('d-bowlMat').value;
     const bMass=+document.getElementById('d-bowlMass').value||350;
-    tBowl=+document.getElementById('d-tBowl').value||tRoom;
+    tBowl=+document.getElementById('d-tBowl').value||22;
     hcBowl=bMass*CP[mat];
   }
 
-  const totalHC=hcFlour+hcStFlour+hcStWater+hcSalt+hcWater+hcBowl;
-  const heatIn=hcFlour*tFlour+(hcStFlour+hcStWater)*tStart+hcSalt*tRoom+hcBowl*tBowl;
+  const totalHC=hcFlour+hcStFlour+hcStWater+hcWater+hcBowl;
+  const heatIn=hcFlour*tFlour+(hcStFlour+hcStWater)*tStart+hcBowl*tBowl;
   const targetHeat=totalHC*(ddt-friction);
   const tWater=(targetHeat-heatIn)/hcWater;
   const sensitivity=hcWater/totalHC;
-  const totalDough=flour+addedWater+starter+salt;
+  const totalDough=flour+addedWater+starter;
 
   document.getElementById('ddt-water-temp').textContent=tWater.toFixed(1)+'°C';
   document.getElementById('ddt-detail').innerHTML=
@@ -730,6 +751,8 @@ const SC_FLOUR_MULT={bread:1,ww:0.8,rye:0.85,blend50:0.85};
 const SC_STEP=5/60;
 
 let scChart,scRatio=1;
+let scCustomRef=null;
+try{const v=JSON.parse(localStorage.getItem('sc-custom-ref'));if(v&&typeof v.temp==='number'&&v.peaks){scCustomRef=v;}}catch(e){}
 
 function scSelectRatio(btn,r){
   scRatio=r;
@@ -748,6 +771,38 @@ function fmtAmPm(h,m){
   return (h%12||12)+':'+String(m).padStart(2,'0')+' '+(h>=12?'PM':'AM');
 }
 
+function scSyncBtn(){
+  const btn=document.getElementById('sc-settings-btn');
+  btn.classList.toggle('custom-active',scCustomRef!==null);
+}
+
+function scToggleSettings(){
+  const panel=document.getElementById('sc-settings');
+  panel.classList.toggle('open');
+  if(panel.classList.contains('open')){
+    const ref=scCustomRef||{temp:20,peaks:SC_REF_PEAK};
+    document.getElementById('sc-ref-temp').value=ref.temp;
+    for(const r of[1,2,3,4,5,10])document.getElementById('sc-ref-'+r).value=ref.peaks[r];
+  }
+}
+
+function scApplyCustomRef(){
+  const temp=+document.getElementById('sc-ref-temp').value||20;
+  const peaks={};
+  for(const r of[1,2,3,4,5,10])peaks[r]=+document.getElementById('sc-ref-'+r).value||SC_REF_PEAK[r];
+  scCustomRef={temp,peaks};
+  try{localStorage.setItem('sc-custom-ref',JSON.stringify(scCustomRef));}catch(e){}
+  scSyncBtn();scBuild();
+}
+
+function scResetCustomRef(){
+  scCustomRef=null;
+  try{localStorage.removeItem('sc-custom-ref');}catch(e){}
+  document.getElementById('sc-ref-temp').value=20;
+  for(const r of[1,2,3,4,5,10])document.getElementById('sc-ref-'+r).value=SC_REF_PEAK[r];
+  scSyncBtn();scBuild();
+}
+
 function scBuild(){
   locked.chartId=null;locked.x=null;locked.elements=null;
 
@@ -756,7 +811,8 @@ function scBuild(){
   const yieldG=+document.getElementById('sc-yield').value||0;
   const feedEl=document.getElementById('sc-feedTime');
 
-  const peakH=SC_REF_PEAK[scRatio]/Math.pow(2,(temp-20)/10)*SC_FLOUR_MULT[flour];
+  const ref=scCustomRef||{temp:20,peaks:SC_REF_PEAK};
+  const peakH=ref.peaks[scRatio]/Math.pow(2,(temp-ref.temp)/10)*SC_FLOUR_MULT[flour];
   const peakMin=peakH*60;
 
   const lo=peakH*0.8,hi=peakH*1.2;document.getElementById('sc-peakTime').textContent=lo.toFixed(1)+' \u2013 '+hi.toFixed(1)+' h';
@@ -795,6 +851,7 @@ function scBuild(){
 }
 
 sliderBind('sc-temp','sc-tempOut','\u00B0C',1,scBuild);
+scSyncBtn();
 
 /* PWA */
 if('serviceWorker' in navigator)navigator.serviceWorker.register('./sw.js').catch(()=>{});
