@@ -641,12 +641,10 @@ function dwBuild(){
   const data=full.filter((_,i)=>i%STEP===0);
   const n=data.length;
   const times=Array.from({length:n},(_,i)=>i*STEP);
-  const li=dwMaxMin<=60?10:dwMaxMin<=120?30:dwMaxMin<=240?60:dwMaxMin<=480?120:180;
-  const labels=times.map(t=>{if(t===0)return'0';if(t%li===0)return dwMaxMin<=120?t+'min':(t/60)+'h';return'';});
-  const dataset={label:'Dough temp',data,borderColor:DW_COLOR,borderWidth:2.5,pointRadius:0,tension:0.3};
+  const dataset={label:'Dough temp',data:data.map((v,i)=>({x:times[i]/60,y:v})),borderColor:DW_COLOR,borderWidth:2.5,pointRadius:0,tension:0.3};
   const yMin=+(Math.min(tInit,tRoom)-0.5).toFixed(1),yMax=+(Math.max(tInit,tRoom)+0.5).toFixed(1);
-  if(dwChart){dwChart.data.labels=labels;dwChart.data.datasets=[dataset];dwChart.options.scales.y.min=yMin;dwChart.options.scales.y.max=yMax;dwChart.update();}
-  else dwChart=new Chart(document.getElementById('doughChart'),{type:'line',data:{labels,datasets:[dataset]},options:{responsive:true,maintainAspectRatio:false,interaction:{mode:'index',intersect:false},plugins:{legend:{display:false},tooltip:{callbacks:{title:items=>{const t=items[0].dataIndex*STEP,h=Math.floor(t/60),m=t%60;return h===0?t+'min':(m===0?h+'h':h+'h '+m+'min');},label:i=>i.raw.toFixed(1)+'°C'}}},onClick:(e,el,ch)=>{if(locked.chartId===ch.canvas.id&&locked.x!==null){locked.chartId=null;locked.x=null;locked.elements=null;ch.tooltip.setActiveElements([],{x:0,y:0})}else if(ch.tooltip?._active?.length){const a=ch.tooltip._active;locked.chartId=ch.canvas.id;locked.x=a[0].element.x;locked.elements=a.map(e=>({datasetIndex:e.datasetIndex,dataIndex:e.dataIndex}));ch.tooltip.setActiveElements(locked.elements,{x:locked.x,y:a[0].element.y})}ch.draw();},scales:{x:{ticks:{autoSkip:false,maxRotation:0,color:'#888',font:{size:11},callback:(v,i)=>labels[i]},grid:{color:'rgba(128,128,128,0.1)'}},y:{min:yMin,max:yMax,ticks:{color:'#888',font:{size:11},callback:v=>v.toFixed(1)+'°C'},grid:{color:'rgba(128,128,128,0.1)'}}}}});
+  if(dwChart){dwChart.data.datasets=[dataset];dwChart.options.scales.y.min=yMin;dwChart.options.scales.y.max=yMax;dwChart.update();}
+  else dwChart=new Chart(document.getElementById('doughChart'),{type:'line',data:{datasets:[dataset]},options:{responsive:true,maintainAspectRatio:false,parsing:{xAxisKey:'x',yAxisKey:'y'},interaction:{mode:'index',intersect:false},plugins:{legend:{display:false},tooltip:{callbacks:{title:items=>{const t=items[0].parsed.x*60,h=Math.floor(t/60),m=Math.round(t%60);return h===0?m+'min':(m===0?h+'h':h+'h '+m+'min');},label:i=>i.parsed.y.toFixed(1)+'°C'}}},onClick:(e,el,ch)=>{if(locked.chartId===ch.canvas.id&&locked.x!==null){locked.chartId=null;locked.x=null;locked.elements=null;ch.tooltip.setActiveElements([],{x:0,y:0})}else if(ch.tooltip?._active?.length){const a=ch.tooltip._active;locked.chartId=ch.canvas.id;locked.x=a[0].element.x;locked.elements=a.map(e=>({datasetIndex:e.datasetIndex,dataIndex:e.dataIndex}));ch.tooltip.setActiveElements(locked.elements,{x:locked.x,y:a[0].element.y})}ch.draw();},scales:{x:{type:'linear',ticks:{callback:v=>{if(v===0)return'0';const t=Math.round(v*60);return dwMaxMin<=120?t+'min':v+'h';},autoSkipPadding:6,color:'#888',font:{size:11},maxRotation:0},grid:{color:'rgba(128,128,128,0.1)'}},y:{min:yMin,max:yMax,ticks:{color:'#888',font:{size:11},callback:v=>v.toFixed(1)+'°C'},grid:{color:'rgba(128,128,128,0.1)'}}}}});
 }
 
 sliderBind('dw-tInit','dw-tInitOut','°C',1,dwBuild);
@@ -687,30 +685,28 @@ function sBuild(){
   } else ptEl.textContent=peakMin===null?'> '+stMaxH+'h':fmtTime(peakMin);
 
   const thresh=times.map(()=>peakH);
-  const li=stMaxH<=6?30:stMaxH<=24?60:stMaxH<=48?120:240;
-  const labels=times.map(t=>{if(t===0)return'0';if(t%li===0)return stMaxH<=6?t+'min':(t/60)+'h';return'';});
   const yTMin=+(Math.min(tStart,tRoom)-1).toFixed(0),yTMax=+(Math.max(tStart,tRoom)+2).toFixed(0),yPMax=+(peakH*1.25).toFixed(1);
+  const stToXY=(arr)=>arr.map((v,i)=>({x:times[i]/60,y:v}));
 
   if(stChart){
-    stChart.data.labels=labels;
-    stChart.data.datasets[0].data=tempCurve;
-    stChart.data.datasets[1].data=progress;
-    stChart.data.datasets[2].data=thresh;
+    stChart.data.datasets[0].data=stToXY(tempCurve);
+    stChart.data.datasets[1].data=stToXY(progress);
+    stChart.data.datasets[2].data=stToXY(thresh);
     stChart.options.scales.y.min=yTMin;stChart.options.scales.y.max=yTMax;
     stChart.options.scales.y1.max=yPMax;
     stChart.update();
   } else {
-    stChart=new Chart(document.getElementById('starterChart'),{type:'line',data:{labels,datasets:[
-      {label:'Temperature',data:tempCurve,borderColor:'#185FA5',borderWidth:2.5,pointRadius:0,tension:0.4,yAxisID:'y',fill:{target:'origin',above:'rgba(24,95,165,0.07)'}},
-      {label:'Progress',data:progress,borderColor:'#3B6D11',borderWidth:2,pointRadius:0,tension:0.1,borderDash:[5,3],yAxisID:'y1'},
-      {label:'Threshold',data:thresh,borderColor:'#D85A30',borderWidth:1.5,pointRadius:0,borderDash:[3,4],yAxisID:'y1'},
-    ]},options:{responsive:true,maintainAspectRatio:false,interaction:{mode:'index',intersect:false},onClick:(e,el,ch)=>{if(locked.chartId===ch.canvas.id&&locked.x!==null){locked.chartId=null;locked.x=null;locked.elements=null;ch.tooltip.setActiveElements([],{x:0,y:0})}else if(ch.tooltip?._active?.length){const a=ch.tooltip._active;locked.chartId=ch.canvas.id;locked.x=a[0].element.x;locked.elements=a.map(e=>({datasetIndex:e.datasetIndex,dataIndex:e.dataIndex}));ch.tooltip.setActiveElements(locked.elements,{x:locked.x,y:a[0].element.y})}ch.draw();},
+    stChart=new Chart(document.getElementById('starterChart'),{type:'line',data:{datasets:[
+      {label:'Temperature',data:stToXY(tempCurve),borderColor:'#185FA5',borderWidth:2.5,pointRadius:0,tension:0.4,yAxisID:'y',fill:{target:'origin',above:'rgba(24,95,165,0.07)'}},
+      {label:'Progress',data:stToXY(progress),borderColor:'#3B6D11',borderWidth:2,pointRadius:0,tension:0.1,borderDash:[5,3],yAxisID:'y1'},
+      {label:'Threshold',data:stToXY(thresh),borderColor:'#D85A30',borderWidth:1.5,pointRadius:0,borderDash:[3,4],yAxisID:'y1'},
+    ]},options:{responsive:true,maintainAspectRatio:false,parsing:{xAxisKey:'x',yAxisKey:'y'},interaction:{mode:'index',intersect:false},onClick:(e,el,ch)=>{if(locked.chartId===ch.canvas.id&&locked.x!==null){locked.chartId=null;locked.x=null;locked.elements=null;ch.tooltip.setActiveElements([],{x:0,y:0})}else if(ch.tooltip?._active?.length){const a=ch.tooltip._active;locked.chartId=ch.canvas.id;locked.x=a[0].element.x;locked.elements=a.map(e=>({datasetIndex:e.datasetIndex,dataIndex:e.dataIndex}));ch.tooltip.setActiveElements(locked.elements,{x:locked.x,y:a[0].element.y})}ch.draw();},
       plugins:{legend:{display:false},tooltip:{callbacks:{
-        title:items=>{const t=items[0].dataIndex*SS,h=Math.floor(t/60),m=t%60;return h===0?t+'min':(m===0?h+'h':h+'h '+m+'min');},
-        label:item=>{if(item.datasetIndex===0)return'Temp: '+item.raw.toFixed(1)+'°C';if(item.datasetIndex===1)return'Progress: '+(item.raw/peakH*100).toFixed(1)+'%';return'Threshold: 100%';}
+        title:items=>{const t=items[0].parsed.x*60,h=Math.floor(t/60),m=Math.round(t%60);return h===0?m+'min':(m===0?h+'h':h+'h '+m+'min');},
+        label:item=>{if(item.datasetIndex===0)return'Temp: '+item.parsed.y.toFixed(1)+'°C';if(item.datasetIndex===1)return'Progress: '+(item.parsed.y/peakH*100).toFixed(1)+'%';return'Threshold: 100%';}
       }}},
       scales:{
-        x:{ticks:{autoSkip:false,maxRotation:0,color:'#888',font:{size:11},callback:(v,i)=>labels[i]},grid:{color:'rgba(128,128,128,0.1)'}},
+        x:{type:'linear',ticks:{callback:v=>{if(v===0)return'0';const h=Math.round(v);return Math.abs(v-h)<0.01?h+'h':'';},autoSkipPadding:6,color:'#888',font:{size:11},maxRotation:0},grid:{color:'rgba(128,128,128,0.1)'}},
         y:{min:yTMin,max:yTMax,position:'left',ticks:{color:'#185FA5',font:{size:11},callback:v=>v.toFixed(0)+'°C'},grid:{color:'rgba(128,128,128,0.08)'},title:{display:true,text:'temp',color:'#185FA5',font:{size:11}}},
         y1:{min:0,max:yPMax,position:'right',ticks:{color:'#3B6D11',font:{size:11},callback:v=>(v/peakH*100).toFixed(0)+'%'},grid:{drawOnChartArea:false},title:{display:true,text:'progress',color:'#3B6D11',font:{size:11}}}
       }
@@ -842,14 +838,13 @@ function scBuild(){
   const n=Math.ceil(totalH/SC_STEP);
   const rd=Array.from({length:n+1},(_,i)=>+scReadiness(i*SC_STEP,peakH).toFixed(2));
 
-  const li=totalH<=6?1:totalH<=12?2:totalH<=24?4:6;
-  const lb=rd.map((_,i)=>{const t=i*SC_STEP;if(t===0)return'0';const h=Math.round(t);return Math.abs(t-h)<0.01&&h%li===0?h+'h':'';});
-
   if(scChart){
-    scChart.scPeak=peakH;scChart.scStep=SC_STEP;scChart.scN=n;
-    scChart.data.labels=lb;scChart.data.datasets[0].data=rd;scChart.update();
+    scChart.data.datasets[0].data=rd.map((v,i)=>({x:i*SC_STEP,y:v}));
+    scChart.options.scales.x.max=totalH;
+    scChart.scPeak=peakH;
+    scChart.update();
   }else{
-    scChart=new Chart(document.getElementById('scChart'),{type:'line',data:{labels:lb,datasets:[{label:'Rise',data:rd,borderColor:'#185FA5',borderWidth:2.5,pointRadius:0,tension:0.3,fill:{target:'origin',above:'rgba(24,95,165,0.07)'}}]},options:{responsive:true,maintainAspectRatio:false,interaction:{mode:'index',intersect:false},onClick:(e,el,ch)=>{if(locked.chartId===ch.canvas.id&&locked.x!==null){locked.chartId=null;locked.x=null;locked.elements=null;ch.tooltip.setActiveElements([],{x:0,y:0})}else if(ch.tooltip?._active?.length){const a=ch.tooltip._active;locked.chartId=ch.canvas.id;locked.x=a[0].element.x;locked.elements=a.map(e=>({datasetIndex:e.datasetIndex,dataIndex:e.dataIndex}));ch.tooltip.setActiveElements(locked.elements,{x:locked.x,y:a[0].element.y})}ch.draw();},plugins:{legend:{display:false},tooltip:{callbacks:{title:items=>{const t=items[0].dataIndex*SC_STEP*60,h=Math.floor(t/60),m=Math.round(t%60);return h===0?m+'min':(m===0?h+'h':h+'h '+m+'min');},label:item=>'Rise: '+item.raw.toFixed(0)+'%'}}},scales:{x:{ticks:{autoSkip:false,maxRotation:0,color:'#888',font:{size:11},callback:(v,i)=>lb[i]},grid:{color:'rgba(128,128,128,0.1)'},title:{display:true,text:'Time from feeding',color:'#888',font:{size:11}}},y:{min:0,max:105,ticks:{color:'#888',font:{size:11},callback:v=>v+'%'},grid:{color:'rgba(128,128,128,0.1)'},title:{display:true,text:'Rise',color:'#888',font:{size:11}}}}},plugins:[{id:'scMarkers',afterDraw(c){if(c.canvas.id!=='scChart')return;const peak=c.scPeak,step=c.scStep;if(!peak||!step)return;const a=c.chartArea,ctx=c.ctx,sc=c.scales.x;const ip=Math.round(peak/step);ctx.save();ctx.beginPath();ctx.setLineDash([5,5]);ctx.strokeStyle='rgba(216,90,48,0.5)';ctx.lineWidth=1.5;ctx.moveTo(sc.getPixelForValue(ip),a.top);ctx.lineTo(sc.getPixelForValue(ip),a.bottom);ctx.stroke();ctx.setLineDash([]);ctx.restore();}}]});scChart.scPeak=peakH;scChart.scStep=SC_STEP;scChart.scN=n;scChart.update();
+    scChart=new Chart(document.getElementById('scChart'),{type:'line',data:{datasets:[{label:'Rise',data:rd.map((v,i)=>({x:i*SC_STEP,y:v})),borderColor:'#185FA5',borderWidth:2.5,pointRadius:0,tension:0.3,fill:{target:'origin',above:'rgba(24,95,165,0.07)'},parsing:false}]},options:{responsive:true,maintainAspectRatio:false,interaction:{mode:'index',intersect:false},onClick:(e,el,ch)=>{if(locked.chartId===ch.canvas.id&&locked.x!==null){locked.chartId=null;locked.x=null;locked.elements=null;ch.tooltip.setActiveElements([],{x:0,y:0})}else if(ch.tooltip?._active?.length){const a=ch.tooltip._active;locked.chartId=ch.canvas.id;locked.x=a[0].element.x;locked.elements=a.map(e=>({datasetIndex:e.datasetIndex,dataIndex:e.dataIndex}));ch.tooltip.setActiveElements(locked.elements,{x:locked.x,y:a[0].element.y})}ch.draw();},plugins:{legend:{display:false},tooltip:{callbacks:{title:items=>{const t=items[0].parsed.x*60,h=Math.floor(t/60),m=Math.round(t%60);return h===0?m+'min':(m===0?h+'h':h+'h '+m+'min');},label:item=>'Rise: '+item.parsed.y.toFixed(0)+'%'}}},scales:{x:{type:'linear',min:0,max:totalH,ticks:{callback:v=>{if(v===0)return'0';const h=Math.round(v);return Math.abs(v-h)<0.01?h+'h':'';},autoSkipPadding:6,color:'#888',font:{size:11},maxRotation:0},grid:{color:'rgba(128,128,128,0.1)'},title:{display:true,text:'Time from feeding',color:'#888',font:{size:11}}},y:{min:0,max:105,ticks:{color:'#888',font:{size:11},callback:v=>v+'%'},grid:{color:'rgba(128,128,128,0.1)'},title:{display:true,text:'Rise',color:'#888',font:{size:11}}}}},plugins:[{id:'scMarkers',afterDraw(c){if(c.canvas.id!=='scChart')return;const peak=c.scPeak;if(!peak||peak<=0)return;const a=c.chartArea,ctx=c.ctx,sc=c.scales.x;ctx.save();ctx.beginPath();ctx.setLineDash([5,5]);ctx.strokeStyle='rgba(216,90,48,0.5)';ctx.lineWidth=1.5;ctx.moveTo(sc.getPixelForValue(peak),a.top);ctx.lineTo(sc.getPixelForValue(peak),a.bottom);ctx.stroke();ctx.setLineDash([]);ctx.restore();}}]});scChart.scPeak=peakH;
   }
 }
 
