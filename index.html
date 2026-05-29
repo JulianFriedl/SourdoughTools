@@ -31,82 +31,58 @@
 }
 html{-webkit-text-size-adjust:100%}
 body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',system-ui,sans-serif;background:var(--bg3);color:var(--text);font-size:15px;line-height:1.5;min-height:100vh}
-
-/* ── NAV ── */
 .nav{display:flex;background:var(--bg);border-bottom:0.5px solid var(--border);position:sticky;top:0;z-index:100;overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none}
 .nav::-webkit-scrollbar{display:none}
 .nav-btn{flex:0 0 auto;padding:14px 18px;font-size:13px;font-weight:500;color:var(--text3);background:none;border:none;border-bottom:2px solid transparent;cursor:pointer;white-space:nowrap;transition:color .15s,border-color .15s;-webkit-tap-highlight-color:transparent;touch-action:manipulation}
 .nav-btn.active{color:var(--text);border-bottom-color:var(--text)}
-
-/* ── PAGES ── */
 .page{display:none;padding:1rem 1rem 4rem}
 .page.active{display:block}
-
-/* ── CARD ── */
 .card{background:var(--bg);border:0.5px solid var(--border);border-radius:var(--rl);padding:1.25rem;margin-bottom:1.25rem}
 .card-title{font-size:15px;font-weight:500;margin-bottom:1rem;color:var(--text)}
-.card-sub{font-size:12px;color:var(--text3);margin-bottom:1rem;line-height:1.6}
-
-/* ── CONTROLS ── */
 .ctrl-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:.75rem 1.25rem;margin-bottom:1rem}
 .ctrl-col{display:flex;flex-direction:column;gap:5px}
 .ctrl-label{font-size:12px;color:var(--text2)}
 .slider-row{display:flex;align-items:center;gap:8px}
 .slider-row input[type=range]{flex:1;-webkit-appearance:none;height:4px;border-radius:2px;background:var(--bg3);outline:none;cursor:pointer;min-width:0}
-.slider-row input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:20px;height:20px;border-radius:50%;background:var(--text);cursor:pointer;border:2.5px solid var(--bg)}
+.slider-row input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:22px;height:22px;border-radius:50%;background:var(--text);cursor:pointer;border:2.5px solid var(--bg)}
 .slider-val{font-size:13px;font-weight:500;min-width:48px;text-align:right;color:var(--text)}
-input[type=number]{width:100%;padding:8px 10px;border:0.5px solid var(--border2);border-radius:var(--r);background:var(--bg);color:var(--text);font-size:14px;font-family:inherit;-webkit-appearance:none}
+input[type=number]{width:100%;padding:8px 10px;border:0.5px solid var(--border2);border-radius:var(--r);background:var(--bg);color:var(--text);font-size:14px;font-family:inherit;-webkit-appearance:none;-moz-appearance:textfield}
+input[type=number]::-webkit-outer-spin-button,input[type=number]::-webkit-inner-spin-button{-webkit-appearance:none}
 input[type=number]:focus{outline:none;border-color:var(--text)}
 input[type=time]{width:100%;padding:8px 10px;border:0.5px solid var(--border2);border-radius:var(--r);background:var(--bg);color:var(--text);font-size:14px;font-family:inherit}
-
-/* ── BUTTONS ── */
 .btn-group{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:1rem}
-.btn{font-size:12px;padding:8px 13px;border-radius:var(--r);border:0.5px solid var(--border2);background:var(--bg);color:var(--text2);cursor:pointer;transition:background .1s;-webkit-tap-highlight-color:transparent;touch-action:manipulation;min-height:36px}
+.btn{font-size:12px;padding:8px 13px;border-radius:var(--r);border:0.5px solid var(--border2);background:var(--bg);color:var(--text2);cursor:pointer;-webkit-tap-highlight-color:transparent;touch-action:manipulation;min-height:38px}
 .btn:active{background:var(--bg3)}
 .btn.active{border:1.5px solid var(--text);background:var(--bg2);color:var(--text);font-weight:500}
-.btn-label{font-size:12px;color:var(--text2);margin-bottom:5px}
-
-/* ── LEGEND ── */
+.sect-label{font-size:12px;color:var(--text2);margin-bottom:5px;display:block}
 .legend{display:flex;flex-wrap:wrap;gap:12px;margin-bottom:.75rem}
 .legend-item{display:flex;align-items:center;gap:5px;font-size:12px;color:var(--text2)}
-
-/* ── CHART ── */
 .chart-wrap{position:relative;width:100%}
-
-/* ── STAT GRID ── */
 .stat-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:8px;margin-top:1rem}
 .stat-card{background:var(--bg2);border-radius:var(--r);padding:.75rem}
 .stat-label{font-size:11px;color:var(--text3);margin-bottom:2px}
-.stat-value{font-size:16px;font-weight:500;color:var(--text)}
+.stat-value{font-size:15px;font-weight:500;color:var(--text)}
 .stat-sub{font-size:11px;color:var(--text3);margin-top:2px}
-
-/* ── RESULT BOX ── */
 .result-box{background:var(--bg2);border-radius:var(--rl);padding:1.25rem;margin-top:1rem}
-.result-big{font-size:28px;font-weight:500;color:var(--text)}
+.result-big{font-size:30px;font-weight:500;color:var(--text)}
 .result-label{font-size:12px;color:var(--text3);margin-bottom:.25rem}
 .result-warn{font-size:12px;color:var(--orange);margin-top:.5rem}
-
-/* ── INFO PANEL ── */
-.info-panel{display:none;background:var(--bg2);border-radius:var(--rl);padding:1.25rem;margin-bottom:1rem;font-size:13px;color:var(--text2);line-height:1.7}
+.info-panel{display:none;background:var(--bg2);border-radius:var(--rl);padding:1.25rem;margin-bottom:1rem;font-size:13px;color:var(--text2);line-height:1.75}
 .info-panel.open{display:block}
-.info-panel h3{font-size:13px;font-weight:500;color:var(--text);margin:0.75rem 0 .25rem}
+.info-panel h3{font-size:12px;font-weight:600;color:var(--text);margin:1rem 0 .3rem;text-transform:uppercase;letter-spacing:.04em}
 .info-panel h3:first-child{margin-top:0}
-.info-panel code{font-family:monospace;font-size:12px;background:var(--bg3);padding:2px 5px;border-radius:4px;color:var(--text)}
-.info-btn{font-size:12px;padding:6px 12px;border-radius:var(--r);border:0.5px solid var(--border2);background:none;color:var(--text3);cursor:pointer;display:flex;align-items:center;gap:5px;margin-bottom:.75rem;-webkit-tap-highlight-color:transparent}
-.info-btn:active{background:var(--bg2)}
-
-/* ── NOTE ── */
+.info-panel p{margin-bottom:.6rem}
+.info-panel code{font-family:'SFMono-Regular',Consolas,monospace;font-size:12px;background:var(--bg3);padding:2px 5px;border-radius:4px;color:var(--text)}
+.info-panel table{width:100%;border-collapse:collapse;font-size:12px;margin:.5rem 0}
+.info-panel td,.info-panel th{padding:5px 8px;border-bottom:0.5px solid var(--border);text-align:left}
+.info-panel th{color:var(--text3);font-weight:500}
+.info-btn{font-size:12px;padding:6px 12px;border-radius:var(--r);border:0.5px solid var(--border2);background:none;color:var(--text3);cursor:pointer;display:inline-flex;align-items:center;gap:5px;margin-bottom:.75rem;-webkit-tap-highlight-color:transparent}
 .note{font-size:11px;color:var(--text3);margin-top:.75rem;line-height:1.6}
-
-/* ── DIVIDER ── */
 hr{border:none;border-top:0.5px solid var(--border);margin:1rem 0}
-
-/* ── SECTION LABEL ── */
-.sect-label{font-size:12px;color:var(--text2);margin-bottom:5px;display:block}
-
-/* ── TOGGLE ── */
 .toggle-row{display:flex;align-items:center;gap:8px;margin-bottom:.75rem;font-size:13px;color:var(--text2)}
 .toggle-row input[type=checkbox]{width:16px;height:16px;cursor:pointer;accent-color:var(--text);flex-shrink:0}
+.pwa-banner{background:var(--bg);border:0.5px solid var(--border);border-radius:var(--rl);padding:1rem 1.25rem;margin:1rem 0;font-size:13px;color:var(--text2);line-height:1.7}
+.pwa-banner strong{color:var(--text)}
 </style>
 </head>
 <body>
@@ -115,615 +91,713 @@ hr{border:none;border-top:0.5px solid var(--border);margin:1rem 0}
   <button class="nav-btn active" onclick="showPage('ddt',this)">DDT calculator</button>
   <button class="nav-btn" onclick="showPage('dough',this)">Dough warmup</button>
   <button class="nav-btn" onclick="showPage('starter',this)">Starter peak</button>
+  <button class="nav-btn" onclick="showPage('sc',this)">Starter calculator</button>
 </nav>
 
-<!-- ═══════════════════════════════════════════
+<!-- ═══════════════════════════════════════
      PAGE 1 — DDT CALCULATOR
-═══════════════════════════════════════════ -->
+═══════════════════════════════════════ -->
 <div class="page active" id="page-ddt">
+<div class="card" style="margin-top:1rem">
+  <div class="card-title">Desired dough temperature — water temp calculator</div>
 
-  <div class="card" style="margin-top:1rem">
-    <div class="card-title">Desired dough temperature — water temp calculator</div>
+  <button class="info-btn" onclick="toggleInfo('ddt-info')">&#9432; How this works</button>
+  <div class="info-panel" id="ddt-info">
+    <h3>Purpose</h3>
+    <p>This tool calculates the water temperature required to achieve a target final dough temperature (DDT) after mixing. All inputs are treated as a weighted thermal mixture, accounting for the true heat capacity of each ingredient.</p>
 
-    <button class="info-btn" onclick="toggleInfo('ddt-info')">&#9432; How this works</button>
-    <div class="info-panel" id="ddt-info">
-      <h3>What it does</h3>
-      Calculates the exact water temperature needed to hit your target dough temperature (DDT), using the true thermal mass of every ingredient rather than the simplified 3- or 4-factor shorthand.
-      <h3>The formula</h3>
-      Each ingredient contributes heat proportional to its mass × specific heat capacity (Cp):
-      <br><code>T_water = (DDT × total_heat_capacity − Σ(mass_i × Cp_i × T_i)) / (m_water × Cp_water)</code>
-      <br><br>Where Cp values used: water = 4.18, flour = 1.80, starter = 3.20 (mix of flour+water), salt/other = 0.88 J/g·K.
-      The friction factor accounts for heat generated by machine mixing (0 for hand mixing).
-      <h3>Why it's more accurate than the shorthand</h3>
-      The 3/4-factor shorthand assumes all ingredients have equal thermal influence. In reality water has ~2.3× the heat capacity of flour per gram, so the water temperature matters more than the shorthand implies. For high-hydration doughs this matters: a 75% hydration dough has more water weight, so water temp errors propagate more strongly.
-      <h3>Sensitivity</h3>
-      The ±1°C water sensitivity tells you how much the final dough temp shifts per 1°C error in your water temperature. Typically 0.3–0.45°C/°C for 70–80% hydration.
-    </div>
+    <h3>Model</h3>
+    <p>Each ingredient contributes thermal energy proportional to its mass and specific heat capacity (Cp). The dough reaches DDT when the weighted sum of all ingredient temperatures equals the target:</p>
+    <p><code>T_water = (DDT × ΣHC − Σ(HC_i × T_i)) / HC_water</code></p>
+    <p>where HC_i = mass_i × Cp_i. Specific heat values used:</p>
+    <table>
+      <tr><th>Ingredient</th><th>Cp (J/g·K)</th></tr>
+      <tr><td>Water</td><td>4.18</td></tr>
+      <tr><td>Flour</td><td>1.80</td></tr>
+      <tr><td>Starter (100% hydration)</td><td>3.20 (interpolated)</td></tr>
+      <tr><td>Salt / dry additions</td><td>0.88</td></tr>
+    </table>
+    <p>The starter is internally split into its flour and water components based on its hydration percentage, and the water contribution from the starter is subtracted from the total formula water.</p>
 
-    <div class="ctrl-grid" style="grid-template-columns:repeat(auto-fit,minmax(140px,1fr))">
-      <div class="ctrl-col"><span class="ctrl-label">Flour (g)</span><input type="number" id="d-flour" value="500" min="100" max="5000" step="10" oninput="calcDDT()"></div>
-      <div class="ctrl-col"><span class="ctrl-label">Hydration (%)</span><input type="number" id="d-hydration" value="75" min="50" max="120" step="1" oninput="calcDDT()"></div>
-      <div class="ctrl-col"><span class="ctrl-label">Starter (g)</span><input type="number" id="d-starter" value="100" min="0" max="1000" step="10" oninput="calcDDT()"></div>
-      <div class="ctrl-col"><span class="ctrl-label">Starter hydration (%)</span><input type="number" id="d-starterHyd" value="100" min="50" max="200" step="5" oninput="calcDDT()"></div>
-      <div class="ctrl-col"><span class="ctrl-label">Salt (g)</span><input type="number" id="d-salt" value="10" min="0" max="100" step="1" oninput="calcDDT()"></div>
-    </div>
+    <h3>Friction factor</h3>
+    <p>Machine mixing converts mechanical energy to heat, raising dough temperature above what the ingredient temperatures would predict. The friction factor compensates for this by lowering the effective DDT target before solving for water temperature. Typical values:</p>
+    <table>
+      <tr><th>Mixing method</th><th>Friction factor (°C)</th></tr>
+      <tr><td>Hand mix / stretch-and-fold</td><td>0</td></tr>
+      <tr><td>Stand mixer, slow speed (5–8 min)</td><td>3–5</td></tr>
+      <tr><td>Stand mixer, medium speed (8–12 min)</td><td>6–9</td></tr>
+      <tr><td>Spiral mixer, slow speed</td><td>2–4</td></tr>
+      <tr><td>Spiral mixer, fast speed</td><td>5–8</td></tr>
+      <tr><td>High-speed commercial mixer</td><td>10–20</td></tr>
+    </table>
+    <p>Friction factors vary by dough hydration, mixing bowl shape, and ambient temperature. The values above are starting estimates; calibrate by measuring actual dough temperature after mixing and adjusting accordingly.</p>
 
-    <hr>
+    <h3>Bowl temperature contribution</h3>
+    <p>The optional bowl input accounts for the thermal mass of the mixing vessel, which starts at room temperature and exchanges heat with the dough during mixing. For a stainless steel bowl (~350 g), this can shift final dough temperature by 0.5–1.5°C depending on dough mass and mixing duration. Enable this input when precision is critical or the bowl is notably warmer or cooler than the dough ingredients.</p>
 
-    <div class="ctrl-grid" style="grid-template-columns:repeat(auto-fit,minmax(140px,1fr))">
-      <div class="ctrl-col"><span class="ctrl-label">Flour temp (°C)</span><input type="number" id="d-tFlour" value="20" min="-5" max="40" step="0.5" oninput="calcDDT()"></div>
-      <div class="ctrl-col"><span class="ctrl-label">Room temp (°C)</span><input type="number" id="d-tRoom" value="22" min="10" max="40" step="0.5" oninput="calcDDT()"></div>
-      <div class="ctrl-col"><span class="ctrl-label">Starter temp (°C)</span><input type="number" id="d-tStarter" value="22" min="2" max="35" step="0.5" oninput="calcDDT()"></div>
-      <div class="ctrl-col"><span class="ctrl-label">DDT target (°C)</span><input type="number" id="d-ddt" value="24" min="18" max="32" step="0.5" oninput="calcDDT()"></div>
-      <div class="ctrl-col"><span class="ctrl-label">Friction factor (°C)</span><input type="number" id="d-friction" value="0" min="0" max="20" step="1" oninput="calcDDT()"></div>
-    </div>
+    <h3>Sensitivity</h3>
+    <p>The ±1°C sensitivity readout shows how much the final dough temperature shifts per 1°C error in water temperature. This is determined purely by the water fraction's share of total heat capacity. Higher hydration doughs have higher sensitivity; a 75% hydration dough typically shows ~0.38°C/°C.</p>
+  </div>
 
-    <div class="result-box" id="ddt-result">
-      <div class="result-label">Required water temperature</div>
-      <div class="result-big" id="ddt-water-temp">—</div>
-      <div id="ddt-detail" style="margin-top:.75rem;font-size:13px;color:var(--text2);line-height:1.8"></div>
-      <div class="result-warn" id="ddt-warn"></div>
+  <div class="ctrl-grid">
+    <div class="ctrl-col"><span class="ctrl-label">Flour (g)</span><input type="number" id="d-flour" value="500" min="100" max="5000" step="10" oninput="calcDDT()"></div>
+    <div class="ctrl-col"><span class="ctrl-label">Hydration (%)</span><input type="number" id="d-hydration" value="75" min="50" max="120" step="1" oninput="calcDDT()"></div>
+    <div class="ctrl-col"><span class="ctrl-label">Starter (g)</span><input type="number" id="d-starter" value="100" min="0" max="1000" step="10" oninput="calcDDT()"></div>
+    <div class="ctrl-col"><span class="ctrl-label">Starter hydration (%)</span><input type="number" id="d-starterHyd" value="100" min="50" max="200" step="5" oninput="calcDDT()"></div>
+    <div class="ctrl-col"><span class="ctrl-label">Salt (g)</span><input type="number" id="d-salt" value="10" min="0" max="100" step="1" oninput="calcDDT()"></div>
+  </div>
+  <hr>
+  <div class="ctrl-grid">
+    <div class="ctrl-col"><span class="ctrl-label">Flour temp (°C)</span><input type="number" id="d-tFlour" value="20" min="-5" max="40" step="0.5" oninput="calcDDT()"></div>
+    <div class="ctrl-col"><span class="ctrl-label">Room temp (°C)</span><input type="number" id="d-tRoom" value="22" min="10" max="40" step="0.5" oninput="calcDDT()"></div>
+    <div class="ctrl-col"><span class="ctrl-label">Starter temp (°C)</span><input type="number" id="d-tStarter" value="22" min="2" max="35" step="0.5" oninput="calcDDT()"></div>
+    <div class="ctrl-col"><span class="ctrl-label">DDT target (°C)</span><input type="number" id="d-ddt" value="24" min="18" max="32" step="0.5" oninput="calcDDT()"></div>
+    <div class="ctrl-col"><span class="ctrl-label">Friction factor (°C)</span><input type="number" id="d-friction" value="0" min="0" max="25" step="1" oninput="calcDDT()"></div>
+  </div>
+
+  <div class="toggle-row" style="margin-top:.25rem">
+    <input type="checkbox" id="d-bowlEnable" onchange="calcDDT()">
+    <label for="d-bowlEnable" style="font-size:13px;color:var(--text2);cursor:pointer">Include bowl thermal mass</label>
+  </div>
+  <div id="d-bowlControls" style="display:none">
+    <div class="ctrl-grid" style="grid-template-columns:repeat(auto-fit,minmax(150px,1fr))">
+      <div class="ctrl-col"><span class="ctrl-label">Bowl material</span>
+        <select id="d-bowlMat" onchange="calcDDT()" style="padding:8px 10px;border:0.5px solid var(--border2);border-radius:var(--r);background:var(--bg);color:var(--text);font-size:14px;font-family:inherit">
+          <option value="steel">Stainless steel</option>
+          <option value="glass">Glass</option>
+          <option value="ceramic">Ceramic</option>
+          <option value="plastic">Plastic</option>
+        </select>
+      </div>
+      <div class="ctrl-col"><span class="ctrl-label">Bowl weight (g)</span><input type="number" id="d-bowlMass" value="350" min="50" max="2000" step="50" oninput="calcDDT()"></div>
+      <div class="ctrl-col"><span class="ctrl-label">Bowl temp (°C)</span><input type="number" id="d-tBowl" value="22" min="10" max="40" step="0.5" oninput="calcDDT()"></div>
     </div>
   </div>
+
+  <div class="result-box" id="ddt-result">
+    <div class="result-label">Required water temperature</div>
+    <div class="result-big" id="ddt-water-temp">—</div>
+    <div id="ddt-detail" style="margin-top:.75rem;font-size:13px;color:var(--text2);line-height:1.9"></div>
+    <div class="result-warn" id="ddt-warn"></div>
+  </div>
+</div>
 </div>
 
 
-<!-- ═══════════════════════════════════════════
+<!-- ═══════════════════════════════════════
      PAGE 2 — DOUGH WARMUP
-═══════════════════════════════════════════ -->
+═══════════════════════════════════════ -->
 <div class="page" id="page-dough">
+<div class="card" style="margin-top:1rem">
+  <div class="card-title">Dough warmup</div>
 
-  <div class="card" style="margin-top:1rem">
-    <div class="card-title">Dough warmup</div>
+  <button class="info-btn" onclick="toggleInfo('dough-info')">&#9432; How this works</button>
+  <div class="info-panel" id="dough-info">
+    <h3>Purpose</h3>
+    <p>Models how the temperature of mixed dough approaches room temperature over time, accounting for the separate thermal masses of the dough and the mixing bowl.</p>
 
-    <button class="info-btn" onclick="toggleInfo('dough-info')">&#9432; How this works</button>
-    <div class="info-panel" id="dough-info">
-      <h3>What it does</h3>
-      Models how dough temperature approaches room temperature over time, accounting for both the dough's thermal mass and the bowl's thermal mass (which starts at room temperature).
-      <h3>Two-body thermal model</h3>
-      The dough and bowl exchange heat with each other and with the room air simultaneously:
-      <br><code>dT_dough/dt = k_db(T_bowl−T_dough)/(m_d·Cp_d) + k_da(T_room−T_dough)/(m_d·Cp_d)</code>
-      <br><code>dT_bowl/dt  = k_db(T_dough−T_bowl)/(m_b·Cp_b) + k_ba(T_room−T_bowl)/(m_b·Cp_b)</code>
-      <br><br>This correctly models that a room-temperature ceramic bowl initially warms cold dough, then both approach room temp together. Numerically integrated at 1-minute steps.
-      <h3>Bowl presets</h3>
-      Each preset has a specific mass, heat capacity (Cp), and surface heat transfer coefficient to room air. Covered bowls have lower air exchange. The three curves shown are the three presets simultaneously — the highlighted one corresponds to your selected preset.
-      <h3>Why it matters</h3>
-      A heavy ceramic bowl at room temp acts as a heat reservoir that speeds up warmup for cold dough by up to 30%. Ignoring this (old single-body model) underestimates warmup speed.
-    </div>
+    <h3>Two-body thermal model</h3>
+    <p>The dough and bowl are treated as two coupled thermal bodies, each exchanging heat with the other and independently with the surrounding air:</p>
+    <p><code>dT_dough/dt = [k_db·(T_bowl−T_dough) + k_da·(T_room−T_dough)] / (m_d·Cp_d)</code></p>
+    <p><code>dT_bowl/dt  = [k_db·(T_dough−T_bowl) + k_ba·(T_room−T_bowl)] / (m_b·Cp_b)</code></p>
+    <p>The bowl starts at room temperature. k values are interface-specific heat transfer coefficients (W/K). The system is integrated numerically at 1-minute steps.</p>
 
-    <div class="ctrl-grid">
-      <div class="ctrl-col">
-        <span class="ctrl-label">Initial dough temp (°C)</span>
-        <div class="slider-row"><input type="range" id="dw-tInit" min="2" max="35" value="20" step="0.5"><span class="slider-val" id="dw-tInitOut">20.0°C</span></div>
-      </div>
-      <div class="ctrl-col">
-        <span class="ctrl-label">Room temp (°C)</span>
-        <div class="slider-row"><input type="range" id="dw-tRoom" min="10" max="38" value="25" step="0.5"><span class="slider-val" id="dw-tRoomOut">25.0°C</span></div>
-      </div>
-      <div class="ctrl-col">
-        <span class="ctrl-label">Dough weight (g)</span>
-        <div class="slider-row"><input type="range" id="dw-mass" min="200" max="3000" value="900" step="50"><span class="slider-val" id="dw-massOut">900g</span></div>
-      </div>
-    </div>
+    <h3>Why bowl mass accelerates warmup (for cold dough)</h3>
+    <p>A bowl at room temperature represents a heat reservoir in direct contact with the dough. A heavy ceramic bowl at 25°C pressed against 18°C dough transfers substantial heat in the first minutes — far faster than convection from room air alone. This effect is proportional to bowl mass × Cp and the dough-bowl contact coefficient. A 900 g ceramic bowl contains roughly 756 J/K of thermal energy available to warm the dough, compared to ~40 J/K for a thin metal bowl. The ceramic bowl therefore warms cold dough faster initially, then converges to room temperature more slowly because its own large mass takes longer to equilibrate with room air. For warm dough in a cool room, the ceramic bowl similarly acts as a stronger heat sink.</p>
 
-    <span class="sect-label">Vessel</span>
-    <div class="btn-group" id="dw-bowlBtns">
-      <button class="btn" onclick="dwSelectBowl(this,'thin_open')">Metal open</button>
-      <button class="btn active" onclick="dwSelectBowl(this,'thin_covered')">Metal covered</button>
-      <button class="btn" onclick="dwSelectBowl(this,'glass')">Glass covered</button>
-      <button class="btn" onclick="dwSelectBowl(this,'ceramic')">Ceramic covered</button>
-    </div>
-
-    <span class="sect-label">Time window</span>
-    <div class="btn-group" id="dw-timeBtns">
-      <button class="btn" onclick="dwSelectTime(this,60)">1h</button>
-      <button class="btn" onclick="dwSelectTime(this,120)">2h</button>
-      <button class="btn active" onclick="dwSelectTime(this,240)">4h</button>
-      <button class="btn" onclick="dwSelectTime(this,360)">6h</button>
-      <button class="btn" onclick="dwSelectTime(this,480)">8h</button>
-      <button class="btn" onclick="dwSelectTime(this,720)">12h</button>
-    </div>
-
-    <div class="legend">
-      <span class="legend-item"><span style="display:inline-block;width:22px;border-bottom:2.5px solid #378ADD"></span>Metal open</span>
-      <span class="legend-item"><span style="display:inline-block;width:22px;border-bottom:2.5px dashed #185FA5"></span>Metal covered</span>
-      <span class="legend-item"><span style="display:inline-block;width:22px;border-bottom:2px dashed #3B6D11"></span>Glass covered</span>
-      <span class="legend-item"><span style="display:inline-block;width:22px;border-bottom:2px dotted #D85A30"></span>Ceramic covered</span>
-    </div>
-
-    <div class="chart-wrap" style="height:280px"><canvas id="doughChart" role="img" aria-label="Dough warmup temperature curves for four vessel types over time.">Dough warmup curves.</canvas></div>
-    <div class="stat-grid" id="dw-stats"></div>
-    <p class="note">Two-body numerical model: dough + bowl both start at their respective temperatures and exchange heat with each other and room air. Cp_dough ≈ 3.5 J/g·K, Cp_water=4.18, Cp_steel=0.50, Cp_glass=0.84, Cp_ceramic=0.84 J/g·K.</p>
+    <h3>Bowl presets</h3>
+    <table>
+      <tr><th>Preset</th><th>Mass</th><th>Cp (J/g·K)</th><th>Air convection</th></tr>
+      <tr><td>Metal open</td><td>180 g</td><td>0.50</td><td>High (uncovered)</td></tr>
+      <tr><td>Metal covered</td><td>180 g</td><td>0.50</td><td>Low (covered)</td></tr>
+      <tr><td>Glass covered</td><td>450 g</td><td>0.84</td><td>Low</td></tr>
+      <tr><td>Ceramic covered</td><td>900 g</td><td>0.84</td><td>Low</td></tr>
+    </table>
+    <p>The dough-bowl contact coefficient is set higher for the heavier vessels to reflect better thermal coupling from the bowl's weight pressing against the dough.</p>
   </div>
+
+  <div class="ctrl-grid">
+    <div class="ctrl-col">
+      <span class="ctrl-label">Initial dough temp (°C)</span>
+      <div class="slider-row"><input type="range" id="dw-tInit" min="2" max="38" value="20" step="0.5"><span class="slider-val" id="dw-tInitOut">20.0°C</span></div>
+    </div>
+    <div class="ctrl-col">
+      <span class="ctrl-label">Room temp (°C)</span>
+      <div class="slider-row"><input type="range" id="dw-tRoom" min="10" max="38" value="25" step="0.5"><span class="slider-val" id="dw-tRoomOut">25.0°C</span></div>
+    </div>
+    <div class="ctrl-col">
+      <span class="ctrl-label">Dough weight (g)</span>
+      <div class="slider-row"><input type="range" id="dw-mass" min="200" max="3000" value="900" step="50"><span class="slider-val" id="dw-massOut">900 g</span></div>
+    </div>
+  </div>
+
+  <span class="sect-label">Time window</span>
+  <div class="btn-group" id="dw-timeBtns">
+    <button class="btn" onclick="dwSelectTime(this,30)">30min</button>
+    <button class="btn" onclick="dwSelectTime(this,60)">1h</button>
+    <button class="btn" onclick="dwSelectTime(this,120)">2h</button>
+    <button class="btn active" onclick="dwSelectTime(this,240)">4h</button>
+    <button class="btn" onclick="dwSelectTime(this,360)">6h</button>
+    <button class="btn" onclick="dwSelectTime(this,480)">8h</button>
+    <button class="btn" onclick="dwSelectTime(this,720)">12h</button>
+  </div>
+
+  <div class="ctrl-grid">
+    <div class="ctrl-col"><span class="ctrl-label">Bowl material</span>
+      <select id="dw-bowlMat" onchange="dwBuild()" style="padding:8px 10px;border:0.5px solid var(--border2);border-radius:var(--r);background:var(--bg);color:var(--text);font-size:14px;font-family:inherit">
+        <option value="steel">Stainless steel</option>
+        <option value="glass">Glass</option>
+        <option value="ceramic">Ceramic</option>
+        <option value="plastic">Plastic</option>
+      </select>
+    </div>
+    <div class="ctrl-col"><span class="ctrl-label">Bowl weight (g)</span><input type="number" id="dw-bowlMass" value="350" min="50" max="3000" step="50" onchange="dwBuild()"></div>
+    <div class="ctrl-col" style="justify-content:flex-end">
+      <label style="display:flex;align-items:center;gap:6px;font-size:13px;color:var(--text2);cursor:pointer"><input type="checkbox" id="dw-covered" checked onchange="dwBuild()" style="width:16px;height:16px;accent-color:var(--text)">Covered</label>
+    </div>
+  </div>
+
+  <div class="chart-wrap" style="height:280px"><canvas id="doughChart" role="img" aria-label="Dough warmup temperature curve."></canvas></div>
+</div>
 </div>
 
 
-<!-- ═══════════════════════════════════════════
+<!-- ═══════════════════════════════════════
      PAGE 3 — STARTER PEAK
-═══════════════════════════════════════════ -->
+═══════════════════════════════════════ -->
 <div class="page" id="page-starter">
+<div class="card" style="margin-top:1rem">
+  <div class="card-title">Starter peak estimator</div>
 
-  <div class="card" style="margin-top:1rem">
-    <div class="card-title">Starter peak estimator</div>
+  <button class="info-btn" onclick="toggleInfo('starter-info')">&#9432; How this works</button>
+  <div class="info-panel" id="starter-info">
+    <h3>Purpose</h3>
+    <p>Estimates the time to peak activity for a sourdough starter that begins fermentation at a temperature different from its eventual equilibrium temperature — for example, after removal from refrigeration.</p>
 
-    <button class="info-btn" onclick="toggleInfo('starter-info')">&#9432; How this works</button>
-    <div class="info-panel" id="starter-info">
-      <h3>What it does</h3>
-      Estimates when your starter will peak after being taken out of the fridge (or from any starting temperature), accounting for the time it takes to warm up.
-      <h3>Temperature model</h3>
-      The starter in a glass jar warms following Newton's Law of Cooling with τ = 195 min (200g glass jar + 100g starter, still air). The warmup curve is T(t) = T_room − ΔT·e^(−t/τ).
-      <h3>Q10 fermentation kinetics</h3>
-      Instead of assuming fermentation rate is proportional to temperature (linear), the Q10 model uses the biological reality that reaction rates follow Arrhenius-like exponential scaling:
-      <br><code>r(T) = Q10 ^ ((T − T_ref) / 10)</code>
-      <br><br>With Q10 = 2.0 this means rate doubles every 10°C. At 14°C (10°C below a 24°C reference) the rate is 0.5×; at 34°C it would be 2×. This is well-validated for sourdough yeast in the 10–35°C range.
-      <br><br>Fermentation progress = ∫r(T(t))dt, and the starter peaks when this integral equals 1 (= what the same starter takes at T_ref for peak_hours).
-      <h3>Calibrating to your starter</h3>
-      The most important input is "peak time at reference temp". Feed your starter, hold it at your reference temp throughout, and time when it peaks (dome + starts falling). Use that as your calibration point. The Q10 model will then extrapolate correctly to warming curves.
-      <h3>Q10 sensitivity</h3>
-      Q10 varies slightly by strain and temperature range. 1.8–2.2 covers most sourdough starters. Lower Q10 → rate is less temperature-sensitive → shorter estimated warmup penalty.
-    </div>
+    <h3>Temperature model</h3>
+    <p>The starter in a glass jar warms according to Newton's Law of Cooling:</p>
+    <p><code>T(t) = T_room − (T_room − T_start) · e^(−t/τ)</code></p>
+    <p>with τ = 195 min, empirically estimated for a 200 g glass jar containing 100 g starter in still air. This is a single-body approximation; actual warmup will vary slightly with jar thickness and air circulation.</p>
 
-    <div class="ctrl-grid">
-      <div class="ctrl-col">
-        <span class="ctrl-label">Starting temp (°C)</span>
-        <div class="slider-row"><input type="range" id="st-tStart" min="2" max="30" value="5" step="0.5"><span class="slider-val" id="st-tStartOut">5.0°C</span></div>
-      </div>
-      <div class="ctrl-col">
-        <span class="ctrl-label">Room temp (°C)</span>
-        <div class="slider-row"><input type="range" id="st-tRoom" min="15" max="38" value="25" step="0.5"><span class="slider-val" id="st-tRoomOut">25.0°C</span></div>
-      </div>
-      <div class="ctrl-col">
-        <span class="ctrl-label">Reference temp (°C)</span>
-        <div class="slider-row"><input type="range" id="st-tRef" min="18" max="30" value="24" step="0.5"><span class="slider-val" id="st-tRefOut">24.0°C</span></div>
-      </div>
-      <div class="ctrl-col">
-        <span class="ctrl-label">Peak time at ref temp (h)</span>
-        <div class="slider-row"><input type="range" id="st-peakH" min="3" max="24" value="10.5" step="0.5"><span class="slider-val" id="st-peakHOut">10.5h</span></div>
-      </div>
-      <div class="ctrl-col">
-        <span class="ctrl-label">Q10 value</span>
-        <div class="slider-row"><input type="range" id="st-q10" min="1.6" max="2.6" value="2.0" step="0.1"><span class="slider-val" id="st-q10Out">2.0</span></div>
-      </div>
-    </div>
+    <h3>Q10 fermentation kinetics</h3>
+    <p>Biological reaction rates — including yeast fermentation — scale exponentially with temperature rather than linearly. The Q10 model captures this:</p>
+    <p><code>r(T) = Q10 ^ ((T − T_ref) / 10)</code></p>
+    <p>where r is the relative fermentation rate, T_ref is the calibration temperature, and Q10 is the temperature sensitivity coefficient. A Q10 of 2.0 means the fermentation rate doubles with each 10°C increase. This is well-supported for Saccharomyces cerevisiae and common sourdough LAB strains in the 10–35°C range. At temperatures below ~8°C the model will overestimate activity slightly, as enzymatic processes approach their thermal minima.</p>
+    <p>Cumulative fermentation progress is computed as:</p>
+    <p><code>P(t) = ∫₀ᵗ r(T(τ)) dτ</code></p>
+    <p>Peak is reached when P(t) = peak_hours — the integral at constant T_ref over the reference peak duration.</p>
 
-    <div class="ctrl-grid" style="grid-template-columns:1fr 1fr;margin-bottom:.5rem">
-      <div class="ctrl-col">
-        <span class="ctrl-label">Start time</span>
-        <input type="time" id="st-startTime" value="23:00" oninput="sBuild()">
-      </div>
-      <div class="ctrl-col">
-        <span class="ctrl-label">Estimated peak time</span>
-        <div style="padding:8px 10px;border:0.5px solid var(--border);border-radius:var(--r);background:var(--bg2);font-size:14px;font-weight:500;color:var(--text);min-height:38px" id="st-peakTime">—</div>
-      </div>
-    </div>
+    <h3>Calibration</h3>
+    <p>The reference peak time must be measured with the starter held at a constant, known temperature throughout the entire feed cycle — not warming into it. Feed the starter, place it in a temperature-controlled environment or water bath at the reference temperature, and record the time from feeding to peak (dome collapses or float test passes). This calibration point anchors all estimates.</p>
 
-    <span class="sect-label">Time window</span>
-    <div class="btn-group" id="st-timeBtns">
-      <button class="btn" onclick="stSelectTime(this,6)">6h</button>
-      <button class="btn active" onclick="stSelectTime(this,24)">24h</button>
-      <button class="btn" onclick="stSelectTime(this,48)">48h</button>
-      <button class="btn" onclick="stSelectTime(this,72)">72h</button>
-      <button class="btn" onclick="stSelectTime(this,96)">96h</button>
-    </div>
-
-    <div class="legend">
-      <span class="legend-item"><span style="display:inline-block;width:22px;border-bottom:2.5px solid #185FA5"></span>Temperature</span>
-      <span class="legend-item"><span style="display:inline-block;width:22px;border-bottom:2.5px dashed #3B6D11"></span>Ferment. progress</span>
-      <span class="legend-item"><span style="display:inline-block;width:22px;border-bottom:1.5px dashed #D85A30"></span>Peak threshold</span>
-    </div>
-
-    <div class="chart-wrap" style="height:300px"><canvas id="starterChart" role="img" aria-label="Dual-axis chart of starter temperature and fermentation progress over time.">Starter peak estimator.</canvas></div>
-    <div class="stat-grid" id="st-stats"></div>
-    <p class="note">Q10 model: r(T)=Q10^((T−T_ref)/10). τ=195 min (200g glass jar, 100g starter, still air). Calibrate "peak time at ref temp" by feeding starter and holding at a known temperature throughout.</p>
+    <h3>Q10 sensitivity</h3>
+    <p>Reported Q10 values for mixed sourdough cultures range from approximately 1.8 to 2.3. A lower Q10 means the rate is less temperature-sensitive, which shortens the estimated penalty for cold starts. When in doubt, Q10 = 2.0 is the standard assumption for sourdough yeast-driven rise.</p>
   </div>
+
+  <div class="ctrl-grid">
+    <div class="ctrl-col">
+      <span class="ctrl-label">Starting temp (°C)</span>
+      <div class="slider-row"><input type="range" id="st-tStart" min="2" max="30" value="5" step="0.5"><span class="slider-val" id="st-tStartOut">5.0°C</span></div>
+    </div>
+    <div class="ctrl-col">
+      <span class="ctrl-label">Room temp (°C)</span>
+      <div class="slider-row"><input type="range" id="st-tRoom" min="15" max="38" value="25" step="0.5"><span class="slider-val" id="st-tRoomOut">25.0°C</span></div>
+    </div>
+    <div class="ctrl-col">
+      <span class="ctrl-label">Reference temp (°C)</span>
+      <div class="slider-row"><input type="range" id="st-tRef" min="18" max="30" value="24" step="0.5"><span class="slider-val" id="st-tRefOut">24.0°C</span></div>
+    </div>
+    <div class="ctrl-col">
+      <span class="ctrl-label">Peak time at ref temp (h)</span>
+      <div class="slider-row"><input type="range" id="st-peakH" min="3" max="24" value="10.5" step="0.5"><span class="slider-val" id="st-peakHOut">10.5 h</span></div>
+    </div>
+    <div class="ctrl-col">
+      <span class="ctrl-label">Q10 value</span>
+      <div class="slider-row"><input type="range" id="st-q10" min="1.6" max="2.6" value="2.0" step="0.05"><span class="slider-val" id="st-q10Out">2.00</span></div>
+    </div>
+  </div>
+
+  <div class="ctrl-grid" style="grid-template-columns:1fr 1fr;margin-bottom:.5rem">
+    <div class="ctrl-col">
+      <span class="ctrl-label">Start time</span>
+      <input type="time" id="st-startTime" value="23:00" oninput="sBuild()">
+    </div>
+    <div class="ctrl-col">
+      <span class="ctrl-label">Estimated peak time</span>
+      <div style="padding:8px 10px;border:0.5px solid var(--border);border-radius:var(--r);background:var(--bg2);font-size:15px;font-weight:500;color:var(--text);min-height:38px;display:flex;align-items:center" id="st-peakTime">—</div>
+    </div>
+  </div>
+
+  <span class="sect-label">Time window</span>
+  <div class="btn-group" id="st-timeBtns">
+    <button class="btn" onclick="stSelectTime(this,6)">6h</button>
+    <button class="btn active" onclick="stSelectTime(this,24)">24h</button>
+    <button class="btn" onclick="stSelectTime(this,48)">48h</button>
+    <button class="btn" onclick="stSelectTime(this,72)">72h</button>
+    <button class="btn" onclick="stSelectTime(this,96)">96h</button>
+  </div>
+
+  <div class="legend">
+    <span class="legend-item"><span style="display:inline-block;width:22px;border-bottom:2.5px solid #185FA5"></span>Temperature</span>
+    <span class="legend-item"><span style="display:inline-block;width:22px;border-bottom:2.5px dashed #3B6D11"></span>Ferment. progress</span>
+    <span class="legend-item"><span style="display:inline-block;width:22px;border-bottom:1.5px dashed #D85A30"></span>Peak threshold</span>
+  </div>
+
+  <div class="chart-wrap" style="height:300px"><canvas id="starterChart" role="img" aria-label="Starter peak estimator chart."></canvas></div>
+  <div class="stat-grid" id="st-stats"></div>
+  <p class="note">Q10 model: r(T) = Q10^((T−T_ref)/10). τ = 195 min (200 g glass jar, 100 g starter, still air). Calibrate reference peak time by holding starter at a constant known temperature from feeding to peak.</p>
+</div>
+</div>
+
+<!-- ═══════════════════════════════════════
+     PAGE 4 — STARTER CALCULATOR
+═══════════════════════════════════════ -->
+<div class="page" id="page-sc">
+<div class="card" style="margin-top:1rem">
+  <div class="card-title">Starter calculator</div>
+
+  <button class="info-btn" onclick="toggleInfo('sc-info')">&#9432; How this works</button>
+  <div class="info-panel" id="sc-info">
+    <h3>Purpose</h3>
+    <p>Estimates the time from feeding to peak activity for a sourdough starter based on feeding ratio, temperature, and flour type. Also calculates how much to feed to reach a target yield.</p>
+
+    <h3>Peak time model</h3>
+    <p>Peak times are calibrated to <strong>Summit Sourdough</strong>'s comprehensive data at 68&deg;F (20&deg;C) for six feeding ratios (1:1:1 through 1:10:10). Temperature scaling uses the Q10 model with Q10 = 2.0:</p>
+    <p><code>time(T) = time(20&deg;C) / 2^((T&minus;20)/10)</code></p>
+
+    <h3>Reference peak times at 20&deg;C (bread/AP flour)</h3>
+    <table>
+      <tr><th>Ratio</th><th>Time to peak</th></tr>
+      <tr><td>1:1:1</td><td>~5 h</td></tr>
+      <tr><td>1:2:2</td><td>~6.5 h</td></tr>
+      <tr><td>1:3:3</td><td>~8 h</td></tr>
+      <tr><td>1:4:4</td><td>~10 h</td></tr>
+      <tr><td>1:5:5</td><td>~12 h</td></tr>
+      <tr><td>1:10:10</td><td>~14 h</td></tr>
+    </table>
+
+    <h3>Flour type factors</h3>
+    <table>
+      <tr><th>Flour</th><th>Multiplier</th></tr>
+      <tr><td>Bread / AP</td><td>&times;1.00</td></tr>
+      <tr><td>Whole wheat</td><td>&times;0.80</td></tr>
+      <tr><td>Rye</td><td>&times;0.85</td></tr>
+      <tr><td>50/50 blend</td><td>&times;0.85</td></tr>
+    </table>
+    <p>Whole wheat and rye ferment faster due to higher mineral and enzyme content. Values based on <strong>The Sourdough Journey</strong> (2023) and <strong>Amy Bakes Bread</strong> (2026).</p>
+
+    <h3>Readiness curve</h3>
+    <p>The chart shows a modeled bell-shaped activity curve: rapid rise after feeding, a plateau near peak, then gradual decline. The shaded band shows the <strong>peak window</strong> (peak &plusmn; 1h). A healthy starter typically remains near peak activity for several hours, though duration varies with ratio, temperature, and starter condition.</p>
+
+    <h3>Sources</h3>
+    <p><strong>Summit Sourdough</strong> (2025) &mdash; primary calibration for ratio &times; peak time at 68&deg;F/20&deg;C. <strong>Amy Bakes Bread</strong> (2026) &mdash; corroborating data at 78&deg;F across multiple ratios. <strong>King Arthur Baking</strong> (2025) &mdash; feeding ratio peak time trials and variability data. <strong>The Sourdough Journey</strong> (2023) &mdash; flour type comparison at 68&deg;F.</p>
+    <p style="margin-top:.5rem">Peak times shown as ranges of &plusmn;20% based on King Arthur Baking controlled trials (1:1:1 at 78&deg;F: 4&ndash;6h). The percentage-based approach correctly models multiplicative uncertainty in exponential fermentation kinetics.</p>
+    <p style="margin-top:.5rem;font-style:italic">Peak times are estimates. Individual results vary based on starter health, flour brand, and microbial composition.</p>
+  </div>
+
+  <div class="ctrl-grid">
+    <div class="ctrl-col">
+      <span class="ctrl-label">Temperature (&deg;C)</span>
+      <div class="slider-row"><input type="range" id="sc-temp" min="10" max="35" value="20" step="0.5"><span class="slider-val" id="sc-tempOut">20.0&deg;C</span></div>
+    </div>
+    <div class="ctrl-col">
+      <span class="ctrl-label">Flour type</span>
+      <select id="sc-flour" onchange="scBuild()" style="padding:8px 10px;border:0.5px solid var(--border2);border-radius:var(--r);background:var(--bg);color:var(--text);font-size:14px;font-family:inherit">
+        <option value="bread">Bread / AP</option>
+        <option value="ww">Whole wheat</option>
+        <option value="rye">Rye</option>
+        <option value="blend50">50/50 blend</option>
+      </select>
+    </div>
+  </div>
+
+  <span class="sect-label">Feeding ratio</span>
+  <div class="btn-group" id="sc-ratioBtns">
+    <button class="btn active" onclick="scSelectRatio(this,1)">1:1:1</button>
+    <button class="btn" onclick="scSelectRatio(this,2)">1:2:2</button>
+    <button class="btn" onclick="scSelectRatio(this,3)">1:3:3</button>
+    <button class="btn" onclick="scSelectRatio(this,4)">1:4:4</button>
+    <button class="btn" onclick="scSelectRatio(this,5)">1:5:5</button>
+    <button class="btn" onclick="scSelectRatio(this,10)">1:10:10</button>
+  </div>
+
+  <div class="ctrl-grid" style="grid-template-columns:1fr 1fr">
+    <div class="ctrl-col">
+      <span class="ctrl-label">Target yield (g)</span>
+      <input type="number" id="sc-yield" value="150" min="10" max="5000" step="5" oninput="scBuild()">
+    </div>
+    <div class="ctrl-col">
+      <span class="ctrl-label">Feed time</span>
+      <input type="time" id="sc-feedTime" value="22:00" oninput="scBuild()">
+    </div>
+  </div>
+
+  <div class="result-box" id="sc-result">
+    <div class="result-label">Time to peak</div>
+    <div class="result-big" id="sc-peakTime">&mdash;</div>
+    <div id="sc-timeline" style="margin-top:.75rem;font-size:13px;color:var(--text2);line-height:1.7"></div>
+    <div id="sc-feed" style="margin-top:.75rem;font-size:13px;color:var(--text2);line-height:1.7"></div>
+  </div>
+
+  <div class="legend" style="margin-top:1rem">
+    <span class="legend-item"><span style="display:inline-block;width:22px;border-bottom:2.5px solid #185FA5"></span>Readiness</span>
+    <span class="legend-item"><span style="display:inline-block;width:22px;border-bottom:2px dashed #D85A30"></span>Peak</span>
+    <span class="legend-item"><span style="display:inline-block;width:22px;height:12px;background:rgba(59,109,17,0.12);border-radius:2px"></span>Peak window (&plusmn;1h)</span>
+  </div>
+
+  <div class="chart-wrap" style="height:300px"><canvas id="scChart" role="img" aria-label="Starter readiness chart."></canvas></div>
+</div>
 </div>
 
 <script>
-/* ══════════════════════════════════════════════════════
+/* ══════════════════════════════════════════
    NAVIGATION
-══════════════════════════════════════════════════════ */
-function showPage(id, btn) {
-  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
-  document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+══════════════════════════════════════════ */
+function showPage(id,btn){
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.nav-btn').forEach(b=>b.classList.remove('active'));
   document.getElementById('page-'+id).classList.add('active');
   btn.classList.add('active');
+  if(id==='dough'&&!dwChart)dwBuild();
+  if(id==='starter'&&!stChart)sBuild();
+  if(id==='sc'&&!scChart)scBuild();
 }
-function toggleInfo(id) {
-  const el = document.getElementById(id);
-  el.classList.toggle('open');
-}
+function toggleInfo(id){document.getElementById(id).classList.toggle('open')}
 
-/* ══════════════════════════════════════════════════════
-   SHARED UTILITIES
-══════════════════════════════════════════════════════ */
-function fmtTime(mins) {
-  if (mins === null || mins < 0) return '—';
-  if (mins < 1) return '< 1 min';
-  const h = Math.floor(mins/60), m = Math.round(mins%60);
-  return h===0 ? m+'min' : (m===0 ? h+'h' : h+'h '+m+'min');
+/* ══════════════════════════════════════════
+   UTILITIES
+══════════════════════════════════════════ */
+function fmtTime(mins){
+  if(mins===null||mins<0)return '—';
+  if(mins<1)return '< 1 min';
+  const h=Math.floor(mins/60),m=Math.round(mins%60);
+  return h===0?m+'min':(m===0?h+'h':h+'h '+m+'min');
 }
-function sliderBind(id, outId, suffix, dec, cb) {
-  const el = document.getElementById(id);
-  const out = document.getElementById(outId);
-  const update = () => { out.textContent = parseFloat(el.value).toFixed(dec)+suffix; cb(); };
-  el.addEventListener('input', update);
+function sliderBind(id,outId,suffix,dec,cb){
+  const el=document.getElementById(id),out=document.getElementById(outId);
+  el.addEventListener('input',()=>{out.textContent=parseFloat(el.value).toFixed(dec)+suffix;cb();});
 }
-function statCard(label, value, sub) {
-  const d = document.createElement('div');
-  d.className = 'stat-card';
-  d.innerHTML = `<div class="stat-label">${label}</div><div class="stat-value">${value}</div>${sub?`<div class="stat-sub">${sub}</div>`:''}`;
+function statCard(label,value,sub){
+  const d=document.createElement('div');d.className='stat-card';
+  d.innerHTML=`<div class="stat-label">${label}</div><div class="stat-value">${value}</div>${sub?`<div class="stat-sub">${sub}</div>`:''}`;
   return d;
 }
 
-/* ══════════════════════════════════════════════════════
+/* ── CROSSHAIR ── */
+let locked={chartId:null,x:null,elements:null};
+Chart.register({id:'crosshair',afterDraw(c){
+  const a=c.chartArea,ctx=c.ctx;
+  let x=null;
+  if(locked.chartId===c.canvas.id&&locked.x!==null)x=locked.x;
+  else if(c.tooltip?._active?.length)x=c.tooltip._active[0].element.x;
+  if(x===null||x<a.left||x>a.right)return;
+  ctx.save();
+  ctx.beginPath();ctx.setLineDash([4,4]);ctx.strokeStyle='rgba(200,200,200,0.4)';ctx.lineWidth=1;
+  ctx.moveTo(x,a.top);ctx.lineTo(x,a.bottom);ctx.stroke();ctx.setLineDash([]);
+  ctx.restore();
+}});
+
+/* ══════════════════════════════════════════
    DDT CALCULATOR
-══════════════════════════════════════════════════════ */
-const CP_WATER = 4.18, CP_FLOUR = 1.80, CP_STARTER = 3.20, CP_SALT = 0.88;
+══════════════════════════════════════════ */
+const CP={water:4.18,flour:1.80,starter:3.20,salt:0.88,steel:0.50,glass:0.84,ceramic:0.84,plastic:1.30};
 
-function calcDDT() {
-  const flour     = parseFloat(document.getElementById('d-flour').value)||0;
-  const hydration = parseFloat(document.getElementById('d-hydration').value)||75;
-  const starter   = parseFloat(document.getElementById('d-starter').value)||0;
-  const starterHyd= parseFloat(document.getElementById('d-starterHyd').value)||100;
-  const salt      = parseFloat(document.getElementById('d-salt').value)||0;
-  const tFlour    = parseFloat(document.getElementById('d-tFlour').value)||20;
-  const tRoom     = parseFloat(document.getElementById('d-tRoom').value)||22;
-  const tStarter  = parseFloat(document.getElementById('d-tStarter').value)||22;
-  const ddt       = parseFloat(document.getElementById('d-ddt').value)||24;
-  const friction  = parseFloat(document.getElementById('d-friction').value)||0;
+document.getElementById('d-bowlEnable').addEventListener('change',function(){
+  document.getElementById('d-bowlControls').style.display=this.checked?'block':'none';
+  calcDDT();
+});
 
-  // Water weight derived from recipe: total water = flour*hyd/100, minus water in starter
-  const starterFlour = starter / (1 + starterHyd/100);
-  const starterWater = starter - starterFlour;
-  const totalWater = flour * hydration / 100;
-  const addedWater = Math.max(0, totalWater - starterWater);
+function calcDDT(){
+  const flour   =+document.getElementById('d-flour').value||0;
+  const hyd     =+document.getElementById('d-hydration').value||75;
+  const starter =+document.getElementById('d-starter').value||0;
+  const stHyd   =+document.getElementById('d-starterHyd').value||100;
+  const salt    =+document.getElementById('d-salt').value||0;
+  const tFlour  =+document.getElementById('d-tFlour').value||20;
+  const tRoom   =+document.getElementById('d-tRoom').value||22;
+  const tStart  =+document.getElementById('d-tStarter').value||22;
+  const ddt     =+document.getElementById('d-ddt').value||24;
+  const friction=+document.getElementById('d-friction').value||0;
 
-  if (addedWater < 1) {
-    document.getElementById('ddt-water-temp').textContent = 'No added water';
-    document.getElementById('ddt-detail').innerHTML = 'Starter contributes all the water at this ratio. Adjust hydration or starter amount.';
-    document.getElementById('ddt-warn').textContent = '';
-    return;
+  const starterFlour=starter/(1+stHyd/100);
+  const starterWater=starter-starterFlour;
+  const totalWater=flour*hyd/100;
+  const addedWater=Math.max(0,totalWater-starterWater);
+
+  if(addedWater<1){
+    document.getElementById('ddt-water-temp').textContent='No added water';
+    document.getElementById('ddt-detail').innerHTML='Starter provides all the recipe water at this ratio.';
+    document.getElementById('ddt-warn').textContent='';return;
   }
 
-  // Thermal capacity of each component
-  const hcFlour   = flour * CP_FLOUR;
-  const hcStarter = starter * CP_STARTER;
-  const hcSalt    = salt * CP_SALT;
-  const hcWater   = addedWater * CP_WATER;
+  // split starter into flour+water, each at starter temp
+  const hcFlour  = flour*CP.flour;
+  const hcStFlour= starterFlour*CP.flour;
+  const hcStWater= starterWater*CP.water;
+  const hcSalt   = salt*CP.salt;
+  const hcWater  = addedWater*CP.water;
+  let hcBowl=0, tBowl=tRoom;
 
-  const totalHC = hcFlour + hcStarter + hcSalt + hcWater;
+  if(document.getElementById('d-bowlEnable').checked){
+    const mat=document.getElementById('d-bowlMat').value;
+    const bMass=+document.getElementById('d-bowlMass').value||350;
+    tBowl=+document.getElementById('d-tBowl').value||tRoom;
+    hcBowl=bMass*CP[mat];
+  }
 
-  // Heat already contributed by non-water ingredients
-  const heatIn = hcFlour*tFlour + hcStarter*tStarter + hcSalt*tRoom;
+  const totalHC=hcFlour+hcStFlour+hcStWater+hcSalt+hcWater+hcBowl;
+  const heatIn=hcFlour*tFlour+(hcStFlour+hcStWater)*tStart+hcSalt*tRoom+hcBowl*tBowl;
+  const targetHeat=totalHC*(ddt-friction);
+  const tWater=(targetHeat-heatIn)/hcWater;
+  const sensitivity=hcWater/totalHC;
+  const totalDough=flour+addedWater+starter+salt;
 
-  // DDT adjusted for friction
-  const targetHeat = totalHC * (ddt - friction);
-
-  // Solve for water temp
-  const tWater = (targetHeat - heatIn) / hcWater;
-
-  // Sensitivity: d(T_dough)/d(T_water)
-  const sensitivity = hcWater / totalHC;
-
-  const el = document.getElementById('ddt-water-temp');
-  el.textContent = tWater.toFixed(1) + '°C';
-
-  const totalDough = flour + addedWater + starter + salt;
-  document.getElementById('ddt-detail').innerHTML =
-    `Dough weight: ${totalDough.toFixed(0)}g &nbsp;·&nbsp; Added water: ${addedWater.toFixed(0)}g (${(addedWater/flour*100).toFixed(1)}% of flour)<br>` +
-    `Flour ${hcFlour.toFixed(0)} J/K &nbsp;·&nbsp; Starter ${hcStarter.toFixed(0)} J/K &nbsp;·&nbsp; Water ${hcWater.toFixed(0)} J/K<br>` +
+  document.getElementById('ddt-water-temp').textContent=tWater.toFixed(1)+'°C';
+  document.getElementById('ddt-detail').innerHTML=
+    `Dough weight: ${totalDough.toFixed(0)} g &nbsp;·&nbsp; Added water: ${addedWater.toFixed(0)} g (${(addedWater/flour*100).toFixed(1)}% of flour)<br>`+
+    `HC — flour: ${hcFlour.toFixed(0)} · starter flour: ${hcStFlour.toFixed(0)} · starter water: ${hcStWater.toFixed(0)} · added water: ${hcWater.toFixed(0)} J/K${hcBowl>0?' · bowl: '+hcBowl.toFixed(0)+' J/K':''}<br>`+
     `±1°C water → ±${sensitivity.toFixed(2)}°C dough`;
 
-  const warn = document.getElementById('ddt-warn');
-  if (tWater > 45) warn.textContent = '⚠ Water above 45°C will start killing yeast. Consider pre-cooling flour or starter.';
-  else if (tWater < 2) warn.textContent = '⚠ Water below 2°C is impractical. Consider warming flour or starter instead.';
-  else warn.textContent = '';
+  const warn=document.getElementById('ddt-warn');
+  if(tWater>45)warn.textContent='⚠ Water above 45°C risks inhibiting yeast. Consider warming flour or starter instead.';
+  else if(tWater<2)warn.textContent='⚠ Result below 2°C is impractical. Consider chilling flour or using ice slush.';
+  else warn.textContent='';
 }
-
 calcDDT();
 
-/* ══════════════════════════════════════════════════════
+/* ══════════════════════════════════════════
    DOUGH WARMUP — two-body numerical model
-══════════════════════════════════════════════════════ */
-const BOWLS = {
-  thin_open:    { label:'Metal open',     mass:180,  cp:0.50, k_db:8,  k_air_dough:18, k_air_bowl:20, dash:[] },
-  thin_covered: { label:'Metal covered',  mass:180,  cp:0.50, k_db:8,  k_air_dough:6,  k_air_bowl:8,  dash:[6,3] },
-  glass:        { label:'Glass covered',  mass:400,  cp:0.84, k_db:5,  k_air_dough:4,  k_air_bowl:5,  dash:[4,4] },
-  ceramic:      { label:'Ceramic covered',mass:900,  cp:0.84, k_db:4,  k_air_dough:3,  k_air_bowl:4,  dash:[3,3] },
-};
-const BOWL_COLORS = { thin_open:'#378ADD', thin_covered:'#185FA5', glass:'#3B6D11', ceramic:'#D85A30' };
-const CP_DOUGH = 3.5;
+   Bowl starts at room temp.
+   Heavy bowl → large HC → faster initial heat transfer to cold dough.
+   k_db controls dough↔bowl coupling (higher for heavy bowls = better contact).
+   k_air_bowl controls bowl↔room exchange (lower for heavy ceramic).
+══════════════════════════════════════════ */
+const CP_DOUGH=3.5;
+const DW_COLOR='#185FA5';
 
-let dwChart, dwBowl='thin_covered', dwMaxMin=240;
+let dwChart,dwMaxMin=240;
 
-function simulateDough(tInit, tRoom, doughMass, bowlKey, totalMins) {
-  const bowl = BOWLS[bowlKey];
-  const dt = 1; // 1 min steps
-  const steps = totalMins / dt;
-  const Cd = doughMass * CP_DOUGH;
-  const Cb = bowl.mass * bowl.cp;
-  let Td = tInit, Tb = tRoom; // bowl starts at room temp!
-  const temps = [+tInit.toFixed(3)];
-  for (let i=1; i<=steps; i++) {
-    const dTd = (bowl.k_db*(Tb-Td)/Cd + bowl.k_air_dough*(tRoom-Td)/Cd) * dt;
-    const dTb = (bowl.k_db*(Td-Tb)/Cb + bowl.k_air_bowl*(tRoom-Tb)/Cb) * dt;
-    Td += dTd; Tb += dTb;
-    temps.push(+Td.toFixed(3));
-  }
-  return temps;
-}
-
-function dwGetParams() {
-  return {
-    tInit: parseFloat(document.getElementById('dw-tInit').value),
-    tRoom: parseFloat(document.getElementById('dw-tRoom').value),
-    mass:  parseFloat(document.getElementById('dw-mass').value),
+function dwK(mass,mat,weight,covered){
+  const areaScale=Math.pow(mass/900,2/3);
+  return{
+    k_db:30+weight*0.06,
+    k_da:(covered?10:30)*areaScale,
+    k_ba:(covered?8:25)*areaScale*(1+weight/2000),
+    Cb:weight*CP[mat],
   };
 }
 
-function dwSelectBowl(btn, key) {
-  dwBowl = key;
-  document.querySelectorAll('#dw-bowlBtns .btn').forEach(b=>b.classList.remove('active'));
-  btn.classList.add('active');
-  dwBuild();
-}
-function dwSelectTime(btn, mins) {
-  dwMaxMin = mins;
-  document.querySelectorAll('#dw-timeBtns .btn').forEach(b=>b.classList.remove('active'));
-  btn.classList.add('active');
-  dwBuild();
-}
-
-function dwBuild() {
-  const {tInit, tRoom, mass} = dwGetParams();
-  const STEP = dwMaxMin <= 120 ? 1 : 2;
-  const steps = Math.floor(dwMaxMin/STEP);
-  const keys = Object.keys(BOWLS);
-
-  // simulate all 4 bowls, sampled at STEP intervals
-  const allTemps = {};
-  keys.forEach(k => {
-    const full = simulateDough(tInit, tRoom, mass, k, dwMaxMin);
-    allTemps[k] = full.filter((_,i)=>i%STEP===0);
-  });
-
-  const n = allTemps[keys[0]].length;
-  const times = Array.from({length:n},(_,i)=>i*STEP);
-
-  const labelInterval = dwMaxMin<=120?30:dwMaxMin<=240?60:dwMaxMin<=480?120:180;
-  const labels = times.map(t=>{
-    if(t===0)return '0';
-    if(t%labelInterval===0){
-      return dwMaxMin<=120 ? t+'min' : (t/60)+'h';
-    }
-    return '';
-  });
-
-  const datasets = keys.map(k=>({
-    label: BOWLS[k].label,
-    data: allTemps[k],
-    borderColor: BOWL_COLORS[k],
-    borderDash: BOWLS[k].dash,
-    borderWidth: k===dwBowl ? 2.5 : 1.2,
-    pointRadius: 0,
-    tension: 0.3,
-  }));
-
-  const yMin = +(Math.min(tInit,tRoom)-0.5).toFixed(1);
-  const yMax = +(Math.max(tInit,tRoom)+0.5).toFixed(1);
-
-  if (dwChart) {
-    dwChart.data.labels=labels;
-    dwChart.data.datasets=datasets;
-    dwChart.options.scales.y.min=yMin;
-    dwChart.options.scales.y.max=yMax;
-    dwChart.update();
-  } else {
-    dwChart = new Chart(document.getElementById('doughChart'),{
-      type:'line',data:{labels,datasets},
-      options:{
-        responsive:true,maintainAspectRatio:false,
-        plugins:{legend:{display:false},tooltip:{callbacks:{
-          title:items=>{const t=items[0].dataIndex*STEP;const h=Math.floor(t/60),m=t%60;return h===0?t+'min':(m===0?h+'h':h+'h '+m+'min');},
-          label:item=>item.dataset.label+': '+item.raw.toFixed(1)+'°C'
-        }}},
-        scales:{
-          x:{ticks:{autoSkip:false,maxRotation:0,color:'#888',font:{size:11},callback:(v,i)=>labels[i]},grid:{color:'rgba(128,128,128,0.1)'}},
-          y:{min:yMin,max:yMax,ticks:{color:'#888',font:{size:11},callback:v=>v.toFixed(1)+'°C'},grid:{color:'rgba(128,128,128,0.1)'}}
-        }
-      }
-    });
+function simulateDough(tInit,tRoom,doughMass,mat,weight,covered,totalMins){
+  const {k_db,k_da,k_ba,Cb}=dwK(doughMass,mat,weight,covered);
+  const Cd=doughMass*CP_DOUGH;
+  let Td=tInit, Tb=tRoom;
+  const out=[+tInit.toFixed(3)];
+  for(let i=1;i<=totalMins;i++){
+    const dTd=(k_db*(Tb-Td)/Cd + k_da*(tRoom-Td)/Cd);
+    const dTb=(k_db*(Td-Tb)/Cb + k_ba*(tRoom-Tb)/Cb);
+    Td+=dTd; Tb+=dTb;
+    out.push(+Td.toFixed(3));
   }
-  dwUpdateStats(tInit, tRoom, mass);
+  return out;
 }
 
-function dwUpdateStats(tInit, tRoom, mass) {
-  const container = document.getElementById('dw-stats');
-  container.innerHTML='';
-  const delta = tRoom - tInit;
-  if (Math.abs(delta)<0.1){container.appendChild(statCard('Status','Already at room temp',''));return;}
+function dwGetP(){
+  return{
+    tInit:+document.getElementById('dw-tInit').value,
+    tRoom:+document.getElementById('dw-tRoom').value,
+    mass:+document.getElementById('dw-mass').value,
+    mat:document.getElementById('dw-bowlMat').value,
+    weight:+document.getElementById('dw-bowlMass').value||350,
+    covered:document.getElementById('dw-covered').checked,
+  };
+}
+function dwSelectTime(btn,m){dwMaxMin=m;document.querySelectorAll('#dw-timeBtns .btn').forEach(b=>b.classList.remove('active'));btn.classList.add('active');dwBuild();}
 
-  Object.keys(BOWLS).forEach(k=>{
-    const full = simulateDough(tInit, tRoom, mass, k, 720);
-    let t90=null, t99=null;
-    for(let i=1;i<full.length;i++){
-      const diff = Math.abs(tRoom-full[i]);
-      if(t90===null && diff<=Math.abs(delta)*0.1) t90=i;
-      if(t99===null && diff<=Math.abs(delta)*0.01) t99=i;
-    }
-    container.appendChild(statCard(
-      BOWLS[k].label,
-      fmtTime(t90)+' to ±'+Math.abs(delta*0.1).toFixed(1)+'°C',
-      t99?fmtTime(t99)+' to ±'+Math.abs(delta*0.01).toFixed(2)+'°C':''
-    ));
-  });
+function dwBuild(){
+  locked.chartId=null;locked.x=null;locked.elements=null;
+  const {tInit,tRoom,mass,mat,weight,covered}=dwGetP();
+  const STEP=dwMaxMin<=60?1:2;
+  const full=simulateDough(tInit,tRoom,mass,mat,weight,covered,dwMaxMin);
+  const data=full.filter((_,i)=>i%STEP===0);
+  const n=data.length;
+  const times=Array.from({length:n},(_,i)=>i*STEP);
+  const li=dwMaxMin<=60?10:dwMaxMin<=120?30:dwMaxMin<=240?60:dwMaxMin<=480?120:180;
+  const labels=times.map(t=>{if(t===0)return'0';if(t%li===0)return dwMaxMin<=120?t+'min':(t/60)+'h';return'';});
+  const dataset={label:'Dough temp',data,borderColor:DW_COLOR,borderWidth:2.5,pointRadius:0,tension:0.3};
+  const yMin=+(Math.min(tInit,tRoom)-0.5).toFixed(1),yMax=+(Math.max(tInit,tRoom)+0.5).toFixed(1);
+  if(dwChart){dwChart.data.labels=labels;dwChart.data.datasets=[dataset];dwChart.options.scales.y.min=yMin;dwChart.options.scales.y.max=yMax;dwChart.update();}
+  else dwChart=new Chart(document.getElementById('doughChart'),{type:'line',data:{labels,datasets:[dataset]},options:{responsive:true,maintainAspectRatio:false,interaction:{mode:'index',intersect:false},plugins:{legend:{display:false},tooltip:{callbacks:{title:items=>{const t=items[0].dataIndex*STEP,h=Math.floor(t/60),m=t%60;return h===0?t+'min':(m===0?h+'h':h+'h '+m+'min');},label:i=>i.raw.toFixed(1)+'°C'}}},onClick:(e,el,ch)=>{if(locked.chartId===ch.canvas.id&&locked.x!==null){locked.chartId=null;locked.x=null;locked.elements=null;ch.tooltip.setActiveElements([],{x:0,y:0})}else if(ch.tooltip?._active?.length){const a=ch.tooltip._active;locked.chartId=ch.canvas.id;locked.x=a[0].element.x;locked.elements=a.map(e=>({datasetIndex:e.datasetIndex,dataIndex:e.dataIndex}));ch.tooltip.setActiveElements(locked.elements,{x:locked.x,y:a[0].element.y})}ch.draw();},scales:{x:{ticks:{autoSkip:false,maxRotation:0,color:'#888',font:{size:11},callback:(v,i)=>labels[i]},grid:{color:'rgba(128,128,128,0.1)'}},y:{min:yMin,max:yMax,ticks:{color:'#888',font:{size:11},callback:v=>v.toFixed(1)+'°C'},grid:{color:'rgba(128,128,128,0.1)'}}}}});
 }
 
 sliderBind('dw-tInit','dw-tInitOut','°C',1,dwBuild);
 sliderBind('dw-tRoom','dw-tRoomOut','°C',1,dwBuild);
-sliderBind('dw-mass','dw-massOut','g',0,dwBuild);
+sliderBind('dw-mass','dw-massOut',' g',0,dwBuild);
 
-/* ══════════════════════════════════════════════════════
-   STARTER PEAK ESTIMATOR
-══════════════════════════════════════════════════════ */
-const TAU = 195;
-let stChart, stMaxHours=24;
-const STEP_S=5;
+/* ══════════════════════════════════════════
+   STARTER PEAK
+══════════════════════════════════════════ */
+const TAU=195;
+let stChart,stMaxH=24;
+const SS=5;
 
-function stGetParams(){
-  return {
-    tStart: parseFloat(document.getElementById('st-tStart').value),
-    tRoom:  parseFloat(document.getElementById('st-tRoom').value),
-    tRef:   parseFloat(document.getElementById('st-tRef').value),
-    peakH:  parseFloat(document.getElementById('st-peakH').value),
-    q10:    parseFloat(document.getElementById('st-q10').value),
-  };
-}
-
-function stSelectTime(btn,h){
-  stMaxHours=h;
-  document.querySelectorAll('#st-timeBtns .btn').forEach(b=>b.classList.remove('active'));
-  btn.classList.add('active');
-  sBuild();
-}
-
-function calcStarterTemp(tMin, tStart, tRoom){
-  return tRoom - (tRoom-tStart)*Math.exp(-tMin/TAU);
-}
+function stP(){return{tStart:+document.getElementById('st-tStart').value,tRoom:+document.getElementById('st-tRoom').value,tRef:+document.getElementById('st-tRef').value,peakH:+document.getElementById('st-peakH').value,q10:+document.getElementById('st-q10').value};}
+function stT(t,s,r){return r-(r-s)*Math.exp(-t/TAU);}
+function stSelectTime(btn,h){stMaxH=h;document.querySelectorAll('#st-timeBtns .btn').forEach(b=>b.classList.remove('active'));btn.classList.add('active');sBuild();}
 
 function sBuild(){
-  const {tStart,tRoom,tRef,peakH,q10}=stGetParams();
-  const totalMins=stMaxHours*60;
-  const steps=Math.floor(totalMins/STEP_S);
-  const times=Array.from({length:steps+1},(_,i)=>i*STEP_S);
-
-  const tempCurve=times.map(t=>+calcStarterTemp(t,tStart,tRoom).toFixed(3));
-
-  // Q10 progress integral
-  // At T_ref constant for peakH hours: integral of 1.0 dt = peakH → threshold = peakH
-  let cum=0;
-  const progress=[0];
-  let peakMin=null;
+  locked.chartId=null;locked.x=null;locked.elements=null;
+  const {tStart,tRoom,tRef,peakH,q10}=stP();
+  const totalMins=stMaxH*60, steps=Math.floor(totalMins/SS);
+  const times=Array.from({length:steps+1},(_,i)=>i*SS);
+  const tempCurve=times.map(t=>+stT(t,tStart,tRoom).toFixed(3));
+  let cum=0;const progress=[0];let peakMin=null;
   for(let i=1;i<times.length;i++){
-    const T=tempCurve[i];
-    const r=Math.pow(q10,(T-tRef)/10);
-    cum += r*(STEP_S/60);
+    cum+=Math.pow(q10,(tempCurve[i]-tRef)/10)*(SS/60);
     progress.push(+cum.toFixed(4));
-    if(peakMin===null && cum>=peakH) peakMin=times[i];
+    if(peakMin===null&&cum>=peakH)peakMin=times[i];
   }
 
-  // Update clock display
-  const startTimeEl=document.getElementById('st-startTime');
-  const peakTimeEl=document.getElementById('st-peakTime');
-  if(startTimeEl.value && peakMin!==null){
-    const [hh,mm]=startTimeEl.value.split(':').map(Number);
-    const startMins=hh*60+mm;
-    const peakMins=(startMins+peakMin)%(24*60);
-    const ph=Math.floor(peakMins/60), pm=peakMins%60;
-    const dayOffset=Math.floor((startMins+peakMin)/(24*60));
-    const dayStr=dayOffset>0?` (+${dayOffset}d)`:'';
-    peakTimeEl.textContent=String(ph).padStart(2,'0')+':'+String(pm).padStart(2,'0')+dayStr;
-  } else {
-    peakTimeEl.textContent = peakMin===null ? '> '+stMaxHours+'h' : fmtTime(peakMin);
-  }
+  // clock output
+  const stEl=document.getElementById('st-startTime'),ptEl=document.getElementById('st-peakTime');
+  if(stEl.value&&peakMin!==null){
+    const [hh,mm]=stEl.value.split(':').map(Number);
+    const sm=hh*60+mm, pm=(sm+peakMin)%(24*60);
+    const day=Math.floor((sm+peakMin)/(24*60));
+    ptEl.textContent=String(Math.floor(pm/60)).padStart(2,'0')+':'+String(pm%60).padStart(2,'0')+(day>0?` (+${day}d)`:'');
+  } else ptEl.textContent=peakMin===null?'> '+stMaxH+'h':fmtTime(peakMin);
 
-  const threshLine=times.map(()=>peakH);
-  const labelInterval=stMaxHours<=6?30:stMaxHours<=24?60:stMaxHours<=48?120:240;
-  const labels=times.map(t=>{
-    if(t===0)return '0';
-    if(t%labelInterval===0) return stMaxHours<=6?t+'min':(t/60)+'h';
-    return '';
-  });
-
-  const yTempMin=+(Math.min(tStart,tRoom)-1).toFixed(0);
-  const yTempMax=+(Math.max(tStart,tRoom)+2).toFixed(0);
-  const yProgMax=+(peakH*1.25).toFixed(1);
+  const thresh=times.map(()=>peakH);
+  const li=stMaxH<=6?30:stMaxH<=24?60:stMaxH<=48?120:240;
+  const labels=times.map(t=>{if(t===0)return'0';if(t%li===0)return stMaxH<=6?t+'min':(t/60)+'h';return'';});
+  const yTMin=+(Math.min(tStart,tRoom)-1).toFixed(0),yTMax=+(Math.max(tStart,tRoom)+2).toFixed(0),yPMax=+(peakH*1.25).toFixed(1);
 
   if(stChart){
     stChart.data.labels=labels;
     stChart.data.datasets[0].data=tempCurve;
     stChart.data.datasets[1].data=progress;
-    stChart.data.datasets[2].data=threshLine;
-    stChart.options.scales.y.min=yTempMin;
-    stChart.options.scales.y.max=yTempMax;
-    stChart.options.scales.y1.max=yProgMax;
+    stChart.data.datasets[2].data=thresh;
+    stChart.options.scales.y.min=yTMin;stChart.options.scales.y.max=yTMax;
+    stChart.options.scales.y1.max=yPMax;
     stChart.update();
   } else {
-    stChart=new Chart(document.getElementById('starterChart'),{
-      type:'line',data:{labels,datasets:[
-        {label:'Temperature',data:tempCurve,borderColor:'#185FA5',borderWidth:2.5,pointRadius:0,tension:0.4,yAxisID:'y',fill:{target:'origin',above:'rgba(24,95,165,0.07)'}},
-        {label:'Progress',data:progress,borderColor:'#3B6D11',borderWidth:2,pointRadius:0,tension:0.1,borderDash:[5,3],yAxisID:'y1'},
-        {label:'Threshold',data:threshLine,borderColor:'#D85A30',borderWidth:1.5,pointRadius:0,borderDash:[3,4],yAxisID:'y1'},
-      ]},
-      options:{
-        responsive:true,maintainAspectRatio:false,
-        interaction:{mode:'index',intersect:false},
-        plugins:{legend:{display:false},tooltip:{callbacks:{
-          title:items=>{const t=items[0].dataIndex*STEP_S;const h=Math.floor(t/60),m=t%60;return h===0?t+'min':(m===0?h+'h':h+'h '+m+'min');},
-          label:item=>{
-            if(item.datasetIndex===0)return 'Temp: '+item.raw.toFixed(1)+'°C';
-            if(item.datasetIndex===1)return 'Progress: '+(item.raw/peakH*100).toFixed(1)+'%';
-            if(item.datasetIndex===2)return 'Threshold: 100%';
-            return '';
-          }
-        }}},
-        scales:{
-          x:{ticks:{autoSkip:false,maxRotation:0,color:'#888',font:{size:11},callback:(v,i)=>labels[i]},grid:{color:'rgba(128,128,128,0.1)'}},
-          y:{min:yTempMin,max:yTempMax,position:'left',ticks:{color:'#185FA5',font:{size:11},callback:v=>v.toFixed(0)+'°C'},grid:{color:'rgba(128,128,128,0.08)'},title:{display:true,text:'temp',color:'#185FA5',font:{size:11}}},
-          y1:{min:0,max:yProgMax,position:'right',ticks:{color:'#3B6D11',font:{size:11},callback:v=>(v/peakH*100).toFixed(0)+'%'},grid:{drawOnChartArea:false},title:{display:true,text:'progress',color:'#3B6D11',font:{size:11}}}
-        }
+    stChart=new Chart(document.getElementById('starterChart'),{type:'line',data:{labels,datasets:[
+      {label:'Temperature',data:tempCurve,borderColor:'#185FA5',borderWidth:2.5,pointRadius:0,tension:0.4,yAxisID:'y',fill:{target:'origin',above:'rgba(24,95,165,0.07)'}},
+      {label:'Progress',data:progress,borderColor:'#3B6D11',borderWidth:2,pointRadius:0,tension:0.1,borderDash:[5,3],yAxisID:'y1'},
+      {label:'Threshold',data:thresh,borderColor:'#D85A30',borderWidth:1.5,pointRadius:0,borderDash:[3,4],yAxisID:'y1'},
+    ]},options:{responsive:true,maintainAspectRatio:false,interaction:{mode:'index',intersect:false},onClick:(e,el,ch)=>{if(locked.chartId===ch.canvas.id&&locked.x!==null){locked.chartId=null;locked.x=null;locked.elements=null;ch.tooltip.setActiveElements([],{x:0,y:0})}else if(ch.tooltip?._active?.length){const a=ch.tooltip._active;locked.chartId=ch.canvas.id;locked.x=a[0].element.x;locked.elements=a.map(e=>({datasetIndex:e.datasetIndex,dataIndex:e.dataIndex}));ch.tooltip.setActiveElements(locked.elements,{x:locked.x,y:a[0].element.y})}ch.draw();},
+      plugins:{legend:{display:false},tooltip:{callbacks:{
+        title:items=>{const t=items[0].dataIndex*SS,h=Math.floor(t/60),m=t%60;return h===0?t+'min':(m===0?h+'h':h+'h '+m+'min');},
+        label:item=>{if(item.datasetIndex===0)return'Temp: '+item.raw.toFixed(1)+'°C';if(item.datasetIndex===1)return'Progress: '+(item.raw/peakH*100).toFixed(1)+'%';return'Threshold: 100%';}
+      }}},
+      scales:{
+        x:{ticks:{autoSkip:false,maxRotation:0,color:'#888',font:{size:11},callback:(v,i)=>labels[i]},grid:{color:'rgba(128,128,128,0.1)'}},
+        y:{min:yTMin,max:yTMax,position:'left',ticks:{color:'#185FA5',font:{size:11},callback:v=>v.toFixed(0)+'°C'},grid:{color:'rgba(128,128,128,0.08)'},title:{display:true,text:'temp',color:'#185FA5',font:{size:11}}},
+        y1:{min:0,max:yPMax,position:'right',ticks:{color:'#3B6D11',font:{size:11},callback:v=>(v/peakH*100).toFixed(0)+'%'},grid:{drawOnChartArea:false},title:{display:true,text:'progress',color:'#3B6D11',font:{size:11}}}
       }
-    });
+    }});
   }
-
-  stUpdateStats(peakMin, tStart, tRoom);
+  stUpdateStats(peakMin,tStart,tRoom);
 }
 
-function stUpdateStats(peakMin, tStart, tRoom){
-  const {tRef,peakH,q10}=stGetParams();
-  const container=document.getElementById('st-stats');
-  container.innerHTML='';
-  const delay=peakMin!==null?peakMin-peakH*60:null;
-
-  const t1=calcStarterTemp(60,tStart,tRoom);
-  const t2=calcStarterTemp(120,tStart,tRoom);
-  const t4=calcStarterTemp(240,tStart,tRoom);
-
-  container.appendChild(statCard('Estimated peak',fmtTime(peakMin),delay!==null?'+'+fmtTime(Math.max(0,delay))+' vs constant '+tRef+'°C':''));
-  container.appendChild(statCard('Temp after 1h / 2h',t1.toFixed(1)+'°C / '+t2.toFixed(1)+'°C','After 4h: '+t4.toFixed(1)+'°C'));
-  container.appendChild(statCard('Q10 rate at start','×'+Math.pow(q10,(tStart-tRef)/10).toFixed(2),'×'+Math.pow(q10,(tRoom-tRef)/10).toFixed(2)+' at room temp'));
-
-  const milestones=[15,18,20,23].filter(t=>t>Math.min(tStart,tRoom)&&t<Math.max(tStart,tRoom));
-  milestones.forEach(tgt=>{
+function stUpdateStats(peakMin,tStart,tRoom){
+  const {tRef,peakH,q10}=stP();
+  const c=document.getElementById('st-stats');c.innerHTML='';
+  const delay=peakMin!==null?Math.max(0,peakMin-peakH*60):null;
+  const t1=stT(60,tStart,tRoom),t2=stT(120,tStart,tRoom),t4=stT(240,tStart,tRoom);
+  c.appendChild(statCard('Estimated peak',fmtTime(peakMin),delay!==null?'+'+fmtTime(delay)+' vs constant '+tRef+'°C':''));
+  c.appendChild(statCard('Temp 1h / 2h / 4h',t1.toFixed(1)+'°C / '+t2.toFixed(1)+'°C',t4.toFixed(1)+'°C after 4h'));
+  c.appendChild(statCard('Q10 rate at start','×'+Math.pow(q10,(tStart-tRef)/10).toFixed(3),'×'+Math.pow(q10,(tRoom-tRef)/10).toFixed(3)+' at room temp'));
+  [15,18,20,23].filter(t=>t>Math.min(tStart,tRoom)&&t<Math.max(tStart,tRoom)).forEach(tgt=>{
     const delta=Math.abs(tRoom-tStart);
     if(delta<0.5)return;
     const t=-TAU*Math.log(Math.abs(tRoom-tgt)/delta);
-    if(t>0) container.appendChild(statCard('Reaches '+tgt+'°C',fmtTime(t),''));
+    if(t>0)c.appendChild(statCard('Reaches '+tgt+'°C',fmtTime(t),''));
   });
 }
 
 sliderBind('st-tStart','st-tStartOut','°C',1,sBuild);
 sliderBind('st-tRoom','st-tRoomOut','°C',1,sBuild);
 sliderBind('st-tRef','st-tRefOut','°C',1,sBuild);
-sliderBind('st-peakH','st-peakHOut','h',1,sBuild);
-sliderBind('st-q10','st-q10Out','',1,sBuild);
+sliderBind('st-peakH','st-peakHOut',' h',1,sBuild);
+sliderBind('st-q10','st-q10Out','',2,sBuild);
 document.getElementById('st-startTime').addEventListener('input',sBuild);
 
-/* ══════════════════════════════════════════════════════
-   INIT & PWA
-══════════════════════════════════════════════════════ */
-// Lazy-init charts when page becomes visible
-document.querySelectorAll('.nav-btn').forEach(btn=>{
-  btn.addEventListener('click',()=>{
-    const id=btn.textContent.trim();
-    if(id.startsWith('Dough') && !dwChart) dwBuild();
-    if(id.startsWith('Starter') && !stChart) sBuild();
-  });
-});
+/* ══════════════════════════════════════════
+   STARTER CALCULATOR
+══════════════════════════════════════════ */
+const SC_REF_PEAK={1:5,2:6.5,3:8,4:10,5:12,10:14};
+const SC_FLOUR_MULT={bread:1,ww:0.8,rye:0.85,blend50:0.85};
+const SC_STEP=5/60;
 
-if('serviceWorker' in navigator){
-  navigator.serviceWorker.register('./sw.js').catch(()=>{});
+let scChart,scRatio=1;
+
+function scSelectRatio(btn,r){
+  scRatio=r;
+  document.querySelectorAll('#sc-ratioBtns .btn').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');scBuild();
 }
+
+function scReadiness(t,peak){
+  if(t<=0)return 0;
+  if(t<peak)return 100*Math.pow(t/peak,0.65);
+  const s=peak*0.55;
+  return 100*Math.exp(-0.5*Math.pow((t-peak)/s,2));
+}
+
+function fmtAmPm(h,m){
+  return (h%12||12)+':'+String(m).padStart(2,'0')+' '+(h>=12?'PM':'AM');
+}
+
+function scBuild(){
+  locked.chartId=null;locked.x=null;locked.elements=null;
+
+  const temp=+document.getElementById('sc-temp').value||20;
+  const flour=document.getElementById('sc-flour').value;
+  const yieldG=+document.getElementById('sc-yield').value||0;
+  const feedEl=document.getElementById('sc-feedTime');
+
+  const peakH=SC_REF_PEAK[scRatio]/Math.pow(2,(temp-20)/10)*SC_FLOUR_MULT[flour];
+  const peakMin=peakH*60;
+
+  const lo=peakH*0.8,hi=peakH*1.2;document.getElementById('sc-peakTime').textContent=lo.toFixed(1)+' \u2013 '+hi.toFixed(1)+' h';
+
+  const tEl=document.getElementById('sc-timeline');
+  if(feedEl.value){
+    const [hh,mm]=feedEl.value.split(':').map(Number);
+    const fm=hh*60+mm,pm=fm+peakMin,um=fm+peakMin+60;
+    const pd=Math.floor(pm/1440),ud=Math.floor(um/1440);
+    const pc=pm%1440,uc=um%1440;
+    tEl.innerHTML='Feed at '+fmtAmPm(hh,mm)+
+      ' &rarr; peaks ~'+fmtAmPm(Math.floor(pc/60),Math.round(pc%60))+(pd>0?' (+'+pd+'d)':'')+
+      ' &rarr; use until ~'+fmtAmPm(Math.floor(uc/60),Math.round(uc%60))+(ud>0?' (+'+ud+'d)':'');
+  }else tEl.textContent='';
+
+  const fEl=document.getElementById('sc-feed');
+  if(yieldG>0){
+    const p=1+2*scRatio,s=yieldG/p,f=scRatio*yieldG/p,w=scRatio*yieldG/p;
+    const fn={bread:'bread flour',ww:'whole wheat flour',rye:'rye flour',blend50:'50/50 blend'};
+    fEl.innerHTML='Mix <strong>'+s.toFixed(0)+' g</strong> starter + <strong>'+f.toFixed(0)+' g</strong> '+fn[flour]+' + <strong>'+w.toFixed(0)+' g</strong> water';
+  }else fEl.textContent='';
+
+  const totalH=Math.max(peakH*1.5,6);
+  const n=Math.ceil(totalH/SC_STEP);
+  const rd=Array.from({length:n+1},(_,i)=>+scReadiness(i*SC_STEP,peakH).toFixed(2));
+
+  const li=totalH<=6?1:totalH<=12?2:totalH<=24?4:6;
+  const lb=rd.map((_,i)=>{const t=i*SC_STEP;if(t===0)return'0';const h=Math.round(t);return Math.abs(t-h)<0.01&&h%li===0?h+'h':'';});
+
+  if(scChart){
+    scChart.scPeak=peakH;scChart.scStep=SC_STEP;scChart.scN=n;
+    scChart.data.labels=lb;scChart.data.datasets[0].data=rd;scChart.update();
+  }else{
+    scChart=new Chart(document.getElementById('scChart'),{type:'line',data:{labels:lb,datasets:[{label:'Readiness',data:rd,borderColor:'#185FA5',borderWidth:2.5,pointRadius:0,tension:0.3,fill:{target:'origin',above:'rgba(24,95,165,0.07)'}}]},options:{responsive:true,maintainAspectRatio:false,interaction:{mode:'index',intersect:false},onClick:(e,el,ch)=>{if(locked.chartId===ch.canvas.id&&locked.x!==null){locked.chartId=null;locked.x=null;locked.elements=null;ch.tooltip.setActiveElements([],{x:0,y:0})}else if(ch.tooltip?._active?.length){const a=ch.tooltip._active;locked.chartId=ch.canvas.id;locked.x=a[0].element.x;locked.elements=a.map(e=>({datasetIndex:e.datasetIndex,dataIndex:e.dataIndex}));ch.tooltip.setActiveElements(locked.elements,{x:locked.x,y:a[0].element.y})}ch.draw();},plugins:{legend:{display:false},tooltip:{callbacks:{title:items=>{const t=items[0].dataIndex*SC_STEP*60,h=Math.floor(t/60),m=Math.round(t%60);return h===0?m+'min':(m===0?h+'h':h+'h '+m+'min');},label:item=>'Readiness: '+item.raw.toFixed(0)+'%'}}},scales:{x:{ticks:{autoSkip:false,maxRotation:0,color:'#888',font:{size:11},callback:(v,i)=>lb[i]},grid:{color:'rgba(128,128,128,0.1)'},title:{display:true,text:'Time from feeding',color:'#888',font:{size:11}}},y:{min:0,max:105,ticks:{color:'#888',font:{size:11},callback:v=>v+'%'},grid:{color:'rgba(128,128,128,0.1)'},title:{display:true,text:'Readiness',color:'#888',font:{size:11}}}}},plugins:[{id:'scMarkers',afterDraw(c){if(c.canvas.id!=='scChart')return;const peak=c.scPeak,step=c.scStep,nn=c.scN;if(!peak||!step)return;const a=c.chartArea,ctx=c.ctx,sc=c.scales.x;const i1=Math.max(0,Math.round((peak-1)/step));const i2=Math.min(nn,Math.round((peak+1)/step));const ip=Math.round(peak/step);ctx.save();ctx.fillStyle='rgba(59,109,17,0.08)';ctx.fillRect(sc.getPixelForValue(i1),a.top,sc.getPixelForValue(i2)-sc.getPixelForValue(i1),a.bottom-a.top);ctx.beginPath();ctx.setLineDash([5,5]);ctx.strokeStyle='rgba(216,90,48,0.5)';ctx.lineWidth=1.5;ctx.moveTo(sc.getPixelForValue(ip),a.top);ctx.lineTo(sc.getPixelForValue(ip),a.bottom);ctx.stroke();ctx.setLineDash([]);ctx.restore();}}]});scChart.scPeak=peakH;scChart.scStep=SC_STEP;scChart.scN=n;scChart.update();
+  }
+}
+
+sliderBind('sc-temp','sc-tempOut','\u00B0C',1,scBuild);
+
+/* PWA */
+if('serviceWorker' in navigator)navigator.serviceWorker.register('./sw.js').catch(()=>{});
 
 // init first visible chart
 dwBuild();
