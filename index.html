@@ -132,7 +132,8 @@ hr{border:none;border-top:0.5px solid var(--border);margin:1rem 0}
 .bt-var-header .ctrl-label{font-size:12px;margin:0}
 .bt-var-header .bt-val{font-size:13px;font-weight:500;min-width:28px;text-align:right;color:var(--text);margin-left:auto}
 .bt-var-header .bt-val-label{font-size:11px;color:var(--text3);margin-left:auto;min-width:80px;text-align:right}
-.bt-track-wrap{position:relative;height:8px;margin:8px 0 4px;border-radius:4px;background:linear-gradient(to right,var(--bg3) 0%,var(--bg3) 100%);overflow:visible;touch-action:pan-y}
+.bt-track-wrap{position:relative;height:8px;margin:8px 0 4px;border-radius:4px;background:linear-gradient(to right,var(--bg3) 0%,var(--bg3) 100%);overflow:visible}
+.bt-track-wrap.engaged input[type=range]::-webkit-slider-thumb{box-shadow:0 0 0 4px var(--blue-lt),0 0 0 1px rgba(0,0,0,0.12)}
 .bt-track-wrap input[type=range]{position:absolute;top:-6px;left:0;width:100%;height:20px;-webkit-appearance:none;appearance:none;background:transparent;cursor:pointer;margin:0;z-index:2}
 .bt-track-wrap input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:18px;height:18px;border-radius:50%;background:var(--text);cursor:pointer;border:2px solid var(--bg);box-shadow:0 0 0 1px rgba(0,0,0,0.12);margin-top:-5px}
 .bt-track-wrap input[type=range]::-webkit-slider-runnable-track{height:4px;background:transparent;border-radius:2px}
@@ -1291,8 +1292,41 @@ function buildBomSliders(){
     });
   });
 }
+function enableLongPressSliders(){
+  document.querySelectorAll('.bt-track-wrap').forEach(wrap=>{
+    let engaged=false,timer=null,startY=null;
+    const input=wrap.querySelector('input[type=range]');
+    if(!input)return;
+    wrap.addEventListener('touchstart',e=>{
+      engaged=false;startY=e.touches[0].clientY;
+      timer=setTimeout(()=>{
+        engaged=true;wrap.classList.add('engaged');
+        if(navigator.vibrate)navigator.vibrate(8);
+      },300);
+    },{passive:true});
+    wrap.addEventListener('touchmove',e=>{
+      if(engaged){
+        e.preventDefault();
+        const rect=wrap.getBoundingClientRect();
+        const pct=1-(e.touches[0].clientY-rect.top)/rect.height;
+        const clamped=Math.max(0,Math.min(1,pct));
+        const mn=parseFloat(input.min),mx=parseFloat(input.max),st=parseFloat(input.step);
+        const raw=mn+clamped*(mx-mn);
+        const stepped=Math.round(raw/st)*st;
+        input.value=Math.max(mn,Math.min(mx,stepped));
+        input.dispatchEvent(new Event('input',{bubbles:true}));
+      }else if(timer&&Math.abs(e.touches[0].clientY-startY)>10){
+        clearTimeout(timer);timer=null;
+      }
+    },{passive:false});
+    wrap.addEventListener('touchend',()=>{
+      if(timer){clearTimeout(timer);timer=null}
+      if(engaged){engaged=false;wrap.classList.remove('engaged')}
+    });
+  });
+}
 // build on load
-buildBomSliders();
+buildBomSliders();enableLongPressSliders();
 
 // ── Temperature-based target rise & planning window ──
 const BOM_BP=[
