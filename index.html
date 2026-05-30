@@ -14,19 +14,22 @@
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{
-  --bg:#ffffff;--bg2:#f5f4f0;--bg3:#eeecea;
-  --text:#1a1a18;--text2:#5f5e5a;--text3:#888780;
-  --border:rgba(0,0,0,0.12);--border2:rgba(0,0,0,0.22);
-  --blue:#185FA5;--blue-lt:rgba(24,95,165,0.08);
-  --green:#3B6D11;--orange:#D85A30;--amber:#BA7517;
+  --bg:#F5F0E8;--bg2:#EDE5D8;--bg3:#E0D6C8;
+  --text:#2D2926;--text2:#5C534C;--text3:#8C827A;
+  --border:rgba(45,41,38,0.12);--border2:rgba(45,41,38,0.22);
+  --blue:#C2632A;--blue-lt:rgba(194,99,42,0.08);
+  --green:#4A7A3A;--orange:#A84E2A;--amber:#B8923A;
+  --star:#C2632A;
   --r:8px;--rl:12px;
 }
 @media(prefers-color-scheme:dark){
   :root{
-    --bg:#1c1c1a;--bg2:#252523;--bg3:#2e2e2b;
-    --text:#f0efeb;--text2:#b4b2a9;--text3:#888780;
-    --border:rgba(255,255,255,0.10);--border2:rgba(255,255,255,0.20);
-    --blue-lt:rgba(24,95,165,0.18);
+    --bg:#1A1512;--bg2:#24201C;--bg3:#2E2A24;
+    --text:#D4C9B8;--text2:#A89888;--text3:#7A6E62;
+    --border:rgba(212,201,184,0.10);--border2:rgba(212,201,184,0.20);
+    --blue:#D47A4A;--blue-lt:rgba(212,122,74,0.15);
+    --green:#5A8A4A;--orange:#C46A3A;--amber:#C49B4A;
+    --star:#D47A4A;
   }
 }
 html{-webkit-text-size-adjust:100%}
@@ -112,7 +115,7 @@ hr{border:none;border-top:0.5px solid var(--border);margin:1rem 0}
 .bake-card-meta{font-size:12px;color:var(--text2);margin-top:4px}
 .bake-card.has-photo .bake-card-meta{color:rgba(255,255,255,0.6)}
 .bake-card-stars{font-size:14px;letter-spacing:2px}
-.bake-card.has-photo .bake-card-stars{color:#f5c518}
+.bake-card.has-photo .bake-card-stars{color:var(--star)}
 
 .bake-form-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:.75rem 1rem;margin-bottom:1rem}
 .bake-obs-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:.6rem;margin-bottom:1rem}
@@ -154,7 +157,7 @@ hr{border:none;border-top:0.5px solid var(--border);margin:1rem 0}
 .bake-detail-sub{font-size:11px;color:var(--text3);margin-top:2px}
 .star-rating{display:flex;gap:6px;margin:.75rem 0}
 .star{font-size:28px;cursor:pointer;color:var(--bg3);transition:color .15s;user-select:none;-webkit-tap-highlight-color:transparent}
-.star.active{color:#e8a317}
+.star.active{color:var(--star)}
 .star:active{transform:scale(0.9)}
 .bake-img-grid{display:flex;flex-wrap:wrap;gap:8px;margin:1rem 0}
 .bake-img-wrap{position:relative;width:100px;height:100px;border-radius:var(--r);overflow:hidden;background:var(--bg2)}
@@ -744,10 +747,6 @@ function showPage(id){
   if(id==='sc'&&!scChart)scBuild();
 }
 function toggleInfo(id){document.getElementById(id).classList.toggle('open')}
-
-/* ══════════════════════════════════════════
-   UTILITIES
-══════════════════════════════════════════ */
 function fmtTime(mins){
   if(mins===null||mins<0)return '—';
   if(mins<1)return '< 1 min';
@@ -1247,7 +1246,7 @@ function carryOverSliders(){
 const BOM_VARS={
   temp:{label:'Dough temp',unit:'\u00B0C',min:10,max:40,step:.5,decimals:1,sweetStart:51.7,sweetEnd:60,sweetLabel:'25.5\u201328\u00B0C',underLabel:'<25.5\u00B0C',overLabel:'>28\u00B0C',info:'Target 78\u201382\u00B0F (25.5\u201328\u00B0C). Measure at center with a probe thermometer. Average across the whole bulk, not just the end. Below target slows fermentation; above breaks down gluten and risks overproofing.'},
   roomTemp:{label:'Room temp',unit:'\u00B0C',min:10,max:40,step:.5,decimals:1,sweetStart:null,sweetEnd:null,sweetLabel:null,underLabel:null,overLabel:null,color:'amber',info:'Ambient temperature affects how fast the dough warms (or cools). Useful context alongside dough temp.'},
-  rise:{label:'Rise',unit:'%',min:0,max:100,step:1,decimals:0,sweetStart:25,sweetEnd:35,sweetLabel:'25\u201335%',underLabel:'<25%',overLabel:'>35%',color:'blue',info:'Measure volume increase in straight-walled vessel. Target 25\u201335% for standard recipe. Adjust for lower temps (e.g. 75\u2013100% at 21\u00B0C). Most rise in last 15\u201320% of bulk.'},
+  rise:{label:'Rise',unit:'%',min:0,max:100,step:1,decimals:0,sweetStart:20,sweetEnd:40,sweetLabel:'20\u201340%',underLabel:'0%',overLabel:'100%',info:'Measure volume increase in straight-walled vessel. Target rise is calculated from dough temperature using the Bulk-O-Matic table and updates automatically as you add readings.'},
   domed:{label:'Domed on top',min:0,max:4,step:1,decimals:0,sweetStart:25,sweetEnd:50,sweetLabel:'Low to high dome',underLabel:'Flat',overLabel:'Deflated / fallen',ticks:['Flat / none','Low dome','High dome','Deflating','Fallen'],info:'Look for a \u201Cshoulder\u201D around the edges. Early false dome comes from last stretch & fold. True dome = CO\u2082 buildup. Flattening dome = overproofing.'},
   bubTop:{label:'Bubbles on top',min:0,max:4,step:1,decimals:0,sweetStart:25,sweetEnd:50,sweetLabel:'A few to many',underLabel:'None',overLabel:'Thinning / deflated',ticks:['None visible','A few','Many (>4)','Thinning','Deflated'],info:'4\u20138 large bubbles = active. Thin bubble membranes = nearing overproof. Deflated bubbles = overproofed.'},
   bubSides:{label:'Bubbles on sides',min:0,max:4,step:1,decimals:0,sweetStart:25,sweetEnd:50,sweetLabel:'Few to many clusters',underLabel:'None',overLabel:'Fewer / shrinking',ticks:['None visible','Few clusters','Many clusters','Fewer / smaller','Gone'],info:'Look through vessel walls. High density of small/medium bubbles = healthy. Shrinking = overproofing.'},
@@ -1267,7 +1266,7 @@ function buildBomSliders(){
     return '<div class="bt-var-group">'+
       '<div class="bt-var-header">'+
         '<span class="ctrl-label">'+v.label+(v.unit?' ('+v.unit+')':'')+'</span>'+
-        (v.info?'<button class="bt-info-btn" onclick="event.stopPropagation();var p=this.parentNode.nextElementSibling.nextElementSibling;if(p)p.classList.toggle(\'open\')">i</button>':'')+
+        (v.info?'<button class="bt-info-btn" onclick="event.stopPropagation();var p=this.closest(\'.bt-var-group\').querySelector(\'.bt-var-info\');if(p)p.classList.toggle(\'open\')">i</button>':'')+
         '<span class="bt-val-label" id="bt-'+k+'-label">'+(v.ticks?'Flat / none':v.min)+'</span>'+
       '</div>'+
       (v.sweetLabel?'<div class="bt-track-wrap" style="'+sweet+'"><div class="bt-track-bg '+(vc||'')+'" style="'+sweet+'"></div><input type="range" id="bt-'+k+'" min="'+v.min+'" max="'+v.max+'" step="'+v.step+'" value="'+v.min+'"></div>':'<div class="bt-track-wrap"><div class="bt-track-bg"></div><input type="range" id="bt-'+k+'" min="'+v.min+'" max="'+v.max+'" step="'+v.step+'" value="'+v.min+'"></div>')+
@@ -1413,6 +1412,15 @@ function updateRiseSweetSpot(targetRise){
   if(bg){bg.className='bt-track-bg sweet-green';
     bg.style.setProperty('--sweet-start',sweetStart+'%');
     bg.style.setProperty('--sweet-end',sweetEnd+'%');
+  }
+  const ticks=wrap.nextElementSibling;
+  if(ticks&&ticks.classList.contains('bt-ticks')){
+    const spans=ticks.querySelectorAll('.tick-label');
+    if(spans.length>=3){
+      spans[0].textContent='0%';
+      spans[1].textContent=sweetStart+'\u2013'+sweetEnd+'%';
+      spans[2].textContent='100%';
+    }
   }
 }
 
