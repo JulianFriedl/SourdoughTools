@@ -46,9 +46,9 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',system-ui,sans-seri
 .slider-row input[type=range]{flex:1;-webkit-appearance:none;height:4px;border-radius:2px;background:var(--bg3);outline:none;cursor:pointer;min-width:0}
 .slider-row input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:22px;height:22px;border-radius:50%;background:var(--text);cursor:pointer;border:2.5px solid var(--bg)}
 .slider-val{font-size:13px;font-weight:500;min-width:48px;text-align:right;color:var(--text)}
-input[type=number]{width:100%;padding:8px 10px;border:0.5px solid var(--border2);border-radius:var(--r);background:var(--bg);color:var(--text);font-size:14px;font-family:inherit;-webkit-appearance:none;-moz-appearance:textfield}
+input[type=number],input[type=text],input[type=date]{width:100%;padding:8px 10px;border:0.5px solid var(--border2);border-radius:var(--r);background:var(--bg);color:var(--text);font-size:14px;font-family:inherit;-webkit-appearance:none;-moz-appearance:textfield}
 input[type=number]::-webkit-outer-spin-button,input[type=number]::-webkit-inner-spin-button{-webkit-appearance:none}
-input[type=number]:focus{outline:none;border-color:var(--text)}
+input[type=number]:focus,input[type=text]:focus,input[type=date]:focus{outline:none;border-color:var(--text)}
 input[type=time]{width:100%;padding:8px 10px;border:0.5px solid var(--border2);border-radius:var(--r);background:var(--bg);color:var(--text);font-size:14px;font-family:inherit}
 .btn-group{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:1rem}
 .btn{font-size:12px;padding:8px 13px;border-radius:var(--r);border:0.5px solid var(--border2);background:var(--bg);color:var(--text2);cursor:pointer;-webkit-tap-highlight-color:transparent;touch-action:manipulation;min-height:38px}
@@ -84,6 +84,76 @@ hr{border:none;border-top:0.5px solid var(--border);margin:1rem 0}
 .toggle-row input[type=checkbox]{width:16px;height:16px;cursor:pointer;accent-color:var(--text);flex-shrink:0}
 .pwa-banner{background:var(--bg);border:0.5px solid var(--border);border-radius:var(--rl);padding:1rem 1.25rem;margin:1rem 0;font-size:13px;color:var(--text2);line-height:1.7}
 .pwa-banner strong{color:var(--text)}
+.bake-list{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:12px;padding:0 1rem;max-width:1200px;margin:1rem auto 0}
+.bake-card{position:relative;overflow:hidden;min-height:80px;border-radius:var(--rl);padding:1rem;cursor:pointer;border:0.5px solid var(--border);transition:border-color .15s;aspect-ratio:4/3}
+.bake-card:active{border-color:var(--text)}
+.bake-card-bg{position:absolute;inset:0;background-size:cover;background-position:center;z-index:0}
+.bake-card-bg::after{content:'';position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,0.75) 0%,rgba(0,0,0,0.3) 40%,transparent 100%)}
+.bake-card:not(.has-photo){background:linear-gradient(135deg,var(--bg2) 0%,var(--bg3) 100%)}
+.bake-card.has-photo,.bake-card.has-photo:active{border-color:transparent}
+.bake-card-body{position:relative;z-index:1;min-width:0;display:flex;flex-direction:column;justify-content:flex-end;gap:4px}
+.bake-card.has-photo .bake-card-body{text-shadow:0 1px 4px rgba(0,0,0,0.3)}
+.bake-card-row{display:flex;justify-content:space-between;align-items:center;gap:10px}
+.bake-card-name{font-size:16px;font-weight:500}
+.bake-card.has-photo .bake-card-name{color:#fff}
+.bake-card-date{font-size:12px;color:var(--text3)}
+.bake-card.has-photo .bake-card-date{color:rgba(255,255,255,0.7)}
+.bake-card-meta{font-size:12px;color:var(--text2);margin-top:4px}
+.bake-card.has-photo .bake-card-meta{color:rgba(255,255,255,0.6)}
+.bake-card-stars{font-size:14px;letter-spacing:2px}
+.bake-card.has-photo .bake-card-stars{color:#f5c518}
+
+.bake-form-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:.75rem 1rem;margin-bottom:1rem}
+.bake-obs-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:.6rem;margin-bottom:1rem}
+.bake-slider-group{display:flex;flex-direction:column;gap:3px}
+.bake-slider-group .ctrl-label{font-size:11px}
+.bake-slider-row{display:flex;align-items:center;gap:6px}
+.bake-slider-row input[type=range]{flex:1;-webkit-appearance:none;height:3px;border-radius:2px;background:var(--bg3);outline:none;cursor:pointer;min-width:0}
+.bake-slider-row input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:18px;height:18px;border-radius:50%;background:var(--text);cursor:pointer;border:2px solid var(--bg)}
+.bake-slider-val{font-size:12px;font-weight:500;min-width:24px;text-align:right;color:var(--text)}
+.bake-timer{font-size:36px;font-weight:500;text-align:center;margin:1rem 0;font-variant-numeric:tabular-nums}
+.bake-timeline{display:flex;flex-direction:column;gap:6px;margin-top:1rem;max-height:400px;overflow-y:auto}
+.bake-obs-row{display:flex;flex-wrap:wrap;gap:4px 10px;background:var(--bg2);border-radius:var(--r);padding:.5rem .75rem;font-size:11px;color:var(--text2)}
+.bake-obs-time{font-weight:500;color:var(--text)}
+/* ── Vertical sliders with sweet spots ── */
+.bt-var-group{display:flex;flex-direction:column;gap:4px;margin-bottom:12px}
+.bt-var-header{display:flex;align-items:center;gap:6px}
+.bt-var-header .ctrl-label{font-size:12px;margin:0}
+.bt-var-header .bt-val{font-size:13px;font-weight:500;min-width:28px;text-align:right;color:var(--text);margin-left:auto}
+.bt-var-header .bt-val-label{font-size:11px;color:var(--text3);margin-left:auto;min-width:80px;text-align:right}
+.bt-track-wrap{position:relative;height:8px;margin:8px 0 4px;border-radius:4px;background:linear-gradient(to right,var(--bg3) 0%,var(--bg3) 100%);overflow:visible}
+.bt-track-wrap input[type=range]{position:absolute;top:-6px;left:0;width:100%;height:20px;-webkit-appearance:none;appearance:none;background:transparent;cursor:pointer;margin:0;z-index:2}
+.bt-track-wrap input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:18px;height:18px;border-radius:50%;background:var(--text);cursor:pointer;border:2px solid var(--bg);box-shadow:0 0 0 1px rgba(0,0,0,0.12);margin-top:-5px}
+.bt-track-wrap input[type=range]::-webkit-slider-runnable-track{height:4px;background:transparent;border-radius:2px}
+.bt-track-bg{position:absolute;top:2px;left:0;width:100%;height:4px;border-radius:2px;z-index:0}
+.bt-track-bg.sweet-green{background:linear-gradient(to right,var(--bg3) 0%,var(--green) var(--sweet-start),var(--green) var(--sweet-end),var(--bg3) var(--sweet-end),var(--bg3) 100%)}
+.bt-track-bg.sweet-amber{background:linear-gradient(to right,var(--bg3) 0%,var(--amber) var(--sweet-start),var(--amber) var(--sweet-end),var(--bg3) var(--sweet-end),var(--bg3) 100%)}
+.bt-track-bg.sweet-blue{background:linear-gradient(to right,var(--bg3) 0%,var(--blue) var(--sweet-start),var(--blue) var(--sweet-end),var(--bg3) var(--sweet-end),var(--bg3) 100%)}
+.bt-ticks{display:flex;justify-content:space-between;font-size:10px;color:var(--text3);margin:0 2px}
+.bt-ticks .tick-label{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:45%}
+.bt-ticks .tick-label.sweet{color:var(--green);font-weight:500;text-align:center}
+.bt-info-btn{font-size:12px;padding:2px 7px;border-radius:50%;border:0.5px solid var(--border2);background:none;color:var(--text3);cursor:pointer;line-height:1;min-height:auto;font-family:serif}
+.bt-var-info{display:none;font-size:11px;color:var(--text2);background:var(--bg2);border-radius:var(--r);padding:.5rem .75rem;margin-bottom:6px;line-height:1.6}
+.bt-var-info.open{display:block}
+.bake-detail-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:8px;margin:1rem 0}
+.bake-detail-card{background:var(--bg2);border-radius:var(--r);padding:.75rem;text-align:center}
+.bake-detail-label{font-size:11px;color:var(--text3);margin-bottom:2px}
+.bake-detail-value{font-size:18px;font-weight:500}
+.bake-detail-sub{font-size:11px;color:var(--text3);margin-top:2px}
+.star-rating{display:flex;gap:6px;margin:.75rem 0}
+.star{font-size:28px;cursor:pointer;color:var(--bg3);transition:color .15s;user-select:none;-webkit-tap-highlight-color:transparent}
+.star.active{color:#e8a317}
+.star:active{transform:scale(0.9)}
+.bake-img-grid{display:flex;flex-wrap:wrap;gap:8px;margin:1rem 0}
+.bake-img-wrap{position:relative;width:100px;height:100px;border-radius:var(--r);overflow:hidden;background:var(--bg2)}
+.bake-img-wrap img{width:100%;height:100%;object-fit:cover}
+.bake-img-remove{position:absolute;top:2px;right:2px;width:20px;height:20px;border-radius:50%;background:rgba(0,0,0,0.5);color:#fff;border:none;font-size:12px;cursor:pointer;display:flex;align-items:center;justify-content:center;line-height:1;padding:0}
+.bake-lightbox{position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.92);z-index:9999;display:none;align-items:center;justify-content:center;cursor:pointer;-webkit-tap-highlight-color:transparent;touch-action:manipulation}
+.bake-lightbox.open{display:flex}
+.bake-lightbox img{max-width:94%;max-height:94%;object-fit:contain;border-radius:6px;box-shadow:0 4px 30px rgba(0,0,0,0.5)}
+.bake-lightbox-close{position:absolute;top:12px;right:12px;width:40px;height:40px;border-radius:50%;background:rgba(255,255,255,0.15);color:#fff;border:none;font-size:24px;cursor:pointer;display:flex;align-items:center;justify-content:center;line-height:1;z-index:10;-webkit-tap-highlight-color:transparent}
+.bake-empty{text-align:center;padding:2rem 0;color:var(--text3);font-size:13px}
+.page-bake-actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:1rem}
 </style>
 </head>
 <body>
@@ -93,6 +163,7 @@ hr{border:none;border-top:0.5px solid var(--border);margin:1rem 0}
   <button class="nav-btn" onclick="showPage('dough',this)">Dough warmup time</button>
   <button class="nav-btn" onclick="showPage('starter',this)">Starter warmup</button>
   <button class="nav-btn" onclick="showPage('sc',this)">Starter peak time</button>
+  <button class="nav-btn" onclick="showPage('bake',this)">Bake log</button>
 </nav>
 
 <!-- ═══════════════════════════════════════
@@ -472,6 +543,139 @@ hr{border:none;border-top:0.5px solid var(--border);margin:1rem 0}
 </div>
 </div>
 
+<!-- ═══════════════════════════════════════
+     PAGE 5 — BAKE LOG
+═══════════════════════════════════════ -->
+<div class="page" id="page-bake">
+<div class="card" style="margin-top:1rem">
+
+  <!-- ═══ VIEW: LIST ═══ -->
+  <div id="bake-list-view">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:1rem">
+      <div class="card-title" style="margin-bottom:0">Bulk fermentation log</div>
+      <button class="btn" onclick="showNewBake()">+ New bake</button>
+    </div>
+    <div id="bake-list" class="bake-empty">No bakes recorded yet.</div>
+  </div>
+
+  <!-- ═══ VIEW: NEW BAKE FORM ═══ -->
+  <div id="bake-new-view" style="display:none">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:1rem">
+      <div class="card-title" style="margin-bottom:0">New bake</div>
+      <button class="btn" onclick="setBakeView('list')">&larr; Back</button>
+    </div>
+
+    <div class="bake-form-grid">
+      <div class="ctrl-col"><span class="ctrl-label">Bake name</span><input type="text" id="bf-name" value="" placeholder="e.g. Tartine Country Loaf" oninput="calcBakerPcts()"></div>
+      <div class="ctrl-col"><span class="ctrl-label">Date</span><input type="date" id="bf-date"></div>
+      <div class="ctrl-col"><span class="ctrl-label">Flour type</span><input type="text" id="bf-flourType" value="90% bread flour, 10% whole wheat" placeholder="e.g. bread, whole wheat" oninput="calcBakerPcts()"></div>
+      <div class="ctrl-col"><span class="ctrl-label">Other ingredients</span><input type="text" id="bf-other" placeholder="e.g. olives, walnuts" oninput="calcBakerPcts()"></div>
+      <div class="ctrl-col"><span class="ctrl-label">Flour weight (g)</span><input type="number" id="bf-flour" value="500" min="50" max="5000" step="10" oninput="calcBakerPcts()"></div>
+      <div class="ctrl-col"><span class="ctrl-label">Water weight (g)</span><input type="number" id="bf-water" value="375" min="20" max="4000" step="5" oninput="calcBakerPcts()"></div>
+      <div class="ctrl-col"><span class="ctrl-label">Starter weight (g)</span><input type="number" id="bf-starter" value="100" min="0" max="1000" step="5" oninput="calcBakerPcts()"></div>
+      <div class="ctrl-col"><span class="ctrl-label">Starter hydration (%)</span><input type="number" id="bf-starterHyd" value="100" min="50" max="200" step="5" oninput="calcBakerPcts()"></div>
+      <div class="ctrl-col"><span class="ctrl-label">Salt weight (g)</span><input type="number" id="bf-salt" value="10" min="0" max="50" step="0.5" oninput="calcBakerPcts()"></div>
+      <div class="ctrl-col"><span class="ctrl-label">Bulk duration target (h)</span><input type="number" id="bf-target" value="4.5" min="1" max="12" step="0.5" oninput="calcBakerPcts()"></div>
+    </div>
+
+    <div id="bf-pcts" style="display:flex;flex-wrap:wrap;gap:8px;margin-bottom:1rem;font-size:12px;color:var(--text2)"></div>
+
+    <button class="btn" onclick="startBulk()" style="width:100%;padding:12px;font-size:14px;font-weight:500">Start bulk fermentation</button>
+  </div>
+
+  <!-- ═══ VIEW: TRACKER ═══ -->
+  <div id="bake-track-view" style="display:none">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:.5rem">
+      <div class="card-title" style="margin-bottom:0" id="bt-title">Tracking &mdash;</div>
+      <button class="btn" onclick="cancelBulk()">Cancel</button>
+    </div>
+
+    <div class="bake-timer" id="bt-timer">0:00</div>
+
+    <div id="bt-guidance" class="card" style="padding:.75rem 1rem;margin-bottom:1rem;display:none"></div>
+
+    <!-- ⓘ Bulk-O-Matic info panel -->
+    <button class="info-btn" onclick="toggleInfo('bt-bom-info')">&#9432; Bulk-O-Matic guide</button>
+    <div class="info-panel" id="bt-bom-info">
+      <p>The <strong>Bulk-O-Matic System</strong> is a nine-factor tool to help determine the optimal end of bulk fermentation. The system was developed by Tom Cucuzza for the Tartine Basic Country Bread recipe. View all nine indicators together as a &ldquo;constellation&rdquo; of data &mdash; no single variable decides it.</p>
+      <h3>Dough temp</h3><p>Target 78&ndash;82&deg;F (25.5&ndash;28&deg;C). Measure at center with a probe thermometer. Average across the whole bulk, not just the end. Below target slows fermentation; above breaks down gluten and risks overproofing.</p>
+      <h3>Room temp</h3><p>Ambient temperature affects how fast the dough warms (or cools). Useful context alongside dough temp.</p>
+      <h3>Rise %</h3><p>Measure volume increase in a straight-walled vessel. Target 25&ndash;35% for the standard recipe. Adjust targets for lower dough temps (e.g., 75&ndash;100% at 21&deg;C). Most rise happens in the last 15&ndash;20% of bulk.</p>
+      <h3>Domed on top</h3><p>Look for a &ldquo;shoulder&rdquo; around the edges. Early false dome comes from the last stretch &amp; fold. True dome = CO<sub>2</sub> buildup. A flattening dome signals overproofing.</p>
+      <h3>Bubbles on top</h3><p>4&ndash;8 large bubbles = active fermentation. Thin bubble membranes = nearing overproofing. Deflated bubbles = overproofed.</p>
+      <h3>Bubbles on sides</h3><p>Look through the vessel walls. High density of small/medium bubbles = healthy. Shrinking number or size = overproofing.</p>
+      <h3>Wobble</h3><p>Shake the bowl gently. Underproofed = stiff / little movement. Sweet spot = subtle &ldquo;splashing&rdquo; against sides. Overproofed = liquefied, shiny surface.</p>
+      <h3>Windowpane</h3><p>Stretch a piece of dough thin. Thick &amp; stiff = needs more time. Strong translucent membrane = good. Weak / tears easily = gluten breaking down (overproofing).</p>
+      <h3>Smell</h3><p>Progresses: floury &rarr; ripe (fermenting fruit) &rarr; sweet &rarr; acidic &rarr; starter-like. The sweet fragrant stage is the sweet spot.</p>
+      <p style="margin-top:.75rem;font-size:11px;color:var(--text3)">Based on the Bulk-O-Matic System by Tom Cucuzza &mdash; <a href="https://thesourdoughjourney.com" target="_blank" rel="noopener" style="color:var(--text2)">The Sourdough Journey</a></p>
+    </div>
+
+    <div class="sect-label">Add observation</div>
+    <div id="bt-vars-container"></div>
+
+    <div class="ctrl-col" style="margin-bottom:1rem">
+      <span class="ctrl-label">Notes for this reading</span>
+      <input type="text" id="bt-notes" placeholder="Optional notes for this reading" style="width:100%;padding:8px 10px;border:0.5px solid var(--border2);border-radius:var(--r);background:var(--bg);color:var(--text);font-size:14px;font-family:inherit">
+    </div>
+
+    <div style="display:flex;gap:8px;margin-top:0">
+      <button class="btn" onclick="addReading()" style="flex:1">+ Add reading</button>
+      <button class="btn" onclick="endBulk()" style="flex:1;color:var(--orange);border-color:var(--orange)">End bulk</button>
+    </div>
+
+    <hr>
+    <div class="sect-label">Readings</div>
+    <div id="bt-timeline" class="bake-empty" style="padding:.5rem 0">No readings yet.</div>
+  </div>
+
+  <!-- ═══ VIEW: DETAIL ═══ -->
+  <div id="bake-detail-view" style="display:none">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:1rem">
+      <input type="text" id="bd-title" style="font-size:15px;font-weight:500;border:none;border-bottom:1px dashed var(--border2);background:transparent;color:var(--text);padding:2px 0;flex:1;min-width:0" value="Bake detail" onfocus="this.style.borderBottomColor='var(--text)'" onblur="this.style.borderBottomColor='var(--border2)'">
+      <button class="btn" onclick="setBakeView('list')">&larr; Back to list</button>
+    </div>
+
+    <div id="bd-recipe" style="margin-bottom:.75rem"></div>
+
+    <div class="bake-detail-grid" id="bd-stats"></div>
+
+    <div class="chart-wrap" id="bd-chart-wrap" style="height:200px;display:none"><canvas id="bd-chart"></canvas></div>
+
+    <div id="bd-obs-table"></div>
+
+    <hr>
+
+    <div class="sect-label">Final notes &amp; rating</div>
+    <div class="star-rating" id="bd-stars">
+      <span class="star" data-v="1">&#9733;</span>
+      <span class="star" data-v="2">&#9733;</span>
+      <span class="star" data-v="3">&#9733;</span>
+      <span class="star" data-v="4">&#9733;</span>
+      <span class="star" data-v="5">&#9733;</span>
+    </div>
+    <textarea id="bd-notes" placeholder="How did it turn out? Any adjustments for next time?" style="width:100%;padding:8px 10px;border:0.5px solid var(--border2);border-radius:var(--r);background:var(--bg);color:var(--text);font-size:14px;font-family:inherit;resize:vertical;min-height:60px;margin-bottom:.75rem"></textarea>
+
+    <div>
+      <div class="sect-label">Photos (max 5)</div>
+      <input type="file" id="bd-img-input" accept="image/*" capture="environment" style="display:none">
+      <button class="btn" onclick="document.getElementById('bd-img-input').click()" style="margin-bottom:.5rem">+ Add photo</button>
+      <div id="bd-images" class="bake-img-grid"></div>
+    </div>
+
+    <div class="page-bake-actions">
+      <button class="btn" onclick="saveDetailBake()" style="flex:1">Save</button>
+      <button class="btn" onclick="deleteCurrentBake()" style="color:var(--orange);border-color:var(--orange);flex:1">Delete bake</button>
+    </div>
+  </div>
+
+</div>
+</div>
+
+<div class="bake-lightbox" id="bake-lightbox">
+  <button class="bake-lightbox-close" onclick="closeLightbox()">&times;</button>
+  <img id="bake-lightbox-img" alt="Bake photo">
+</div>
+
 <script>
 /* ══════════════════════════════════════════
    NAVIGATION
@@ -510,6 +714,7 @@ function statCard(label,value,sub){
 let locked={chartId:null,x:null,elements:null};
 Chart.register({id:'crosshair',afterDraw(c){
   const a=c.chartArea,ctx=c.ctx;
+  if(!a||!ctx)return;
   let x=null;
   if(locked.chartId===c.canvas.id&&locked.x!==null)x=locked.x;
   else if(c.tooltip?._active?.length)x=c.tooltip._active[0].element.x;
@@ -644,7 +849,7 @@ function dwBuild(){
   const dataset={label:'Dough temp',data:data.map((v,i)=>({x:times[i]/60,y:v})),borderColor:DW_COLOR,borderWidth:2.5,pointRadius:0,tension:0.3};
   const yMin=+(Math.min(tInit,tRoom)-0.5).toFixed(1),yMax=+(Math.max(tInit,tRoom)+0.5).toFixed(1);
   if(dwChart){dwChart.data.datasets=[dataset];dwChart.options.scales.y.min=yMin;dwChart.options.scales.y.max=yMax;dwChart.update();}
-  else dwChart=new Chart(document.getElementById('doughChart'),{type:'line',data:{datasets:[dataset]},options:{responsive:true,maintainAspectRatio:false,parsing:{xAxisKey:'x',yAxisKey:'y'},interaction:{mode:'index',intersect:false},plugins:{legend:{display:false},tooltip:{callbacks:{title:items=>{const t=items[0].parsed.x*60,h=Math.floor(t/60),m=Math.round(t%60);return h===0?m+'min':(m===0?h+'h':h+'h '+m+'min');},label:i=>i.parsed.y.toFixed(1)+'°C'}}},onClick:(e,el,ch)=>{if(locked.chartId===ch.canvas.id&&locked.x!==null){locked.chartId=null;locked.x=null;locked.elements=null;ch.tooltip.setActiveElements([],{x:0,y:0})}else if(ch.tooltip?._active?.length){const a=ch.tooltip._active;locked.chartId=ch.canvas.id;locked.x=a[0].element.x;locked.elements=a.map(e=>({datasetIndex:e.datasetIndex,dataIndex:e.dataIndex}));ch.tooltip.setActiveElements(locked.elements,{x:locked.x,y:a[0].element.y})}ch.draw();},scales:{x:{type:'linear',ticks:{callback:v=>{if(v===0)return'0';const t=Math.round(v*60);return dwMaxMin<=120?t+'min':v+'h';},autoSkipPadding:6,color:'#888',font:{size:11},maxRotation:0},grid:{color:'rgba(128,128,128,0.1)'}},y:{min:yMin,max:yMax,ticks:{color:'#888',font:{size:11},callback:v=>v.toFixed(1)+'°C'},grid:{color:'rgba(128,128,128,0.1)'}}}}});
+  else dwChart=new Chart(document.getElementById('doughChart'),{type:'line',data:{datasets:[dataset]},options:{responsive:true,maintainAspectRatio:false,parsing:{xAxisKey:'x',yAxisKey:'y'},interaction:{mode:'index',intersect:false},plugins:{legend:{display:false},tooltip:{callbacks:{title:items=>{const t=items[0].parsed.x*60,h=Math.floor(t/60),m=Math.round(t%60);return h===0?m+'min':(m===0?h+'h':h+'h '+m+'min');},label:i=>i.parsed.y.toFixed(1)+'°C'}}},onClick:(e,el,ch)=>{if(locked.chartId===ch.canvas.id&&locked.x!==null){locked.chartId=null;locked.x=null;locked.elements=null;ch.tooltip.setActiveElements([],{x:0,y:0});ch.draw();return;}if(!ch.tooltip?._active?.length)return;const a=ch.tooltip._active;if(!a[0]||a[0].datasetIndex>=ch.data.datasets.length||a[0].dataIndex>=ch.data.datasets[a[0].datasetIndex].data.length)return;locked.chartId=ch.canvas.id;locked.x=a[0].element.x;locked.elements=a.map(e=>({datasetIndex:e.datasetIndex,dataIndex:e.dataIndex}));ch.tooltip.setActiveElements(locked.elements,{x:locked.x,y:a[0].element.y});ch.draw();},scales:{x:{type:'linear',ticks:{callback:v=>{if(v===0)return'0';const t=Math.round(v*60);return dwMaxMin<=120?t+'min':v+'h';},autoSkipPadding:6,color:'#888',font:{size:11},maxRotation:0},grid:{color:'rgba(128,128,128,0.1)'}},y:{min:yMin,max:yMax,ticks:{color:'#888',font:{size:11},callback:v=>v.toFixed(1)+'°C'},grid:{color:'rgba(128,128,128,0.1)'}}}}});
 }
 
 sliderBind('dw-tInit','dw-tInitOut','°C',1,dwBuild);
@@ -700,7 +905,7 @@ function sBuild(){
       {label:'Temperature',data:stToXY(tempCurve),borderColor:'#185FA5',borderWidth:2.5,pointRadius:0,tension:0.4,yAxisID:'y',fill:{target:'origin',above:'rgba(24,95,165,0.07)'}},
       {label:'Progress',data:stToXY(progress),borderColor:'#3B6D11',borderWidth:2,pointRadius:0,tension:0.1,borderDash:[5,3],yAxisID:'y1'},
       {label:'Threshold',data:stToXY(thresh),borderColor:'#D85A30',borderWidth:1.5,pointRadius:0,borderDash:[3,4],yAxisID:'y1'},
-    ]},options:{responsive:true,maintainAspectRatio:false,parsing:{xAxisKey:'x',yAxisKey:'y'},interaction:{mode:'index',intersect:false},onClick:(e,el,ch)=>{if(locked.chartId===ch.canvas.id&&locked.x!==null){locked.chartId=null;locked.x=null;locked.elements=null;ch.tooltip.setActiveElements([],{x:0,y:0})}else if(ch.tooltip?._active?.length){const a=ch.tooltip._active;locked.chartId=ch.canvas.id;locked.x=a[0].element.x;locked.elements=a.map(e=>({datasetIndex:e.datasetIndex,dataIndex:e.dataIndex}));ch.tooltip.setActiveElements(locked.elements,{x:locked.x,y:a[0].element.y})}ch.draw();},
+    ]},options:{responsive:true,maintainAspectRatio:false,parsing:{xAxisKey:'x',yAxisKey:'y'},interaction:{mode:'index',intersect:false},onClick:(e,el,ch)=>{if(locked.chartId===ch.canvas.id&&locked.x!==null){locked.chartId=null;locked.x=null;locked.elements=null;ch.tooltip.setActiveElements([],{x:0,y:0});ch.draw();return;}if(!ch.tooltip?._active?.length)return;const a=ch.tooltip._active;if(!a[0]||a[0].datasetIndex>=ch.data.datasets.length||a[0].dataIndex>=ch.data.datasets[a[0].datasetIndex].data.length)return;locked.chartId=ch.canvas.id;locked.x=a[0].element.x;locked.elements=a.map(e=>({datasetIndex:e.datasetIndex,dataIndex:e.dataIndex}));ch.tooltip.setActiveElements(locked.elements,{x:locked.x,y:a[0].element.y});ch.draw();},
       plugins:{legend:{display:false},tooltip:{callbacks:{
         title:items=>{const t=items[0].parsed.x*60,h=Math.floor(t/60),m=Math.round(t%60);return h===0?m+'min':(m===0?h+'h':h+'h '+m+'min');},
         label:item=>{if(item.datasetIndex===0)return'Temp: '+item.parsed.y.toFixed(1)+'°C';if(item.datasetIndex===1)return'Progress: '+(item.parsed.y/peakH*100).toFixed(1)+'%';return'Threshold: 100%';}
@@ -844,15 +1049,652 @@ function scBuild(){
     scChart.scPeak=peakH;
     scChart.update();
   }else{
-    scChart=new Chart(document.getElementById('scChart'),{type:'line',data:{datasets:[{label:'Rise',data:rd.map((v,i)=>({x:i*SC_STEP,y:v})),borderColor:'#185FA5',borderWidth:2.5,pointRadius:0,tension:0.3,fill:{target:'origin',above:'rgba(24,95,165,0.07)'},parsing:false}]},options:{responsive:true,maintainAspectRatio:false,interaction:{mode:'index',intersect:false},onClick:(e,el,ch)=>{if(locked.chartId===ch.canvas.id&&locked.x!==null){locked.chartId=null;locked.x=null;locked.elements=null;ch.tooltip.setActiveElements([],{x:0,y:0})}else if(ch.tooltip?._active?.length){const a=ch.tooltip._active;locked.chartId=ch.canvas.id;locked.x=a[0].element.x;locked.elements=a.map(e=>({datasetIndex:e.datasetIndex,dataIndex:e.dataIndex}));ch.tooltip.setActiveElements(locked.elements,{x:locked.x,y:a[0].element.y})}ch.draw();},plugins:{legend:{display:false},tooltip:{callbacks:{title:items=>{const t=items[0].parsed.x*60,h=Math.floor(t/60),m=Math.round(t%60);return h===0?m+'min':(m===0?h+'h':h+'h '+m+'min');},label:item=>'Rise: '+item.parsed.y.toFixed(0)+'%'}}},scales:{x:{type:'linear',min:0,max:totalH,ticks:{callback:v=>{if(v===0)return'0';const h=Math.round(v);return Math.abs(v-h)<0.01?h+'h':'';},autoSkipPadding:6,color:'#888',font:{size:11},maxRotation:0},grid:{color:'rgba(128,128,128,0.1)'},title:{display:true,text:'Time from feeding',color:'#888',font:{size:11}}},y:{min:0,max:105,ticks:{color:'#888',font:{size:11},callback:v=>v+'%'},grid:{color:'rgba(128,128,128,0.1)'},title:{display:true,text:'Rise',color:'#888',font:{size:11}}}}},plugins:[{id:'scMarkers',afterDraw(c){if(c.canvas.id!=='scChart')return;const peak=c.scPeak;if(!peak||peak<=0)return;const a=c.chartArea,ctx=c.ctx,sc=c.scales.x;ctx.save();ctx.beginPath();ctx.setLineDash([5,5]);ctx.strokeStyle='rgba(216,90,48,0.5)';ctx.lineWidth=1.5;ctx.moveTo(sc.getPixelForValue(peak),a.top);ctx.lineTo(sc.getPixelForValue(peak),a.bottom);ctx.stroke();ctx.setLineDash([]);ctx.restore();}}]});scChart.scPeak=peakH;
+    scChart=new Chart(document.getElementById('scChart'),{type:'line',data:{datasets:[{label:'Rise',data:rd.map((v,i)=>({x:i*SC_STEP,y:v})),borderColor:'#185FA5',borderWidth:2.5,pointRadius:0,tension:0.3,fill:{target:'origin',above:'rgba(24,95,165,0.07)'},parsing:false}]},options:{responsive:true,maintainAspectRatio:false,interaction:{mode:'index',intersect:false},onClick:(e,el,ch)=>{if(locked.chartId===ch.canvas.id&&locked.x!==null){locked.chartId=null;locked.x=null;locked.elements=null;ch.tooltip.setActiveElements([],{x:0,y:0});ch.draw();return;}if(!ch.tooltip?._active?.length)return;const a=ch.tooltip._active;if(!a[0]||a[0].datasetIndex>=ch.data.datasets.length||a[0].dataIndex>=ch.data.datasets[a[0].datasetIndex].data.length)return;locked.chartId=ch.canvas.id;locked.x=a[0].element.x;locked.elements=a.map(e=>({datasetIndex:e.datasetIndex,dataIndex:e.dataIndex}));ch.tooltip.setActiveElements(locked.elements,{x:locked.x,y:a[0].element.y});ch.draw();},plugins:{legend:{display:false},tooltip:{callbacks:{title:items=>{const t=items[0].parsed.x*60,h=Math.floor(t/60),m=Math.round(t%60);return h===0?m+'min':(m===0?h+'h':h+'h '+m+'min');},label:item=>'Rise: '+item.parsed.y.toFixed(0)+'%'}}},scales:{x:{type:'linear',min:0,max:totalH,ticks:{callback:v=>{if(v===0)return'0';const h=Math.round(v);return Math.abs(v-h)<0.01?h+'h':'';},autoSkipPadding:6,color:'#888',font:{size:11},maxRotation:0},grid:{color:'rgba(128,128,128,0.1)'},title:{display:true,text:'Time from feeding',color:'#888',font:{size:11}}},y:{min:0,max:105,ticks:{color:'#888',font:{size:11},callback:v=>v+'%'},grid:{color:'rgba(128,128,128,0.1)'},title:{display:true,text:'Rise',color:'#888',font:{size:11}}}}},plugins:[{id:'scMarkers',afterDraw(c){if(c.canvas.id!=='scChart')return;const peak=c.scPeak;if(!peak||peak<=0)return;const a=c.chartArea,ctx=c.ctx,sc=c.scales.x;ctx.save();ctx.beginPath();ctx.setLineDash([5,5]);ctx.strokeStyle='rgba(216,90,48,0.5)';ctx.lineWidth=1.5;ctx.moveTo(sc.getPixelForValue(peak),a.top);ctx.lineTo(sc.getPixelForValue(peak),a.bottom);ctx.stroke();ctx.setLineDash([]);ctx.restore();}}]});scChart.scPeak=peakH;
   }
 }
 
 sliderBind('sc-temp','sc-tempOut','\u00B0C',1,scBuild);
 scSyncBtn();
 
-/* PWA */
-if('serviceWorker' in navigator)navigator.serviceWorker.register('./sw.js').catch(()=>{});
+/* ══════════════════════════════════════════
+   BAKE LOG
+══════════════════════════════════════════ */
+
+// ── IndexedDB for images ──
+const IDB_NAME='sb_images',IDB_VER=1;
+function idbOpen(){return new Promise((res,rej)=>{const r=indexedDB.open(IDB_NAME,IDB_VER);r.onupgradeneeded=e=>{const d=e.target.result;if(!d.objectStoreNames.contains('imgs'))d.createObjectStore('imgs',{keyPath:'id'})};r.onsuccess=()=>res(r.result);r.onerror=()=>rej(r.error)})}
+function idbSave(id,blob){return idbOpen().then(d=>new Promise((res,rej)=>{const t=d.transaction('imgs','readwrite');t.objectStore('imgs').put({id,blob});t.oncomplete=()=>res();t.onerror=()=>rej(t.error)}))}
+function idbLoadAll(bakeId){const prefix=bakeId+'_';return idbOpen().then(d=>new Promise((res,rej)=>{const items=[];const c=d.transaction('imgs','readonly').objectStore('imgs').openCursor();c.onsuccess=e=>{const cur=c.result;if(cur){if(cur.value.id.startsWith(prefix))items.push(cur.value);cur.continue()}else res(items.sort((a,b)=>a.id.localeCompare(b.id)))};c.onerror=()=>rej(c.error)}))}
+function idbDeleteAll(bakeId){const prefix=bakeId+'_';return idbOpen().then(d=>new Promise((res,rej)=>{const t=d.transaction('imgs','readwrite');const s=t.objectStore('imgs');const c=s.openCursor();c.onsuccess=e=>{const cur=c.result;if(cur){if(cur.value.id.startsWith(prefix))cur.delete();cur.continue()}else res()};c.onerror=()=>rej(c.error)}))}
+function idbLoadFirstImage(bakeId){return idbOpen().then(d=>new Promise((res,rej)=>{const req=d.transaction('imgs','readonly').objectStore('imgs').get(bakeId+'_0');req.onsuccess=()=>res(req.result?req.result.blob:null);req.onerror=()=>rej(req.error)}))}
+
+// ── Lightbox ──
+function openLightbox(src){
+  const el=document.getElementById('bake-lightbox');
+  const img=document.getElementById('bake-lightbox-img');
+  img.src=src;el.classList.add('open');
+}
+function closeLightbox(){document.getElementById('bake-lightbox').classList.remove('open')}
+document.getElementById('bake-lightbox').addEventListener('click',function(e){if(e.target===this||e.target===document.getElementById('bake-lightbox-img'))closeLightbox()});
+document.addEventListener('keydown',function(e){if(e.key==='Escape')closeLightbox()});
+
+// ── State ──
+let activeBake=null;          // the bake object currently being tracked or edited
+let activeBakeIdx=-1;         // index in the bakes array (-1 = new, unsaved)
+let timerInterval=null;
+let bakeChart=null;           // detail view chart instance
+let currentBakeImages=[];     // [{id,blob}] loaded from IDB for the active detail view
+
+function loadBakes(){try{return JSON.parse(localStorage.getItem('sb_bakes'))||[]}catch{return[]}}
+function saveBakes(b){localStorage.setItem('sb_bakes',JSON.stringify(b))}
+
+// ── View management ──
+function setBakeView(view){
+  ['list','new','track','detail'].forEach(v=>{
+    document.getElementById('bake-'+v+'-view').style.display=v===view?'':'none'
+  });
+}
+function showNewBake(){
+  // set default date to today
+  const d=new Date();
+  document.getElementById('bf-date').value=d.toISOString().slice(0,10);
+  setBakeView('new');
+  calcBakerPcts();
+}
+
+// ── Baker's percentages ──
+function calcBakerPcts(){
+  const f=+document.getElementById('bf-flour').value||0;
+  const w=+document.getElementById('bf-water').value||0;
+  const st=+document.getElementById('bf-starter').value||0;
+  const sh=+document.getElementById('bf-starterHyd').value||100;
+  const sa=+document.getElementById('bf-salt').value||0;
+  const el=document.getElementById('bf-pcts');
+  if(!f){el.textContent='';return}
+  const hyd=((w+st*(sh/100))/f*100).toFixed(1);
+  const sPct=(st/f*100).toFixed(1);
+  const saPct=(sa/f*100).toFixed(1);
+  el.textContent='Hydration: '+hyd+'% \u2022 Starter: '+sPct+'% \u2022 Salt: '+saPct+'%  \u2022 Flour: '+f+'g';
+}
+
+// ── Start bulk fermentation ──
+function startBulk(){
+  const name=document.getElementById('bf-name').value.trim()||'Unnamed bake';
+  const date=document.getElementById('bf-date').value;
+  const flourType=document.getElementById('bf-flourType').value.trim()||'';
+  const other=document.getElementById('bf-other').value.trim();
+  const flour=+document.getElementById('bf-flour').value||0;
+  const water=+document.getElementById('bf-water').value||0;
+  const starter=+document.getElementById('bf-starter').value||0;
+  const starterHyd=+document.getElementById('bf-starterHyd').value||100;
+  const salt=+document.getElementById('bf-salt').value||0;
+  const targetH=+document.getElementById('bf-target').value||4.5;
+
+  activeBake={
+    id:Date.now(),
+    date,name,flourType,other,
+    flourWeight:flour,waterWeight:water,starterWeight:starter,starterHydration:starterHyd,saltWeight:salt,
+    targetDuration:targetH*60,
+    bulkStart:Date.now(),bulkEnd:null,
+    avgTemp:null,observations:[],finalRise:null,bulkDuration:null,
+    rating:null,notes:'',imageCount:0,
+    guidanceTemp:null,targetRise:null
+  };
+  activeBakeIdx=-1;
+
+  document.getElementById('bt-title').textContent='Tracking \u2014 '+name;
+  setBakeView('track');
+  document.getElementById('bt-timeline').textContent='No readings yet.';
+  document.getElementById('bt-timeline').className='bake-empty';
+  resetObsSliders();
+  startTimer();
+  renderGuidance();
+}
+
+function cancelBulk(){
+  if(timerInterval){clearInterval(timerInterval);timerInterval=null}
+  activeBake=null;activeBakeIdx=-1;
+  setBakeView('list');
+}
+
+function resetObsSliders(){
+  Object.keys(BOM_VARS).forEach(k=>{
+    const el=document.getElementById('bt-'+k);
+    if(!el)return;
+    const v=BOM_VARS[k];
+    el.value=v.min;
+    const labelEl=document.getElementById('bt-'+k+'-label');
+    if(v.ticks)labelEl.textContent=v.ticks[0];
+    else labelEl.textContent=v.decimals?+v.min:v.min;
+  });
+  document.getElementById('bt-notes').value='';
+}
+
+function carryOverSliders(){
+  if(!activeBake||!activeBake.observations.length){resetObsSliders();return}
+  const last=activeBake.observations[activeBake.observations.length-1];
+  const map={temp:'temp',roomTemp:'roomTemp',risePct:'rise',domed:'domed',bubblesTop:'bubTop',bubblesSides:'bubSides',wobble:'wobble',windowpane:'windowpane',smell:'smell'};
+  Object.entries(map).forEach(([obsKey,sliderKey])=>{
+    const el=document.getElementById('bt-'+sliderKey);
+    if(!el)return;
+    const val=last[obsKey];
+    if(val===undefined||val===null)return;
+    const v=BOM_VARS[sliderKey];
+    const clamped=Math.min(Math.max(val,v.min),v.max);
+    el.value=clamped;
+    const labelEl=document.getElementById('bt-'+sliderKey+'-label');
+    if(v.ticks)labelEl.textContent=v.ticks[Math.round(clamped)]||clamped;
+    else labelEl.textContent=v.decimals?+clamped.toFixed(v.decimals):clamped;
+  });
+  document.getElementById('bt-notes').value='';
+}
+
+// ── BOM variable definitions ──
+const BOM_VARS={
+  temp:{label:'Dough temp',unit:'\u00B0C',min:10,max:40,step:.5,decimals:1,sweetStart:51.7,sweetEnd:60,sweetLabel:'25.5\u201328\u00B0C',underLabel:'<25.5\u00B0C',overLabel:'>28\u00B0C',info:'Target 78\u201382\u00B0F (25.5\u201328\u00B0C). Measure at center with a probe thermometer. Average across the whole bulk, not just the end. Below target slows fermentation; above breaks down gluten and risks overproofing.'},
+  roomTemp:{label:'Room temp',unit:'\u00B0C',min:10,max:40,step:.5,decimals:1,sweetStart:null,sweetEnd:null,sweetLabel:null,underLabel:null,overLabel:null,color:'amber',info:'Ambient temperature affects how fast the dough warms (or cools). Useful context alongside dough temp.'},
+  rise:{label:'Rise',unit:'%',min:0,max:100,step:1,decimals:0,sweetStart:25,sweetEnd:35,sweetLabel:'25\u201335%',underLabel:'<25%',overLabel:'>35%',color:'blue',info:'Measure volume increase in straight-walled vessel. Target 25\u201335% for standard recipe. Adjust for lower temps (e.g. 75\u2013100% at 21\u00B0C). Most rise in last 15\u201320% of bulk.'},
+  domed:{label:'Domed on top',min:0,max:4,step:1,decimals:0,sweetStart:25,sweetEnd:50,sweetLabel:'Low to high dome',underLabel:'Flat',overLabel:'Deflated / fallen',ticks:['Flat / none','Low dome','High dome','Deflating','Fallen'],info:'Look for a \u201Cshoulder\u201D around the edges. Early false dome comes from last stretch & fold. True dome = CO\u2082 buildup. Flattening dome = overproofing.'},
+  bubTop:{label:'Bubbles on top',min:0,max:4,step:1,decimals:0,sweetStart:25,sweetEnd:50,sweetLabel:'A few to many',underLabel:'None',overLabel:'Thinning / deflated',ticks:['None visible','A few','Many (>4)','Thinning','Deflated'],info:'4\u20138 large bubbles = active. Thin bubble membranes = nearing overproof. Deflated bubbles = overproofed.'},
+  bubSides:{label:'Bubbles on sides',min:0,max:4,step:1,decimals:0,sweetStart:25,sweetEnd:50,sweetLabel:'Few to many clusters',underLabel:'None',overLabel:'Fewer / shrinking',ticks:['None visible','Few clusters','Many clusters','Fewer / smaller','Gone'],info:'Look through vessel walls. High density of small/medium bubbles = healthy. Shrinking = overproofing.'},
+  wobble:{label:'Wobble',min:0,max:2,step:1,decimals:0,sweetStart:33,sweetEnd:66,sweetLabel:'Loose & aerated',underLabel:'Stiff',overLabel:'Liquefied',ticks:['Stiff','Loose & aerated','Liquefied / shiny'],info:'Shake bowl gently. Underproofed = stiff, little movement. Sweet spot = subtle splashing. Overproofed = liquefied, shiny surface.'},
+  windowpane:{label:'Windowpane',min:0,max:2,step:1,decimals:0,sweetStart:33,sweetEnd:66,sweetLabel:'Strong & translucent',underLabel:'Thick & stiff',overLabel:'Weak / tears',ticks:['Thick & stiff','Strong & translucent','Weak / tears'],info:'Stretch a piece of dough thin. Thick = needs time. Strong translucent = good. Tears easily = gluten breaking down.'},
+  smell:{label:'Smell',min:0,max:4,step:1,decimals:0,sweetStart:25,sweetEnd:75,sweetLabel:'Ripe to sweet to acidic',underLabel:'Floury / bland',overLabel:'Acidic / starter-like',ticks:['Floury / bland','Ripe (fruit)','Sweet','Acidic','Like starter'],info:'Progresses: floury \u2192 ripe (fermenting fruit) \u2192 sweet \u2192 acidic \u2192 starter-like. The sweet fragrant stage is the sweet spot.'}
+};
+
+function varColor(v){if(v.color)return 'sweet-'+v.color;return v.sweetStart===null?'':'sweet-green'}
+
+function buildBomSliders(){
+  const c=document.getElementById('bt-vars-container');if(!c)return;
+  c.innerHTML=Object.entries(BOM_VARS).map(([k,v])=>{
+    const vc=varColor(v);
+    const sweet=v.sweetStart!==null?`--sweet-start:${v.sweetStart}%;--sweet-end:${v.sweetEnd}%`:'';
+    const ticks=v.ticks||null;
+    return '<div class="bt-var-group">'+
+      '<div class="bt-var-header">'+
+        '<span class="ctrl-label">'+v.label+(v.unit?' ('+v.unit+')':'')+'</span>'+
+        (v.info?'<button class="bt-info-btn" onclick="event.stopPropagation();var p=this.parentNode.nextElementSibling.nextElementSibling;if(p)p.classList.toggle(\'open\')">i</button>':'')+
+        '<span class="bt-val-label" id="bt-'+k+'-label">'+(v.ticks?'Flat / none':v.min)+'</span>'+
+      '</div>'+
+      (v.sweetLabel?'<div class="bt-track-wrap" style="'+sweet+'"><div class="bt-track-bg '+(vc||'')+'" style="'+sweet+'"></div><input type="range" id="bt-'+k+'" min="'+v.min+'" max="'+v.max+'" step="'+v.step+'" value="'+v.min+'"></div>':'<div class="bt-track-wrap"><div class="bt-track-bg"></div><input type="range" id="bt-'+k+'" min="'+v.min+'" max="'+v.max+'" step="'+v.step+'" value="'+v.min+'"></div>')+
+      (v.sweetLabel||v.underLabel?'<div class="bt-ticks">'+
+        (v.underLabel?'<span class="tick-label">'+v.underLabel+'</span>':'<span></span>')+
+        (v.sweetLabel?'<span class="tick-label sweet">'+v.sweetLabel+'</span>':'<span></span>')+
+        (v.overLabel?'<span class="tick-label">'+v.overLabel+'</span>':'<span></span>')+
+      '</div>':'')+
+      (v.info?'<div class="bt-var-info">'+v.info+'</div>':'')+
+    '</div>'
+  }).join('');
+  // attach slider listeners
+  Object.keys(BOM_VARS).forEach(k=>{
+    const el=document.getElementById('bt-'+k);
+    if(!el)return;
+    el.addEventListener('input',()=>{
+      const v=BOM_VARS[k];
+      const val=parseFloat(el.value);
+      const labelEl=document.getElementById('bt-'+k+'-label');
+      if(v.ticks)labelEl.textContent=v.ticks[Math.round(val)]||val;
+      else labelEl.textContent=v.decimals?val.toFixed(v.decimals):val;
+    });
+  });
+}
+// build on load
+buildBomSliders();
+
+// ── Temperature-based target rise & planning window ──
+const BOM_BP=[
+  {t:27,r:30,minH:3.5,maxH:5.5},
+  {t:24,r:50,minH:5,maxH:7},
+  {t:21,r:75,minH:8,maxH:12},
+  {t:18,r:100,minH:12,maxH:16}
+];
+function bomGuidance(tempC){
+  if(tempC===null||tempC===undefined)return{rise:null,minH:null,maxH:null};
+  if(tempC>=27)return{rise:30,minH:3.5,maxH:5.5};
+  if(tempC<=18)return{rise:100,minH:12,maxH:16};
+  for(let i=0;i<BOM_BP.length-1;i++){
+    const hi=BOM_BP[i],lo=BOM_BP[i+1];
+    if(tempC>lo.t&&tempC<=hi.t){
+      const t=(hi.t-tempC)/(hi.t-lo.t);
+      return{rise:+(hi.r+t*(lo.r-hi.r)).toFixed(0),minH:+(hi.minH+t*(lo.minH-hi.minH)).toFixed(1),maxH:+(hi.maxH+t*(lo.maxH-hi.maxH)).toFixed(1)};
+    }
+  }
+  return{rise:null,minH:null,maxH:null};
+}
+
+function renderGuidance(){
+  const el=document.getElementById('bt-guidance');
+  if(!el||!activeBake)return;
+  const lastObs=activeBake.observations.length?activeBake.observations[activeBake.observations.length-1]:null;
+  const temp=lastObs?lastObs.temp:null;
+  // set initial guidance from first dough temp reading
+  if(temp!==null&&activeBake.guidanceTemp===null){
+    const g=bomGuidance(temp);
+    if(g.rise!==null){activeBake.guidanceTemp=temp;activeBake.targetRise=g.rise}
+  }
+  if(!activeBake.targetRise){el.style.display='none';return}
+  el.style.display='block';
+  const g=activeBake.guidanceTemp!==null?bomGuidance(activeBake.guidanceTemp):null;
+  const targetRise=activeBake.targetRise||(g?g.rise:null);
+  if(!targetRise){el.style.display='none';return}
+  const lastRise=lastObs?lastObs.risePct:0;
+  const pctDone=Math.min(100,+(lastRise/targetRise*100).toFixed(0));
+  const barStyle='height:8px;border-radius:4px;overflow:hidden;background:var(--bg3);margin:6px 0';
+  const fillStyle='height:100%;border-radius:4px;transition:width .3s;';
+  const fillR=pctDone>=100?`width:100%;background:var(--green)`:`width:${pctDone}%;background:var(--blue)`;
+  const recalcBtn=activeBake.targetRise!==null&&g&&activeBake.targetRise!==g.rise?'<span style="font-size:11px;color:var(--text3)">(override)</span>':'';
+  const diffTemp=temp!==null&&activeBake.guidanceTemp!==null&&Math.abs(temp-activeBake.guidanceTemp)>=2;
+  const diffBtn=diffTemp?' <button class="btn" onclick="recalcGuidance()" style="padding:2px 8px;font-size:11px;min-height:auto">Recalc from '+temp.toFixed(1)+'\u00B0C</button>':'';
+
+  // update rise slider sweet spot
+  updateRiseSweetSpot(targetRise);
+
+  el.innerHTML=
+    '<div class="card-title" style="margin-bottom:.5rem;font-size:13px">Temperature guidance</div>'+
+    '<div style="font-size:13px;line-height:1.7">'+
+      '<div style="display:flex;justify-content:space-between;align-items:center">'+
+        '<span><strong>Target rise:</strong> '+targetRise+'%</span>'+
+        '<span style="font-size:11px;color:var(--text3)">Based on '+activeBake.guidanceTemp.toFixed(1)+'\u00B0C dough temp'+recalcBtn+'</span>'+
+      '</div>'+
+      '<div style="'+barStyle+'"><div style="'+fillStyle+fillR+'"></div></div>'+
+      '<div style="display:flex;justify-content:space-between;font-size:11px;color:var(--text3)">'+
+        '<span>Rise: '+lastRise+'%</span><span>Target: '+targetRise+'% ('+pctDone+'%)</span>'+
+      '</div>'+
+      (g?'<div style="display:flex;justify-content:space-between;margin-top:6px">'+
+        '<span><strong>Planning window:</strong> '+g.minH+'\u2013'+g.maxH+'h</span>'+
+        (diffBtn||'')+
+      '</div>':'')+
+      '<div style="display:flex;align-items:center;gap:8px;margin-top:8px">'+
+        '<span style="font-size:11px;color:var(--text3)">Override target:</span>'+
+        '<input type="number" id="bt-targetOverride" value="'+targetRise+'" min="10" max="200" step="5" style="width:60px;padding:4px 6px;font-size:13px;border:0.5px solid var(--border2);border-radius:var(--r);background:var(--bg);color:var(--text)">'+
+        '<button class="btn" onclick="applyOverride()" style="padding:4px 10px;font-size:11px;min-height:auto">Apply</button>'+
+      '</div>'+
+      '<div style="font-size:11px;color:var(--text3);margin-top:6px;line-height:1.5">'+
+        '\u24D8 Target rise is a guide based on the Bulk-O-Matic temperature table. The planning window is approximate. Make small adjustments \u2014 increase by ~10% if dough tends to underproof or decrease if it overproofs.'
+      '</div>'+
+    '</div>';
+}
+
+function updateRiseSweetSpot(targetRise){
+  const wrap=document.getElementById('bt-rise')?.parentElement;
+  if(!wrap)return;
+  const sweetStart=Math.max(0,targetRise-5);
+  const sweetEnd=Math.min(100,targetRise+5);
+  wrap.style.setProperty('--sweet-start',sweetStart+'%');
+  wrap.style.setProperty('--sweet-end',sweetEnd+'%');
+  const bg=wrap.querySelector('.bt-track-bg');
+  if(bg){bg.className='bt-track-bg sweet-green';
+    bg.style.setProperty('--sweet-start',sweetStart+'%');
+    bg.style.setProperty('--sweet-end',sweetEnd+'%');
+  }
+}
+
+function applyOverride(){
+  const el=document.getElementById('bt-targetOverride');
+  if(!el||!activeBake)return;
+  const v=+el.value;
+  if(isNaN(v)||v<10||v>200)return;
+  activeBake.targetRise=v;
+  if(!activeBake.guidanceTemp&&activeBake.observations.length)activeBake.guidanceTemp=activeBake.observations[activeBake.observations.length-1].temp;
+  renderGuidance();
+}
+
+function recalcGuidance(){
+  if(!activeBake||!activeBake.observations.length)return;
+  const last=activeBake.observations[activeBake.observations.length-1];
+  const g=bomGuidance(last.temp);
+  if(g.rise===null)return;
+  activeBake.targetRise=g.rise;
+  activeBake.guidanceTemp=last.temp;
+  const ovEl=document.getElementById('bt-targetOverride');
+  if(ovEl)ovEl.value=g.rise;
+  renderGuidance();
+}
+
+function fmtTimer(mins){
+  if(mins===null||mins<0)return '0:00';
+  const h=Math.floor(mins/60),m=Math.floor(mins%60);
+  return h+':'+(m<10?'0':'')+m;
+}
+
+function startTimer(){
+  if(timerInterval)clearInterval(timerInterval);
+  const update=()=>{
+    if(!activeBake)return;
+    const elapsed=Math.floor((Date.now()-activeBake.bulkStart)/60000);
+    document.getElementById('bt-timer').textContent=fmtTimer(elapsed);
+  };
+  update();
+  timerInterval=setInterval(update,10000);
+}
+
+// ── Add reading ──
+function addReading(){
+  if(!activeBake)return;
+  const elapsed=Math.floor((Date.now()-activeBake.bulkStart)/60000);
+  if(elapsed<0)return;
+  const obs={
+    time:elapsed,
+    temp:+document.getElementById('bt-temp').value,
+    roomTemp:+document.getElementById('bt-roomTemp').value,
+    risePct:+document.getElementById('bt-rise').value,
+    domed:+document.getElementById('bt-domed').value,
+    bubblesTop:+document.getElementById('bt-bubTop').value,
+    bubblesSides:+document.getElementById('bt-bubSides').value,
+    wobble:+document.getElementById('bt-wobble').value,
+    windowpane:+document.getElementById('bt-windowpane').value,
+    smell:+document.getElementById('bt-smell').value,
+    notes:document.getElementById('bt-notes').value.trim()
+  };
+  activeBake.observations.push(obs);
+  renderTimeline();
+  renderGuidance();
+  carryOverSliders();
+}
+
+function renderTimeline(){
+  const el=document.getElementById('bt-timeline');
+  if(!activeBake||!activeBake.observations.length){el.textContent='No readings yet.';el.className='bake-empty';return}
+  el.className='bake-timeline';
+  const fields=[{k:'temp',f:v=>v.toFixed(1)+'\u00B0C'},{k:'risePct',f:v=>v+'%'},{k:'domed',l:'domed'},{k:'bubblesTop',l:'bubTop'},{k:'bubblesSides',l:'bubSides'},{k:'wobble',l:'wobble'},{k:'windowpane',l:'windowpane'},{k:'smell',l:'smell'}];
+  el.innerHTML=activeBake.observations.map(o=>{
+    const t=fmtTime(o.time);
+    const vals=fields.map(f=>{
+      const raw=o[f.k];
+      if(f.l&&BOM_VARS[f.l]&&BOM_VARS[f.l].ticks)return BOM_VARS[f.l].ticks[Math.round(raw)]||raw;
+      if(f.f)return f.f(raw);
+      return raw;
+    });
+    return '<div class="bake-obs-row"><span class="bake-obs-time">'+t+'</span><span>'+vals[0]+'</span><span>'+vals[1]+'</span><span>'+vals[2]+'</span><span>'+vals[3]+'</span><span>'+vals[4]+'</span><span>'+vals[5]+'</span><span>'+vals[6]+'</span><span>'+vals[7]+'</span></div>'
+  }).join('');
+}
+
+// ── End bulk ──
+function endBulk(){
+  if(!activeBake||!activeBake.observations.length){
+    if(!confirm('No readings recorded. End bulk anyway?'))return;
+  }
+  if(timerInterval){clearInterval(timerInterval);timerInterval=null}
+  activeBake.bulkEnd=Date.now();
+  activeBake.bulkDuration=Math.round((activeBake.bulkEnd-activeBake.bulkStart)/60000);
+  // calc avg temp
+  const temps=activeBake.observations.map(o=>o.temp).filter(t=>t>0);
+  activeBake.avgTemp=temps.length?+(temps.reduce((a,b)=>a+b,0)/temps.length).toFixed(1):null;
+  // calc final rise (last reading)
+  if(activeBake.observations.length)activeBake.finalRise=activeBake.observations[activeBake.observations.length-1].risePct;
+  // save
+  const bakes=loadBakes();
+  bakes.unshift(activeBake);
+  saveBakes(bakes);
+  activeBakeIdx=0;
+  renderDetail(activeBake);
+  setBakeView('detail');
+  renderBakeList();
+}
+
+// ── Detail view ──
+function renderDetail(bake){
+  if(!bake)return;
+  document.getElementById('bd-title').value=bake.name||'Bake detail';
+
+  // recipe
+  const hyd=((bake.waterWeight+(bake.starterWeight||0)*((bake.starterHydration||100)/100))/bake.flourWeight*100).toFixed(1);
+  document.getElementById('bd-recipe').innerHTML=
+    '<div style="font-size:13px;color:var(--text2);line-height:1.7">'+
+    '<strong>'+bake.flourWeight+'g</strong> flour'+(bake.flourType?' ('+bake.flourType+')':'')+
+    ' &middot; <strong>'+bake.waterWeight+'g</strong> water'+
+    ' &middot; <strong>'+(bake.starterWeight||0)+'g</strong> starter'+
+    ' &middot; <strong>'+(bake.saltWeight||0)+'g</strong> salt'+
+    '<br>Hydration: <strong>'+hyd+'%</strong>'+
+    ' &middot; <strong>'+bake.date+'</strong>'+
+    (bake.other?'<br>'+bake.other:'')+
+    '</div>'+
+    (bake.targetRise?'<div style="font-size:11px;color:var(--text3);margin-top:4px">Temperature guidance: <strong>'+bake.targetRise+'% target rise</strong>'+(bake.finalRise!=null?' &middot; Actual: <strong>'+bake.finalRise+'%</strong>':'')+(bake.guidanceTemp?' &middot; at '+bake.guidanceTemp.toFixed(1)+'\u00B0C':'')+'</div>':'');
+
+  // stats grid
+  const dur=bake.bulkDuration?fmtTime(bake.bulkDuration):'\u2014';
+  const avgT=bake.avgTemp?bake.avgTemp.toFixed(1)+'\u00B0C':'\u2014';
+  const finalR=bake.finalRise!=null?bake.finalRise+'%':'\u2014';
+  document.getElementById('bd-stats').innerHTML=
+    '<div class="bake-detail-card"><div class="bake-detail-label">Avg dough temp</div><div class="bake-detail-value">'+avgT+'</div></div>'+
+    '<div class="bake-detail-card"><div class="bake-detail-label">Bulk duration</div><div class="bake-detail-value">'+dur+'</div></div>'+
+    '<div class="bake-detail-card"><div class="bake-detail-label">Final rise</div><div class="bake-detail-value">'+finalR+'</div></div>'+
+    '<div class="bake-detail-card"><div class="bake-detail-label">Target rise</div><div class="bake-detail-value">'+(bake.targetRise?bake.targetRise+'%':'\u2014')+'</div></div>'+
+    '<div class="bake-detail-card"><div class="bake-detail-label">Readings</div><div class="bake-detail-value">'+(bake.observations.length||0)+'</div></div>';
+
+  // observations table
+  renderObsTable(bake.observations);
+
+  // chart
+  renderBakeChart(bake.observations);
+
+  // rating
+  renderStars(bake.rating||0);
+  document.getElementById('bd-notes').value=bake.notes||'';
+
+  // images
+  loadBakeImages(bake);
+}
+
+function renderObsTable(obs){
+  const el=document.getElementById('bd-obs-table');
+  if(!obs||!obs.length){el.innerHTML='';return}
+  const fields=[{k:'temp',f:v=>v.toFixed(1)+'\u00B0C'},{k:'risePct',f:v=>v+'%'},{k:'domed',l:'domed'},{k:'bubblesTop',l:'bubTop'},{k:'bubblesSides',l:'bubSides'},{k:'wobble',l:'wobble'},{k:'windowpane',l:'windowpane'},{k:'smell',l:'smell'}];
+  el.innerHTML='<div class="sect-label" style="margin-top:.75rem">Observations</div>'+
+    '<div class="bake-timeline">'+
+    obs.map(o=>{
+      const t=fmtTime(o.time);
+      const vals=fields.map(f=>{
+        const raw=o[f.k];
+        if(f.l&&BOM_VARS[f.l]&&BOM_VARS[f.l].ticks)return BOM_VARS[f.l].ticks[Math.round(raw)]||raw;
+        if(f.f)return f.f(raw);
+        return raw;
+      });
+      return '<div class="bake-obs-row"><span class="bake-obs-time">'+t+'</span><span>'+vals[0]+'</span><span>'+vals[1]+'</span><span>'+vals[2]+'</span><span>'+vals[3]+'</span><span>'+vals[4]+'</span><span>'+vals[5]+'</span><span>'+vals[6]+'</span><span>'+vals[7]+'</span>'+(o.notes?'<span style="color:var(--text3)">\u2014 '+o.notes+'</span>':'')+'</div>'
+    }).join('')+
+    '</div>';
+}
+
+function renderBakeChart(obs){
+  const wrap=document.getElementById('bd-chart-wrap');
+  const canvas=document.getElementById('bd-chart');
+  if(!obs||obs.length<2){wrap.style.display='none';return}
+  wrap.style.display='block';
+  if(bakeChart){bakeChart.destroy();bakeChart=null}
+  bakeChart=new Chart(canvas,{
+    type:'line',
+    data:{
+      datasets:[
+        {label:'Dough temp (\u00B0C)',data:obs.map(o=>({x:o.time/60,y:o.temp})),borderColor:'#D85A30',borderWidth:2,pointRadius:3,tension:0.3,yAxisID:'y',parsing:{xAxisKey:'x',yAxisKey:'y'}},
+        {label:'Room temp (\u00B0C)',data:obs.map(o=>({x:o.time/60,y:o.roomTemp})).filter(d=>d.y>0),borderColor:'#BA7517',borderWidth:1.5,pointRadius:2,borderDash:[4,3],tension:0.3,yAxisID:'y',parsing:{xAxisKey:'x',yAxisKey:'y'}},
+        {label:'Rise %',data:obs.map(o=>({x:o.time/60,y:o.risePct})),borderColor:'#185FA5',borderWidth:2,pointRadius:3,tension:0.3,yAxisID:'y1',parsing:{xAxisKey:'x',yAxisKey:'y'}}
+      ]
+    },
+    options:{
+      responsive:true,maintainAspectRatio:false,
+      interaction:{mode:'index',intersect:false},
+      plugins:{legend:{position:'top',labels:{boxWidth:12,font:{size:11},color:'var(--text2)'}}},
+      scales:{
+        x:{type:'linear',ticks:{callback:v=>v+'h',color:'#888',font:{size:10}},grid:{color:'rgba(128,128,128,0.08)'}},
+        y:{position:'left',ticks:{color:'#888',font:{size:10},callback:v=>v.toFixed(0)+'\u00B0C'},grid:{color:'rgba(128,128,128,0.08)'}},
+        y1:{position:'right',min:0,max:100,ticks:{color:'#888',font:{size:10},callback:v=>v+'%'},grid:{drawOnChartArea:false}}
+      }
+    }
+  });
+}
+
+// ── Star rating ──
+function renderStars(rating){
+  document.querySelectorAll('#bd-stars .star').forEach(s=>{
+    s.classList.toggle('active',+s.dataset.v<=rating);
+  });
+}
+document.addEventListener('click',e=>{
+  const s=e.target.closest('#bd-stars .star');
+  if(s){renderStars(+s.dataset.v)}
+});
+
+// ── Images ──
+function loadBakeImages(bake){
+  const el=document.getElementById('bd-images');
+  if(!bake)return;
+  idbLoadAll(bake.id).then(items=>{
+    currentBakeImages=items;
+    el.innerHTML=items.map((item,i)=>
+      '<div class="bake-img-wrap"><img src="'+URL.createObjectURL(item.blob)+'" alt="Photo '+(i+1)+'"><button class="bake-img-remove" data-idx="'+i+'">\u00D7</button></div>'
+    ).join('')||'<span style="font-size:12px;color:var(--text3)">No photos yet.</span>';
+    el.querySelectorAll('.bake-img-wrap img').forEach(img=>{
+      img.addEventListener('click',function(e){
+        if(e.target.closest('.bake-img-remove'))return;
+        openLightbox(this.src);
+      });
+    });
+    // attach remove handlers
+    el.querySelectorAll('.bake-img-remove').forEach(b=>{
+      b.addEventListener('click',function(e){
+        e.stopPropagation();
+        const idx=+this.dataset.idx;
+        removeImage(bake.id,idx);
+      });
+    });
+  });
+}
+
+function removeImage(bakeId,idx){
+  const item=currentBakeImages[idx];
+  if(!item)return;
+  idbDeleteAll(bakeId).then(()=>{
+    // re-save remaining images
+    const remaining=currentBakeImages.filter((_,i)=>i!==idx);
+    currentBakeImages=remaining;
+    return Promise.all(remaining.map((item,i)=>idbSave(bakeId+'_'+i,item.blob)));
+  }).then(()=>{
+    // update display
+    loadBakeImages(activeBake);
+    // update imageCount in saved bake
+    const bakes=loadBakes();
+    const bi=bakes.findIndex(b=>b.id===bakeId);
+    if(bi>=0){bakes[bi].imageCount=currentBakeImages.length;saveBakes(bakes);activeBake=bakes[bi]}
+  });
+}
+
+document.getElementById('bd-img-input').addEventListener('change',function(e){
+  if(!this.files||!this.files.length||!activeBake)return;
+  const files=Array.from(this.files);
+  const maxNew=5-(currentBakeImages.length||0);
+  if(maxNew<=0){alert('Max 5 photos per bake.');return}
+  const toProcess=files.slice(0,maxNew);
+  let done=0;
+  toProcess.forEach(file=>{
+    const reader=new FileReader();
+    reader.onload=function(ev){
+      const img=new Image();
+      img.onload=function(){
+        // resize to max 1200px wide
+        let w=img.width,h=img.height;
+        if(w>1200){h*=1200/w;w=1200}
+        const c=document.createElement('canvas');
+        c.width=w;c.height=h;
+        const ctx=c.getContext('2d');
+        ctx.drawImage(img,0,0,w,h);
+        c.toBlob(function(blob){
+          if(!blob)return;
+          const idx=currentBakeImages.length;
+          idbSave(activeBake.id+'_'+idx,blob).then(()=>{
+            done++;
+            // update imageCount in saved bake
+            const bakes=loadBakes();
+            const bi=bakes.findIndex(b=>b.id===activeBake.id);
+            if(bi>=0){bakes[bi].imageCount=currentBakeImages.length+1;saveBakes(bakes)}
+            loadBakeImages(activeBake);
+          });
+        },'image/jpeg',0.8);
+      };
+      img.src=ev.target.result;
+    };
+    reader.readAsDataURL(file);
+  });
+  this.value='';
+});
+
+// ── Save / Delete detail ──
+function saveDetailBake(){
+  if(!activeBake)return;
+  const bakes=loadBakes();
+  const bi=bakes.findIndex(b=>b.id===activeBake.id);
+  if(bi<0)return;
+  const ra=document.querySelectorAll('#bd-stars .star.active').length;
+  bakes[bi].rating=ra;
+  bakes[bi].notes=document.getElementById('bd-notes').value.trim();
+  bakes[bi].name=document.getElementById('bd-title').value.trim()||'Unnamed bake';
+  saveBakes(bakes);
+  activeBake=bakes[bi];
+  renderBakeList();
+  setBakeView('list');
+}
+
+function deleteCurrentBake(){
+  if(!activeBake)return;
+  if(!confirm('Delete "'+activeBake.name+'"? This cannot be undone.'))return;
+  const bakes=loadBakes().filter(b=>b.id!==activeBake.id);
+  saveBakes(bakes);
+  idbDeleteAll(activeBake.id);
+  if(bakeChart){bakeChart.destroy();bakeChart=null}
+  activeBake=null;
+  setBakeView('list');
+  renderBakeList();
+}
+
+// ── Bake list ──
+function renderBakeList(){
+  const el=document.getElementById('bake-list');
+  const bakes=loadBakes();
+  if(!bakes.length){el.textContent='No bakes recorded yet.';el.className='bake-empty';return}
+  el.className='bake-list';
+  el.innerHTML=bakes.map(b=>{
+    const hyd=((b.waterWeight+(b.starterWeight||0)*((b.starterHydration||100)/100))/b.flourWeight*100).toFixed(1);
+    const dur=b.bulkDuration?fmtTime(b.bulkDuration):'\u2014';
+    const stars=b.rating?'<span class="bake-card-stars">'+'\u2605'.repeat(b.rating)+'\u2606'.repeat(5-b.rating)+'</span>':'';
+    return '<div class="bake-card" data-id="'+b.id+'">'+
+      '<div class="bake-card-bg"></div>'+
+      '<div class="bake-card-body"><div class="bake-card-row"><div><div class="bake-card-name">'+b.name+'</div><div class="bake-card-date">'+b.date+'</div></div>'+stars+'</div>'+
+      '<div class="bake-card-meta">'+b.flourWeight+'g flour &middot; '+hyd+'% hydration &middot; Bulk: '+dur+'</div>'+
+      (b.finalRise!=null?'<div class="bake-card-meta">Final rise: '+b.finalRise+'%'+(b.avgTemp?' &middot; Avg temp: '+b.avgTemp.toFixed(1)+'\u00B0C':'')+'</div>':'')+
+      '</div>'+
+      '</div>'
+  }).join('');
+  el.querySelectorAll('.bake-card').forEach(c=>{
+    const id=+c.dataset.id;
+    // lazy load first image
+    idbLoadFirstImage(id).then(blob=>{
+      if(!blob)return;
+      const bg=c.querySelector('.bake-card-bg');
+      if(bg)bg.style.backgroundImage='url('+URL.createObjectURL(blob)+')';
+      c.classList.add('has-photo');
+    });
+    c.addEventListener('click',function(){
+      const id=+this.dataset.id;
+      const bakes=loadBakes();
+      const bake=bakes.find(b=>b.id===id);
+      if(bake){activeBake=bake;activeBakeIdx=bakes.indexOf(bake);renderDetail(bake);setBakeView('detail')}
+    });
+  });
+}
+
+// init bake list on page show
+const origShowPage=showPage;
+showPage=function(id,btn){
+  origShowPage(id,btn);
+  if(id==='bake'){
+    if(activeBake&&activeBake.bulkStart&&!activeBake.bulkEnd){
+      setBakeView('track');startTimer();
+      document.getElementById('bt-title').textContent='Tracking \u2014 '+activeBake.name;
+      renderTimeline();
+    }else{
+      renderBakeList();setBakeView('list')
+    }
+  }
+};
 
 // init first visible chart
 dwBuild();
