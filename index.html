@@ -31,10 +31,21 @@
 }
 html{-webkit-text-size-adjust:100%}
 body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',system-ui,sans-serif;background:var(--bg3);color:var(--text);font-size:15px;line-height:1.5;min-height:100vh}
-.nav{display:flex;background:var(--bg);border-bottom:0.5px solid var(--border);position:sticky;top:0;z-index:100;overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none}
-.nav::-webkit-scrollbar{display:none}
-.nav-btn{flex:0 0 auto;padding:14px 18px;font-size:13px;font-weight:500;color:var(--text3);background:none;border:none;border-bottom:2px solid transparent;cursor:pointer;white-space:nowrap;transition:color .15s,border-color .15s;-webkit-tap-highlight-color:transparent;touch-action:manipulation}
-.nav-btn.active{color:var(--text);border-bottom-color:var(--text)}
+.nav{position:sticky;top:0;z-index:100;background:var(--bg);border-bottom:0.5px solid var(--border);padding:0 1rem}
+.nav-btn-mobile{display:flex;align-items:center;gap:6px;width:100%;padding:14px 0;font-size:15px;font-weight:500;color:var(--text);background:none;border:none;cursor:pointer;-webkit-tap-highlight-color:transparent;touch-action:manipulation;text-align:left}
+@media(min-width:700px){.nav-btn-mobile{display:none}}
+.nav-chevron{font-size:10px;color:var(--text3);transition:transform .2s}
+@media(min-width:700px){.nav-chevron{display:none}}
+.nav-menu{display:none;position:absolute;left:0;right:0;top:100%;background:var(--bg);border-bottom:0.5px solid var(--border);box-shadow:0 8px 24px rgba(0,0,0,0.12);z-index:99}
+.nav-menu.open{display:block}
+@media(min-width:700px){.nav-menu{display:none!important}}
+.nav-menu-item{display:block;width:100%;padding:14px 1rem;font-size:14px;font-weight:500;color:var(--text2);background:none;border:none;text-align:left;cursor:pointer;-webkit-tap-highlight-color:transparent;touch-action:manipulation;transition:background .1s,color .1s}
+.nav-menu-item:active{background:var(--bg2)}
+.nav-menu-item.active{color:var(--text);font-weight:600}
+.nav-tabs{display:none}
+@media(min-width:700px){.nav-tabs{display:flex;gap:0}}
+.nav-tab{padding:14px 18px;font-size:13px;font-weight:500;color:var(--text3);background:none;border:none;border-bottom:2px solid transparent;cursor:pointer;white-space:nowrap;transition:color .15s,border-color .15s;-webkit-tap-highlight-color:transparent;touch-action:manipulation}
+.nav-tab.active{color:var(--text);border-bottom-color:var(--text)}
 .page{display:none;padding:1rem 1rem 4rem}
 .page.active{display:block}
 .card{background:var(--bg);border:0.5px solid var(--border);border-radius:var(--rl);padding:1.25rem;margin-bottom:1.25rem}
@@ -48,13 +59,13 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',system-ui,sans-seri
 .slider-val{font-size:13px;font-weight:500;min-width:48px;text-align:right;color:var(--text)}
 input[type=number],input[type=text],input[type=date]{width:100%;padding:8px 10px;border:0.5px solid var(--border2);border-radius:var(--r);background:var(--bg);color:var(--text);font-size:14px;font-family:inherit;-webkit-appearance:none;-moz-appearance:textfield}
 input[type=number]::-webkit-outer-spin-button,input[type=number]::-webkit-inner-spin-button{-webkit-appearance:none}
-input[type=number]:focus,input[type=text]:focus,input[type=date]:focus{outline:none;border-color:var(--text)}
+input[type=number]:focus,input[type=text]:focus,input[type=date]:focus{outline:none;border-color:var(--blue);box-shadow:0 0 0 3px var(--blue-lt)}
 input[type=time]{width:100%;padding:8px 10px;border:0.5px solid var(--border2);border-radius:var(--r);background:var(--bg);color:var(--text);font-size:14px;font-family:inherit}
 .btn-group{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:1rem}
 .btn{font-size:12px;padding:8px 13px;border-radius:var(--r);border:0.5px solid var(--border2);background:var(--bg);color:var(--text2);cursor:pointer;-webkit-tap-highlight-color:transparent;touch-action:manipulation;min-height:38px}
 .btn:active{background:var(--bg3)}
 .btn.active{border:1.5px solid var(--text);background:var(--bg2);color:var(--text);font-weight:500}
-.sect-label{font-size:12px;color:var(--text2);margin-bottom:5px;display:block}
+.sect-label{font-size:12px;color:var(--text2);display:block;padding-top:1rem;border-top:0.5px solid var(--border);margin-bottom:5px}
 .legend{display:flex;flex-wrap:wrap;gap:12px;margin-bottom:.75rem}
 .legend-item{display:flex;align-items:center;gap:5px;font-size:12px;color:var(--text2)}
 .chart-wrap{position:relative;width:100%}
@@ -152,18 +163,35 @@ hr{border:none;border-top:0.5px solid var(--border);margin:1rem 0}
 .bake-lightbox.open{display:flex}
 .bake-lightbox img{max-width:94%;max-height:94%;object-fit:contain;border-radius:6px;box-shadow:0 4px 30px rgba(0,0,0,0.5)}
 .bake-lightbox-close{position:absolute;top:12px;right:12px;width:40px;height:40px;border-radius:50%;background:rgba(255,255,255,0.15);color:#fff;border:none;font-size:24px;cursor:pointer;display:flex;align-items:center;justify-content:center;line-height:1;z-index:10;-webkit-tap-highlight-color:transparent}
-.bake-empty{text-align:center;padding:2rem 0;color:var(--text3);font-size:13px}
+.bake-empty{text-align:center;padding:2rem 1rem;color:var(--text3);font-size:13px}
+.bake-empty::before{content:'';display:block;width:44px;height:44px;margin:0 auto 12px;background:var(--text3);-webkit-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='1.8' stroke-linecap='round'%3E%3Ccircle cx='12' cy='12' r='8.5'/%3E%3Cpath d='M8.5 12h7' stroke-width='1.3'/%3E%3Cpath d='M9 10.5l3 3 3-3' stroke-width='1.3'/%3E%3C/svg%3E") no-repeat center/contain;mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='1.8' stroke-linecap='round'%3E%3Ccircle cx='12' cy='12' r='8.5'/%3E%3Cpath d='M8.5 12h7' stroke-width='1.3'/%3E%3Cpath d='M9 10.5l3 3 3-3' stroke-width='1.3'/%3E%3C/svg%3E") no-repeat center/contain}
+.btn-primary{background:var(--blue);color:#fff;border-color:var(--blue);font-weight:500}
+.btn-primary:active{filter:brightness(0.92)}
+.btn-danger{color:var(--orange);border-color:var(--orange)}
 .page-bake-actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:1rem}
 </style>
 </head>
 <body>
 
 <nav class="nav">
-  <button class="nav-btn active" onclick="showPage('ddt',this)">DDT</button>
-  <button class="nav-btn" onclick="showPage('dough',this)">Dough warmup time</button>
-  <button class="nav-btn" onclick="showPage('starter',this)">Starter warmup</button>
-  <button class="nav-btn" onclick="showPage('sc',this)">Starter peak time</button>
-  <button class="nav-btn" onclick="showPage('bake',this)">Bake log</button>
+  <button class="nav-btn-mobile" id="nav-current" onclick="toggleNavMenu()">
+    <span id="nav-current-text">DDT</span>
+    <span class="nav-chevron">▾</span>
+  </button>
+  <div class="nav-menu" id="nav-menu">
+    <button class="nav-menu-item active" data-page="ddt">DDT</button>
+    <button class="nav-menu-item" data-page="dough">Dough warmup time</button>
+    <button class="nav-menu-item" data-page="starter">Starter warmup</button>
+    <button class="nav-menu-item" data-page="sc">Starter peak time</button>
+    <button class="nav-menu-item" data-page="bake">Bake log</button>
+  </div>
+  <div class="nav-tabs">
+    <button class="nav-tab active" data-page="ddt">DDT</button>
+    <button class="nav-tab" data-page="dough">Dough warmup time</button>
+    <button class="nav-tab" data-page="starter">Starter warmup</button>
+    <button class="nav-tab" data-page="sc">Starter peak time</button>
+    <button class="nav-tab" data-page="bake">Bake log</button>
+  </div>
 </nav>
 
 <!-- ═══════════════════════════════════════
@@ -580,7 +608,7 @@ hr{border:none;border-top:0.5px solid var(--border);margin:1rem 0}
 
     <div id="bf-pcts" style="display:flex;flex-wrap:wrap;gap:8px;margin-bottom:1rem;font-size:12px;color:var(--text2)"></div>
 
-    <button class="btn" onclick="startBulk()" style="width:100%;padding:12px;font-size:14px;font-weight:500">Start bulk fermentation</button>
+    <button class="btn btn-primary" onclick="startBulk()" style="width:100%;padding:12px;font-size:14px;font-weight:500">Start bulk fermentation</button>
   </div>
 
   <!-- ═══ VIEW: TRACKER ═══ -->
@@ -619,11 +647,10 @@ hr{border:none;border-top:0.5px solid var(--border);margin:1rem 0}
     </div>
 
     <div style="display:flex;gap:8px;margin-top:0">
-      <button class="btn" onclick="addReading()" style="flex:1">+ Add reading</button>
-      <button class="btn" onclick="endBulk()" style="flex:1;color:var(--orange);border-color:var(--orange)">End bulk</button>
+      <button class="btn btn-primary" onclick="addReading()" style="flex:1">+ Add reading</button>
+      <button class="btn btn-danger" onclick="endBulk()" style="flex:1">End bulk</button>
     </div>
 
-    <hr>
     <div class="sect-label">Readings</div>
     <div id="bt-timeline" class="bake-empty" style="padding:.5rem 0">No readings yet.</div>
   </div>
@@ -643,8 +670,6 @@ hr{border:none;border-top:0.5px solid var(--border);margin:1rem 0}
 
     <div id="bd-obs-table"></div>
 
-    <hr>
-
     <div class="sect-label">Final notes &amp; rating</div>
     <div class="star-rating" id="bd-stars">
       <span class="star" data-v="1">&#9733;</span>
@@ -663,8 +688,8 @@ hr{border:none;border-top:0.5px solid var(--border);margin:1rem 0}
     </div>
 
     <div class="page-bake-actions">
-      <button class="btn" onclick="saveDetailBake()" style="flex:1">Save</button>
-      <button class="btn" onclick="deleteCurrentBake()" style="color:var(--orange);border-color:var(--orange);flex:1">Delete bake</button>
+      <button class="btn btn-primary" onclick="saveDetailBake()" style="flex:1">Save</button>
+      <button class="btn btn-danger" onclick="deleteCurrentBake()" style="flex:1">Delete bake</button>
     </div>
   </div>
 
@@ -680,11 +705,39 @@ hr{border:none;border-top:0.5px solid var(--border);margin:1rem 0}
 /* ══════════════════════════════════════════
    NAVIGATION
 ══════════════════════════════════════════ */
-function showPage(id,btn){
+const PAGE_NAMES={ddt:'DDT',dough:'Dough warmup time',starter:'Starter warmup',sc:'Starter peak time',bake:'Bake log'};
+let navMenuOpen=false;
+
+function toggleNavMenu(){
+  navMenuOpen=!navMenuOpen;
+  document.getElementById('nav-menu').classList.toggle('open',navMenuOpen);
+  document.querySelector('.nav-chevron').style.transform=navMenuOpen?'rotate(180deg)':'';
+}
+function closeNavMenu(){
+  navMenuOpen=false;
+  document.getElementById('nav-menu').classList.remove('open');
+  const ch=document.querySelector('.nav-chevron');
+  if(ch)ch.style.transform='';
+}
+document.querySelectorAll('.nav-menu-item').forEach(b=>{
+  b.addEventListener('click',function(){
+    showPage(this.dataset.page);
+    closeNavMenu();
+  });
+});
+document.querySelectorAll('.nav-tab').forEach(b=>{
+  b.addEventListener('click',function(){showPage(this.dataset.page)});
+});
+document.addEventListener('click',function(e){if(!e.target.closest('.nav'))closeNavMenu()});
+document.addEventListener('keydown',function(e){if(e.key==='Escape')closeNavMenu()});
+
+function showPage(id){
   document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
-  document.querySelectorAll('.nav-btn').forEach(b=>b.classList.remove('active'));
+  document.querySelectorAll('.nav-menu-item').forEach(b=>b.classList.remove('active'));
+  document.querySelectorAll('.nav-tab').forEach(b=>b.classList.remove('active'));
   document.getElementById('page-'+id).classList.add('active');
-  btn.classList.add('active');
+  document.querySelectorAll('.nav-menu-item[data-page="'+id+'"], .nav-tab[data-page="'+id+'"]').forEach(b=>b.classList.add('active'));
+  document.getElementById('nav-current-text').textContent=PAGE_NAMES[id]||id;
   if(id==='dough'&&!dwChart)dwBuild();
   if(id==='starter'&&!stChart)sBuild();
   if(id==='sc'&&!scChart)scBuild();
@@ -1683,8 +1736,8 @@ function renderBakeList(){
 
 // init bake list on page show
 const origShowPage=showPage;
-showPage=function(id,btn){
-  origShowPage(id,btn);
+showPage=function(id){
+  origShowPage(id);
   if(id==='bake'){
     if(activeBake&&activeBake.bulkStart&&!activeBake.bulkEnd){
       setBakeView('track');startTimer();
