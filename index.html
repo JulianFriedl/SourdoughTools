@@ -610,7 +610,6 @@ hr{border:none;border-top:0.5px solid var(--border);margin:1rem 0}
       <div class="ctrl-col"><span class="ctrl-label">Starter weight (g)</span><input type="number" id="bf-starter" value="100" min="0" max="1000" step="5" oninput="calcBakerPcts()"></div>
       <div class="ctrl-col"><span class="ctrl-label">Starter hydration (%)</span><input type="number" id="bf-starterHyd" value="100" min="50" max="200" step="5" oninput="calcBakerPcts()"></div>
       <div class="ctrl-col"><span class="ctrl-label">Salt weight (g)</span><input type="number" id="bf-salt" value="10" min="0" max="50" step="0.5" oninput="calcBakerPcts()"></div>
-      <div class="ctrl-col"><span class="ctrl-label">Bulk duration target (h)</span><input type="number" id="bf-target" value="4.5" min="1" max="12" step="0.5" oninput="calcBakerPcts()"></div>
     </div>
 
     <div id="bf-pcts" style="display:flex;flex-wrap:wrap;gap:8px;margin-bottom:1rem;font-size:12px;color:var(--text2)"></div>
@@ -1184,13 +1183,10 @@ function startBulk(){
   const starter=+document.getElementById('bf-starter').value||0;
   const starterHyd=+document.getElementById('bf-starterHyd').value||100;
   const salt=+document.getElementById('bf-salt').value||0;
-  const targetH=+document.getElementById('bf-target').value||4.5;
-
   activeBake={
     id:Date.now(),
     date,name,flourType,other,
     flourWeight:flour,waterWeight:water,starterWeight:starter,starterHydration:starterHyd,saltWeight:salt,
-    targetDuration:targetH*60,
     bulkStart:Date.now(),bulkEnd:null,
     avgTemp:null,observations:[],finalRise:null,bulkDuration:null,
     rating:null,notes:'',imageCount:0,
